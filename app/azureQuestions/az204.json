@@ -3987,7 +3987,7 @@
     {
       "id": 233,
       "domain": "Integration",
-      "question": "Complete the CLI command to create an Event Grid topic.",
+      "question": "Complete the missing CLI command to create an Event Grid topic named 'myTopic' in resource group 'myRG' located in East US.",
       "options": [
         "A) az eventgrid topic create --name myTopic --resource-group myRG --location eastus",
         "B) az eventgrid create topic myTopic --rg myRG",
@@ -3995,11 +3995,11 @@
         "D) az eventgrid topic --new myTopic --resource myRG"
       ],
       "multi_select": false,
-      "hint": "Remember: noun comes after service name.",
+      "hint": "Service → noun → verb structure in Azure CLI.",
       "correct_answers": [
         "A"
       ],
-      "explanation": "The correct syntax is 'az eventgrid topic create' followed by name, resource group, and location parameters."
+      "explanation": "The correct syntax is 'az eventgrid topic create --name myTopic --resource-group myRG --location eastus'."
     },
     {
       "id": 234,
