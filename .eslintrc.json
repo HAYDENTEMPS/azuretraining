@@ -1,0 +1,13 @@
+{
+  "extends": ["next/core-web-vitals"],
+  "rules": {
+    // Allow console statements in API routes and development
+    "no-console": "off",
+    // Handle unused vars with basic rule since @typescript-eslint is not installed
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+    "prefer-const": "error",
+    "no-var": "error",
+    // Allow unescaped entities in JSX for quotes
+    "react/no-unescaped-entities": "off"
+  }
+}

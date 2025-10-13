@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles and custom components */
+
+/* Base styling for better accessibility and UX */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-azure-50 to-blue-50 min-h-screen font-sans;
+    @apply dark:bg-gradient-to-br dark:from-gray-900 dark:to-slate-800 dark:text-gray-100;
+  }
+
+  /* Custom focus styles for better accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-azure-500 focus:ring-offset-2 focus:ring-offset-white;
+    @apply dark:focus:ring-azure-400 dark:focus:ring-offset-gray-900;
+  }
+
+  /* Headings in guide content */
+  .guide-content h1,
+  .guide-content h2,
+  .guide-content h3,
+  .guide-content h4,
+  .guide-content h5,
+  .guide-content h6 {
+    @apply font-bold text-gray-900 mb-4 mt-6;
+    @apply dark:text-gray-100;
+  }
+
+  .guide-content h1 { @apply text-3xl; }
+  .guide-content h2 { @apply text-2xl; }
+  .guide-content h3 { @apply text-xl; }
+  .guide-content h4 { @apply text-lg; }
+
+  .guide-content p {
+    @apply mb-4 text-gray-700 leading-relaxed;
+    @apply dark:text-gray-300;
+  }
+
+  .guide-content ul,
+  .guide-content ol {
+    @apply mb-4 ml-6 text-gray-700;
+    @apply dark:text-gray-300;
+  }
+
+  .guide-content li {
+    @apply mb-2;
+  }
+
+  .guide-content ul li {
+    @apply list-disc;
+  }
+
+  .guide-content ol li {
+    @apply list-decimal;
+  }
+
+  .guide-content strong {
+    @apply font-semibold text-gray-900;
+    @apply dark:text-gray-100;
+  }
+
+  .guide-content code {
+    @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+    @apply dark:bg-gray-700 dark:text-gray-200;
+  }
+
+  .guide-content pre {
+    @apply bg-gray-100 p-4 rounded-lg overflow-x-auto mb-4;
+    @apply dark:bg-gray-700;
+  }
+
+  .guide-content table {
+    @apply w-full border-collapse border border-gray-300 mb-4;
+    @apply dark:border-gray-600;
+  }
+
+  .guide-content th,
+  .guide-content td {
+    @apply border border-gray-300 px-3 py-2 text-left;
+    @apply dark:border-gray-600;
+  }
+
+  .guide-content th {
+    @apply bg-gray-100 font-semibold;
+    @apply dark:bg-gray-700;
+  }
+}
+
+/* Component layer for reusable UI patterns */
+@layer components {
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6 border border-gray-100;
+    @apply dark:bg-gray-800 dark:border-gray-700 dark:shadow-xl;
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus-ring;
+  }
+
+  .btn-primary {
+    @apply btn bg-azure-600 text-white hover:bg-azure-700 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply dark:bg-azure-500 dark:hover:bg-azure-600;
+  }
+
+  .btn-secondary {
+    @apply btn bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300;
+    @apply dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:border-gray-600;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700;
+  }
+
+  .btn-success {
+    @apply btn bg-green-600 text-white hover:bg-green-700;
+  }
+
+  .quiz-option {
+    @apply w-full text-left p-4 rounded-lg border-2 transition-all duration-200 focus-ring;
+  }
+
+  .quiz-option-default {
+    @apply quiz-option border-gray-200 hover:border-azure-300 hover:bg-azure-50;
+    @apply dark:border-gray-600 dark:hover:border-azure-400 dark:hover:bg-azure-900/30;
+  }
+
+  .quiz-option-selected {
+    @apply quiz-option border-azure-500 bg-azure-100 text-azure-800;
+    @apply dark:border-azure-400 dark:bg-azure-900/50 dark:text-azure-200;
+  }
+
+  .quiz-option-correct {
+    @apply quiz-option border-green-500 bg-green-100 text-green-800;
+    @apply dark:border-green-400 dark:bg-green-900/50 dark:text-green-200;
+  }
+
+  .quiz-option-incorrect {
+    @apply quiz-option border-red-500 bg-red-100 text-red-800;
+    @apply dark:border-red-400 dark:bg-red-900/50 dark:text-red-200;
+  }
+
+  .quiz-option-disabled {
+    @apply quiz-option opacity-60 cursor-not-allowed;
+  }
+
+  .progress-bar {
+    @apply w-full h-3 bg-gray-200 rounded-full overflow-hidden;
+    @apply dark:bg-gray-700;
+  }
+
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-azure-500 to-blue-500 transition-all duration-300 ease-out;
+  }
+
+  .search-highlight {
+    @apply bg-yellow-200 font-semibold;
+    @apply dark:bg-yellow-600/50 dark:text-yellow-200;
+  }
+
+  .tooltip {
+    @apply absolute z-50 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg;
+    @apply dark:bg-gray-700 dark:border dark:border-gray-600;
+  }
+}
+
+/* Utility layer for custom utilities */
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles for guide */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .guide-content {
+    @apply text-black bg-white;
+  }
+}
+
+/* Custom scrollbar for guide content */
+.guide-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.guide-content::-webkit-scrollbar-track {
+  @apply bg-gray-100 rounded-full;
+  @apply dark:bg-gray-700;
+}
+
+.guide-content::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded-full hover:bg-gray-500;
+  @apply dark:bg-gray-500 dark:hover:bg-gray-400;
+}

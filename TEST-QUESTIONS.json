@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "title": "Dynamic Question Types - Test Examples",
+    "count": 10,
+    "notes": "Test questions demonstrating all supported question types. Add these to az204.json to test the new features."
+  },
+  "questions": [
+    {
+      "id": 9001,
+      "domain": "Compute",
+      "question": "Arrange the following steps to deploy an Azure Function in the correct order:",
+      "options": [
+        "A) Write function code",
+        "B) Create App Service Plan",
+        "C) Create Function App",
+        "D) Deploy to Azure"
+      ],
+      "multi_select": false,
+      "hint": "Think about infrastructure before code deployment",
+      "correct_answers": ["B", "C", "A", "D"],
+      "explanation": "First create the App Service Plan (hosting infrastructure), then the Function App (application container), write your code, and finally deploy it to Azure. The infrastructure must exist before you can deploy code."
+    },
+    {
+      "id": 9002,
+      "domain": "Storage",
+      "question": "Arrange these blob storage lifecycle management steps in the correct sequence:",
+      "options": [
+        "A) Define lifecycle policy rules",
+        "B) Apply policy to storage account",
+        "C) Create storage account",
+        "D) Monitor policy execution"
+      ],
+      "multi_select": false,
+      "hint": "Storage account must exist first",
+      "correct_answers": ["C", "A", "B", "D"],
+      "explanation": "Create the storage account first, define the lifecycle policy rules, apply the policy to the account, and then monitor its execution. This is the logical sequence for implementing blob lifecycle management."
+    },
+    {
+      "id": 9003,
+      "domain": "Networking",
+      "question": "Complete the Azure CLI command to create a virtual network:\naz network vnet create --name ___ --resource-group ___ --location ___",
+      "options": [
+        "A) myVNet",
+        "B) myResourceGroup",
+        "C) eastus",
+        "D) westus"
+      ],
+      "multi_select": false,
+      "hint": "Use the VNet name, resource group, and location in order",
+      "correct_answers": ["A", "B", "C"],
+      "explanation": "The command creates a VNet named 'myVNet' in the 'myResourceGroup' resource group, located in the 'eastus' region. The order matches the parameter sequence in the command."
+    },
+    {
+      "id": 9004,
+      "domain": "Storage",
+      "question": "Complete the PowerShell command to create a storage account:\nNew-AzStorageAccount -ResourceGroupName ___ -Name ___ -Location ___ -SkuName ___",
+      "options": [
+        "A) myRG",
+        "B) mystorageacct123",
+        "C) eastus",
+        "D) Standard_LRS"
+      ],
+      "multi_select": false,
+      "hint": "Follow the parameter order in the command",
+      "correct_answers": ["A", "B", "C", "D"],
+      "explanation": "This PowerShell command creates a storage account with the specified parameters: resource group name, storage account name (must be globally unique), location, and SKU (Standard Locally Redundant Storage)."
+    },
+    {
+      "id": 9005,
+      "domain": "Compute",
+      "question": "Which command creates a new Azure Web App?",
+      "options": [
+        "A) az webapp create",
+        "B) az vm create",
+        "C) az functionapp create",
+        "D) az container create"
+      ],
+      "multi_select": false,
+      "hint": "Look for the webapp-specific command",
+      "correct_answers": ["A"],
+      "explanation": "The 'az webapp create' command is specifically designed to create Azure Web Apps. Option B creates virtual machines, C creates function apps, and D creates container instances."
+    },
+    {
+      "id": 9006,
+      "domain": "Storage",
+      "question": "Which command lists all storage accounts in a subscription?",
+      "options": [
+        "A) az storage account list",
+        "B) az account list",
+        "C) az resource list",
+        "D) az group list"
+      ],
+      "multi_select": false,
+      "hint": "Focus on the storage account-specific command",
+      "correct_answers": ["A"],
+      "explanation": "The 'az storage account list' command lists all storage accounts in the current subscription. Other options list different Azure resources (subscriptions, all resources, or resource groups)."
+    },
+    {
+      "id": 9007,
+      "domain": "Integration",
+      "question": "Case Study: Contoso Corporation\n\nScenario:\nContoso Corporation is developing a microservices architecture on Azure. They need a messaging solution that supports publish-subscribe patterns, allows multiple consumers to receive the same message, and provides message filtering capabilities. The solution must handle high throughput and integrate with their existing Azure services.\n\nQuestion: Which Azure messaging service should Contoso use?",
+      "options": [
+        "A) Azure Storage Queue",
+        "B) Azure Service Bus Topics",
+        "C) Azure Event Grid",
+        "D) Azure Queue Storage"
+      ],
+      "multi_select": false,
+      "hint": "Look for publish-subscribe with filtering",
+      "correct_answers": ["B"],
+      "explanation": "Azure Service Bus Topics provides publish-subscribe messaging patterns with advanced filtering, making it ideal for microservices. Storage Queues only support point-to-point messaging. Event Grid is for event-driven architectures but doesn't provide message filtering like Service Bus. Service Bus Topics supports multiple subscribers and complex routing rules."
+    },
+    {
+      "id": 9008,
+      "domain": "Security",
+      "question": "Case Study: Healthcare Application\n\nScenario:\nA healthcare application stores patient records in Azure. The application must encrypt data at rest and in transit, use customer-managed encryption keys, and provide detailed audit logs of all key operations. The solution must support automatic key rotation and meet HIPAA compliance requirements.\n\nQuestion: Which Azure service should be used for key management?",
+      "options": [
+        "A) Azure Storage encryption",
+        "B) Azure Key Vault",
+        "C) Azure Information Protection",
+        "D) Azure Disk Encryption"
+      ],
+      "multi_select": false,
+      "hint": "Focus on centralized key management with audit logs",
+      "correct_answers": ["B"],
+      "explanation": "Azure Key Vault provides centralized key management with customer-managed keys, detailed audit logging, automatic rotation, and HIPAA compliance. While other options provide encryption, only Key Vault offers comprehensive key management with the required audit and compliance features for healthcare scenarios."
+    },
+    {
+      "id": 9009,
+      "domain": "Monitoring",
+      "question": "Arrange these steps to set up Azure Monitor alerts in the correct order:",
+      "options": [
+        "A) Create action group",
+        "B) Define alert rule",
+        "C) Select resource to monitor",
+        "D) Test alert notification"
+      ],
+      "multi_select": false,
+      "hint": "Start with what to monitor",
+      "correct_answers": ["C", "A", "B", "D"],
+      "explanation": "First select the resource you want to monitor, create an action group to define who gets notified and how, define the alert rule with conditions and thresholds, and finally test the alert to ensure notifications work correctly."
+    },
+    {
+      "id": 9010,
+      "domain": "Compute",
+      "question": "Which Azure CLI command restarts a virtual machine named 'myVM' in resource group 'myRG'?",
+      "options": [
+        "A) az vm restart --name myVM --resource-group myRG",
+        "B) az vm start --name myVM --resource-group myRG",
+        "C) az vm reboot --name myVM --resource-group myRG",
+        "D) az vm deallocate --name myVM --resource-group myRG"
+      ],
+      "multi_select": false,
+      "hint": "Look for the restart-specific command",
+      "correct_answers": ["A"],
+      "explanation": "The 'az vm restart' command reboots a virtual machine. Option B starts a stopped VM, C is not a valid command, and D deallocates (stops) the VM without restarting it."
+    }
+  ]
+}

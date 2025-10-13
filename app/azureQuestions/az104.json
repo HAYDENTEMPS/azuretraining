@@ -1,0 +1,3700 @@
+{
+  "meta": {
+    "title": "AZ-104 Ultimate Practice (With Tips) – JSON Pack",
+    "count": 60,
+    "notes": "Mixed domains; answers intentionally distributed; multi_select=true when multiple answers are required."
+  },
+  "schema": {
+    "id": "integer",
+    "domain": "Identities | Governance | Storage | Compute | Networking | Monitoring | BackupDR | Security",
+    "question": "string",
+    "options": [
+      "A) ...",
+      "B) ...",
+      "C) ...",
+      "D) ..."
+    ],
+    "multi_select": "boolean",
+    "hint": "string",
+    "correct_answers": [
+      "A",
+      "C"
+    ]
+  },
+"questions": [
+    {
+      "id": 1,
+      "domain": "Identities",
+      "question": "You need to allow a group to read all resources in a subscription but not modify anything. Which role at which scope is most appropriate?",
+      "options": [
+        "A) Reader at subscription scope",
+        "B) Owner at resource group scope",
+        "C) Contributor at subscription scope",
+        "D) Global Administrator in Azure AD"
+      ],
+      "multi_select": false,
+      "hint": "Think RBAC vs AAD roles and least privilege.",
+      "correct_answers": ["A"],
+      "explanation": "The Reader role at subscription scope allows view-only access to all resources without modification. This follows the principle of least privilege. Contributor and Owner permit changes, which is more access than required. Global Administrator is an Azure AD directory role and does not grant access to Azure resources."
+    },
+    {
+      "id": 2,
+      "domain": "Governance",
+      "question": "You must restrict VM deployments to the 'UK South' region for all subscriptions in a tenant. Which feature enforces this?",
+      "options": [
+        "A) Resource locks at resource group level",
+        "B) Azure Policy assignment at management group",
+        "C) Initiative assigned at resource scope only",
+        "D) Azure Blueprints only"
+      ],
+      "multi_select": false,
+      "hint": "Enforcement of allowed locations across many subs.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Policy with the 'Allowed Locations' definition enforces where resources can be deployed. Assigning it at the management group ensures all child subscriptions inherit it. Resource locks prevent deletion, not deployment. Initiatives group policies but assigning at a single resource scope is too narrow. Blueprints can include policies but the enforcement comes from the policy itself."
+    },
+    {
+      "id": 3,
+      "domain": "Storage",
+      "question": "Which storage redundancy option provides read access to the secondary region?",
+      "options": [
+        "A) LRS",
+        "B) ZRS",
+        "C) GRS",
+        "D) RA-GRS"
+      ],
+      "multi_select": false,
+      "hint": "Only one explicitly says 'read-access'.",
+      "correct_answers": ["D"],
+      "explanation": "RA-GRS (Read-Access Geo-Redundant Storage) provides geo-replication like GRS but also allows read access to the secondary region. GRS replicates data but only allows Microsoft-initiated failover. LRS and ZRS keep data within a single region."
+    },
+    {
+      "id": 4,
+      "domain": "Compute",
+      "question": "You need intra-datacenter high availability for a set of VMs without autoscaling. Which option should you choose?",
+      "options": [
+        "A) Availability Set",
+        "B) Availability Zone",
+        "C) VM Scale Set",
+        "D) Traffic Manager"
+      ],
+      "multi_select": false,
+      "hint": "Fault/Update domains vs regional separation.",
+      "correct_answers": ["A"],
+      "explanation": "Availability Sets distribute VMs across multiple fault and update domains within the same datacenter to reduce downtime from hardware failures or maintenance. Availability Zones span datacenters for regional resiliency. VM Scale Sets provide autoscaling, and Traffic Manager is for DNS-based load balancing across regions."
+    },
+    {
+      "id": 5,
+      "domain": "Networking",
+      "question": "You front-end two web VMs with a Standard Public Load Balancer. Users must stick to the same backend during a session. What should you configure?",
+      "options": [
+        "A) Health probe only",
+        "B) Session persistence: None",
+        "C) Session persistence: Client IP",
+        "D) Inbound NAT rule"
+      ],
+      "multi_select": false,
+      "hint": "Client affinity.",
+      "correct_answers": ["C"],
+      "explanation": "Session persistence set to 'Client IP' ensures a user’s session always goes to the same backend VM. Health probes are necessary for LB health checks but do not control persistence. 'None' results in round robin load balancing. NAT rules map ports, not session affinity."
+    },
+    {
+      "id": 6,
+      "domain": "Monitoring",
+      "question": "You need near real-time alerts when a VM’s CPU exceeds 80% for 5 minutes and to notify by email. Which two components are required?",
+      "options": [
+        "A) Metric alert rule on the VM",
+        "B) Log alert using KQL in a workspace",
+        "C) Action Group with email receiver",
+        "D) Application Insights workbook"
+      ],
+      "multi_select": true,
+      "hint": "Threshold-based + who to notify.",
+      "correct_answers": ["A","C"],
+      "explanation": "Metric alerts monitor numeric resource metrics (like CPU) in near real-time. Action Groups define how notifications are sent, such as email. Log alerts are for custom KQL queries on logs, not metrics. Workbooks are visualization tools."
+    },
+    {
+      "id": 7,
+      "domain": "BackupDR",
+      "question": "Your app must fail over an entire VM workload to a paired region with minimal downtime. Which service should you use?",
+      "options": [
+        "A) Azure Backup",
+        "B) Azure Site Recovery (ASR)",
+        "C) Availability Zones",
+        "D) Azure Files snapshot"
+      ],
+      "multi_select": false,
+      "hint": "Failover, not just data restore.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Site Recovery (ASR) replicates VMs to a secondary region and allows orchestrated failover for disaster recovery. Azure Backup restores data, not entire workloads. Availability Zones keep resources highly available within a region, not cross-region. File snapshots only protect file shares."
+    },
+    {
+      "id": 8,
+      "domain": "Security",
+      "question": "You must store connection strings securely for an App Service and rotate them without code changes. Which two features should you combine?",
+      "options": [
+        "A) Azure Key Vault",
+        "B) Managed Identity for the app",
+        "C) NSG on the subnet",
+        "D) Azure Bastion"
+      ],
+      "multi_select": true,
+      "hint": "Secrets + identity without secrets in code.",
+      "correct_answers": ["A","B"],
+      "explanation": "Key Vault securely stores secrets and supports rotation. Managed Identities allow the app to authenticate to Key Vault without storing credentials in code. NSGs control network traffic and Bastion is for VM access, neither solves secret management."
+    },
+    {
+      "id": 9,
+      "domain": "Networking",
+      "question": "On-prem connects to VNet1 via VPN Gateway. VNet1 is peered with VNet2. You cannot reach VNet2 from on-prem. What is likely missing?",
+      "options": [
+        "A) Enable 'allow forwarded traffic' on the peering",
+        "B) Reinstall the VPN client configuration",
+        "C) Assign a Public IP to VMs in VNet2",
+        "D) Convert peering to Basic SKU"
+      ],
+      "multi_select": false,
+      "hint": "Transit across peering requires a specific toggle.",
+      "correct_answers": ["A"],
+      "explanation": "To allow traffic from on-prem through VNet1’s VPN to reach VNet2, gateway transit must be enabled on the peering. Without this, peering is not transitive. Reinstalling VPN clients or assigning public IPs won’t help. Basic SKU peering has limitations but isn’t the issue here."
+    },
+    {
+      "id": 10,
+      "domain": "Storage",
+      "question": "You need to grant a vendor temporary upload access to one blob container without giving account keys. What should you use?",
+      "options": [
+        "A) SAS token",
+        "B) Shared Key (account key)",
+        "C) RBAC Owner on the subscription",
+        "D) Local user for Azure Files"
+      ],
+      "multi_select": false,
+      "hint": "Delegated, time-bound access.",
+      "correct_answers": ["A"],
+      "explanation": "Shared Access Signatures (SAS) provide time-limited and scoped access to storage. Account keys expose full access to the account. RBAC Owner is excessive. Local users apply to Azure Files SMB access, not blobs."
+    },
+    {
+      "id": 11,
+      "domain": "Compute",
+      "question": "You must autoscale identical stateless web servers and balance traffic across them. Which two Azure components work together?",
+      "options": [
+        "A) Availability Set + NAT Gateway",
+        "B) VM Scale Set + Azure Load Balancer",
+        "C) Availability Zone + Traffic Manager",
+        "D) VMSS + Application Gateway (HTTP)"
+      ],
+      "multi_select": true,
+      "hint": "Autoscale + L4 or L7 distribution.",
+      "correct_answers": ["B","D"],
+      "explanation": "VM Scale Sets allow autoscaling of VMs. They are commonly paired with Load Balancer (Layer 4) or Application Gateway (Layer 7) for distributing traffic. Availability Sets do not autoscale. NAT Gateway manages outbound connectivity."
+    },
+    {
+      "id": 12,
+      "domain": "Identities",
+      "question": "Which statement is true regarding Azure AD roles vs Azure RBAC roles?",
+      "options": [
+        "A) Azure AD roles apply at tenant scope; RBAC applies at resource scopes",
+        "B) RBAC is tenant-wide; AD roles are per subscription",
+        "C) Both are tenant-wide",
+        "D) Both only apply at resource group level"
+      ],
+      "multi_select": false,
+      "hint": "Directory vs resource plane.",
+      "correct_answers": ["A"],
+      "explanation": "Azure AD roles control access to directory-level features and identities. Azure RBAC controls access to resources like VMs and storage within Azure subscriptions. They operate in separate planes."
+    },
+    {
+      "id": 13,
+      "domain": "Governance",
+      "question": "You want to deploy a standard set of policies and RBAC assignments plus an ARM template to multiple subscriptions consistently. Which feature helps package this?",
+      "options": [
+        "A) Azure Policy only",
+        "B) Azure Blueprints",
+        "C) Resource Locks",
+        "D) Management Groups alone"
+      ],
+      "multi_select": false,
+      "hint": "Packaging of artifacts.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Blueprints let you package policies, RBAC, and ARM templates together for consistent deployment across subscriptions. Azure Policy enforces rules but doesn’t package RBAC or templates. Locks and management groups provide other governance features but not packaging."
+    },
+    {
+      "id": 14,
+      "domain": "Storage",
+      "question": "After 30 days, infrequently accessed blobs must move to Cool, and after 365 days they should be deleted. What should you configure?",
+      "options": [
+        "A) Azure Policy",
+        "B) Blob Lifecycle Management rules",
+        "C) SAS tokens with expiry",
+        "D) Azure Automation Runbook"
+      ],
+      "multi_select": false,
+      "hint": "Built-in tiering engine for blobs.",
+      "correct_answers": ["B"],
+      "explanation": "Blob Lifecycle Management automatically transitions blobs to cooler tiers or deletes them based on age. Policies can enforce settings but not manage lifecycle. SAS tokens control access, not lifecycle. Automation could be scripted but Lifecycle Management is the native solution."
+    },
+    {
+      "id": 15,
+      "domain": "Monitoring",
+      "question": "You need to chart VM CPU averages in 5-minute bins using Logs. Which KQL pattern should you use?",
+      "options": [
+        "A) Perf | summarize avg(CounterValue) by bin(TimeGenerated, 5m)",
+        "B) AzureActivity | project CounterValue",
+        "C) InsightsMetrics | where Name == 'CPU' | project CounterValue",
+        "D) Heartbeat | summarize by 5m"
+      ],
+      "multi_select": false,
+      "hint": "Perf table + summarize + bin().",
+      "correct_answers": ["A"],
+      "explanation": "The Perf table stores performance counters. Using summarize with bin() lets you aggregate CPU values into 5-minute intervals. AzureActivity logs management actions. InsightsMetrics and Heartbeat store other telemetry, not VM CPU."
+    },
+    {
+      "id": 16,
+      "domain": "Security",
+      "question": "Which service provides Just-In-Time (JIT) VM access recommendations and secure score?",
+      "options": [
+        "A) Azure Bastion",
+        "B) Defender for Cloud",
+        "C) NSG",
+        "D) Application Gateway WAF"
+      ],
+      "multi_select": false,
+      "hint": "Posture + JIT = one product.",
+      "correct_answers": ["B"],
+      "explanation": "Defender for Cloud provides JIT VM access, secure score, and recommendations. Bastion enables RDP/SSH without public IPs but not JIT. NSGs and WAFs provide network/app protection but not posture scoring."
+    },
+    {
+      "id": 17,
+      "domain": "Networking",
+      "question": "You need global user routing to the nearest region with DNS-based decisions. Which service do you use?",
+      "options": [
+        "A) Azure Front Door (classic) only",
+        "B) Traffic Manager",
+        "C) Application Gateway",
+        "D) Azure Load Balancer"
+      ],
+      "multi_select": false,
+      "hint": "DNS-based global routing.",
+      "correct_answers": ["B"],
+      "explanation": "Traffic Manager uses DNS-based routing methods, such as performance-based, to direct users to the nearest or lowest-latency region. Front Door provides global HTTP routing with Anycast but is L7. App Gateway and Load Balancer are regional only."
+    },
+    {
+      "id": 18,
+      "domain": "Compute",
+      "question": "You must capture an Azure VM definition to redeploy another VM later. Which three approaches are valid?",
+      "options": [
+        "A) Export template from the resource group and redeploy",
+        "B) Save-AzDeploymentTemplate then New-AzResourceGroupDeployment",
+        "C) Save-AzDeploymentScriptLog then Deploy",
+        "D) Get-AzVM and pipe to New-AzVM with parameters"
+      ],
+      "multi_select": true,
+      "hint": "Template or object model; avoid 'script log'.",
+      "correct_answers": ["A","B","D"],
+      "explanation": "You can export a resource group’s template, use PowerShell to save and redeploy the template, or capture VM config with Get-AzVM and redeploy using New-AzVM. Script log export is not a valid capture method."
+    },
+    {
+      "id": 19,
+      "domain": "BackupDR",
+      "question": "You want to restore a single file deleted from a protected VM yesterday. What do you use?",
+      "options": [
+        "A) Azure Site Recovery test failover",
+        "B) Azure Backup file-level restore",
+        "C) Snapshot of the OS disk only",
+        "D) Restore from GRS secondary directly"
+      ],
+      "multi_select": false,
+      "hint": "Granular recovery capability.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Backup supports file-level restore for VM backups. ASR is for failover, not file recovery. Disk snapshots restore whole disks. You cannot restore directly from the GRS secondary."
+    },
+    {
+      "id": 20,
+      "domain": "Governance",
+      "question": "You must ensure a critical resource group cannot be deleted, but updates are allowed. Which lock type should you apply?",
+      "options": [
+        "A) ReadOnly",
+        "B) CanNotDelete",
+        "C) Deny assignment",
+        "D) Policy: not allowed to delete"
+      ],
+      "multi_select": false,
+      "hint": "Block deletes only.",
+      "correct_answers": ["B"],
+      "explanation": "A CanNotDelete lock prevents deletion but still allows updates. ReadOnly prevents both updates and deletes. Deny assignments are created by policy, not manual. Policy could enforce compliance but lock is the proper mechanism here."
+    },
+    {
+      "id": 21,
+      "domain": "Storage",
+      "question": "Which two can you use to authenticate data-plane access to Blob Storage without account keys?",
+      "options": [
+        "A) Azure AD with RBAC (Storage Blob Data Reader/Contributor)",
+        "B) SAS tokens",
+        "C) Shared Key",
+        "D) Azure Policy"
+      ],
+      "multi_select": true,
+      "hint": "Modern auth + delegated.",
+      "correct_answers": ["A","B"],
+      "explanation": "Azure AD with RBAC provides identity-based access without account keys. SAS tokens provide scoped, temporary access. Shared Key exposes the account key. Azure Policy manages compliance, not authentication."
+    },
+    {
+      "id": 22,
+      "domain": "Networking",
+      "question": "You need L7 routing, SSL offload, and WAF for a web app. Which service fits?",
+      "options": [
+        "A) Application Gateway",
+        "B) Azure Load Balancer",
+        "C) Traffic Manager",
+        "D) Azure Firewall"
+      ],
+      "multi_select": false,
+      "hint": "Layer 7 and WAF.",
+      "correct_answers": ["A"],
+      "explanation": "Application Gateway provides Layer 7 load balancing with features like path-based routing, SSL offload, and Web Application Firewall (WAF). Load Balancer is Layer 4. Traffic Manager is DNS-based. Firewall is Layer 3/4 filtering."
+    },
+    {
+      "id": 23,
+      "domain": "Monitoring",
+      "question": "You want to trigger an Automation Runbook when a log query returns results (e.g., specific error in Activity Log). What alert type and target do you use?",
+      "options": [
+        "A) Metric alert + Action Group (Automation)",
+        "B) Log alert + Action Group (Automation Runbook)",
+        "C) Workbook + Logic App",
+        "D) VM extension"
+      ],
+      "multi_select": false,
+      "hint": "KQL-based detection.",
+      "correct_answers": ["B"],
+      "explanation": "Log alerts use KQL queries against log data. When the condition is met, they trigger an Action Group. That Action Group can run an Automation Runbook. Metric alerts work on metrics, not queries. Workbooks visualize. VM extensions configure VMs."
+    },
+    {
+      "id": 24,
+      "domain": "Identities",
+      "question": "Which two are tenant-wide roles (directory scope), not Azure resource RBAC roles?",
+      "options": [
+        "A) Global Administrator",
+        "B) User Administrator",
+        "C) Owner",
+        "D) Contributor"
+      ],
+      "multi_select": true,
+      "hint": "AAD vs Resource plane.",
+      "correct_answers": ["A","B"],
+      "explanation": "Global Administrator and User Administrator are Azure AD directory roles at the tenant scope. Owner and Contributor are Azure RBAC roles applied to resource scopes (subscription, RG, resource)."
+    },
+    {
+      "id": 25,
+      "domain": "Security",
+      "question": "You must enable portal-based RDP/SSH to a VM without exposing a public IP. Which service?",
+      "options": [
+        "A) Bastion",
+        "B) NSG with RDP allowed",
+        "C) Azure Firewall DNAT",
+        "D) App Gateway"
+      ],
+      "multi_select": false,
+      "hint": "Browser-based RDP/SSH.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Bastion provides secure RDP/SSH directly in the Azure portal without requiring public IPs. NSGs opening RDP to the Internet is insecure. Firewall DNAT and Application Gateway are not designed for this."
+    },{
+      "id": 26,
+      "domain": "Compute",
+      "question": "Which disk type offers the lowest latency for I/O intensive workloads?",
+      "options": [
+        "A) Standard HDD",
+        "B) Standard SSD",
+        "C) Premium SSD",
+        "D) Ultra SSD"
+      ],
+      "multi_select": false,
+      "hint": "Top tier disk.",
+      "correct_answers": ["D"],
+      "explanation": "Ultra SSD provides the highest throughput and lowest latency in Azure, designed for mission-critical workloads. Premium SSD offers high performance but not as low latency. Standard SSD and HDD are optimized for cost rather than extreme performance."
+    },
+    {
+      "id": 27,
+      "domain": "Governance",
+      "question": "You need to audit that all resources have a 'CostCenter' tag and deny deployments when the tag is missing. Which approach?",
+      "options": [
+        "A) Resource lock",
+        "B) Azure Policy with 'deny' effect",
+        "C) Initiative with only 'audit' policies",
+        "D) Blueprints are required"
+      ],
+      "multi_select": false,
+      "hint": "Enforce + deny on non-compliant deploys.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Policy with a deny effect enforces tagging requirements at deployment. Locks prevent deletion or updates but don’t enforce tags. An initiative with audit-only policies won’t stop non-compliant resources. Blueprints can include policies but the enforcement comes from the policy definition."
+    },
+    {
+      "id": 28,
+      "domain": "Networking",
+      "question": "Which two statements are true for Standard SKU Load Balancer?",
+      "options": [
+        "A) Supports multiple backend pools across subnets in the same VNet",
+        "B) Basic SKU only supports one backend pool per subnet",
+        "C) Requires NSG rules to allow inbound traffic explicitly",
+        "D) Always comes with WAF"
+      ],
+      "multi_select": true,
+      "hint": "Security defaults changed for Standard LB.",
+      "correct_answers": ["A","C"],
+      "explanation": "Standard Load Balancer supports multiple backend pools and requires explicit NSG rules since it is secure by default. Basic SKU is open by default and more limited. Load Balancer does not provide WAF capabilities; that’s Application Gateway."
+    },
+    {
+      "id": 29,
+      "domain": "BackupDR",
+      "question": "You need cross-region restore of backups from the Recovery Services vault. Which redundancy or setting is required?",
+      "options": [
+        "A) LRS vault",
+        "B) GRS vault with Cross Region Restore enabled",
+        "C) ZRS vault",
+        "D) RA-GRS on storage account only"
+      ],
+      "multi_select": false,
+      "hint": "Vault capability.",
+      "correct_answers": ["B"],
+      "explanation": "Cross-region restore requires a Recovery Services vault configured with GRS redundancy and the Cross Region Restore feature enabled. LRS and ZRS don’t replicate to another region. RA-GRS applies to blob storage accounts, not Recovery Services vaults."
+    },
+    {
+      "id": 30,
+      "domain": "Storage",
+      "question": "You want NFS file shares in Azure with POSIX-like semantics. Which option?",
+      "options": [
+        "A) Azure Files with NFS shares",
+        "B) Blob containers with NFS",
+        "C) Azure File Sync only",
+        "D) SMB only"
+      ],
+      "multi_select": false,
+      "hint": "Check Azure Files protocols.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Files supports SMB and NFS protocols. NFS shares provide POSIX-like semantics. Blob containers use object APIs, not NFS. Azure File Sync synchronizes on-premises SMB shares, not NFS."
+    },
+    {
+      "id": 31,
+      "domain": "Monitoring",
+      "question": "You need a dashboard that combines metrics and KQL queries for a specific app. Which feature do you use?",
+      "options": [
+        "A) Action Group",
+        "B) Workbook",
+        "C) Metric chart only",
+        "D) Traffic Manager"
+      ],
+      "multi_select": false,
+      "hint": "Rich visualization artifact.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Monitor Workbooks combine metrics and logs into interactive dashboards. Action Groups are for alerts. Metric charts display only metrics. Traffic Manager is a DNS load balancing service."
+    },
+    {
+      "id": 32,
+      "domain": "Security",
+      "question": "Which two protect against exposing secrets in code for an App Service calling Storage?",
+      "options": [
+        "A) Managed Identity",
+        "B) User delegation SAS",
+        "C) Account keys in app settings",
+        "D) NSG with allow rules"
+      ],
+      "multi_select": true,
+      "hint": "Identity + scoped token.",
+      "correct_answers": ["A","B"],
+      "explanation": "Managed Identities allow applications to authenticate without hard-coded secrets. User delegation SAS provides scoped, temporary access. Using account keys in app settings exposes secrets, and NSGs control traffic, not secrets."
+    },
+    {
+      "id": 33,
+      "domain": "Identities",
+      "question": "You need temporary, approver-gated elevation to Subscription Owner for a user during a maintenance window. What should you use?",
+      "options": [
+        "A) Permanent role assignment in RBAC",
+        "B) Azure AD PIM eligible role with approval workflow",
+        "C) Azure Policy 'append' effect",
+        "D) ReadOnly lock at subscription level"
+      ],
+      "multi_select": false,
+      "hint": "JIT elevation.",
+      "correct_answers": ["B"],
+      "explanation": "Privileged Identity Management (PIM) provides just-in-time elevation to RBAC roles with approval workflows. Permanent assignments violate least privilege. Policy 'append' and locks are not used for temporary access."
+    },
+    {
+      "id": 34,
+      "domain": "Compute",
+      "question": "Your VM must be zone-redundant for 99.99% SLA. What should you deploy?",
+      "options": [
+        "A) Two VMs in an Availability Set",
+        "B) VM(s) across Availability Zones",
+        "C) VM Scale Set in one zone",
+        "D) A single VM with Premium SSD"
+      ],
+      "multi_select": false,
+      "hint": "SLA target.",
+      "correct_answers": ["B"],
+      "explanation": "Deploying across Availability Zones provides regional resiliency and the 99.99% SLA. Availability Sets provide 99.95%. A single VM with Premium SSD improves storage but not overall SLA. A VMSS in one zone is not zone-redundant."
+    },
+    {
+      "id": 35,
+      "domain": "Networking",
+      "question": "You need URL path-based routing and end-to-end TLS with custom certs for a multi-site web app. Which service supports this directly?",
+      "options": [
+        "A) Azure Load Balancer",
+        "B) Application Gateway",
+        "C) Traffic Manager",
+        "D) Azure Firewall only"
+      ],
+      "multi_select": false,
+      "hint": "Layer 7 feature set.",
+      "correct_answers": ["B"],
+      "explanation": "Application Gateway supports L7 features like path-based routing, SSL termination, and end-to-end TLS. Load Balancer works at L4 only. Traffic Manager uses DNS-based routing. Azure Firewall filters traffic but doesn’t provide app-layer routing."
+    },
+    {
+      "id": 36,
+      "domain": "Governance",
+      "question": "Order the steps to enforce allowed locations via Azure Policy at a management group:",
+      "options": [
+        "A) 1) Create policy definition 2) Assign to MG 3) Set parameters 4) Review compliance",
+        "B) 1) Assign initiative 2) Create policy 3) Review 4) Set params",
+        "C) 1) Create lock 2) Assign to MG 3) Audit",
+        "D) 1) Create policy 2) Apply RBAC 3) Create blueprint 4) Deny"
+      ],
+      "multi_select": false,
+      "hint": "Definition → Assignment → Params → Compliance.",
+      "correct_answers": ["A"],
+      "explanation": "The correct workflow: define the policy, assign it at the management group, configure parameters, then review compliance. Initiatives are bundles but not required for a single policy. Locks and RBAC don’t enforce allowed locations."
+    },
+    {
+      "id": 37,
+      "domain": "Storage",
+      "question": "You must prevent deletion of blobs for 14 days to protect against accidental deletes/ransomware. Which feature?",
+      "options": [
+        "A) Soft delete with retention",
+        "B) Immutable (WORM) legal hold",
+        "C) Snapshot only",
+        "D) Archive tier"
+      ],
+      "multi_select": false,
+      "hint": "Recovery window.",
+      "correct_answers": ["A"],
+      "explanation": "Soft delete protects blobs by retaining them for a configured period after deletion. Immutable storage is used for compliance but prevents all modifications. Snapshots create restore points but do not guarantee recovery window. Archive tier is for long-term storage."
+    },
+    {
+      "id": 38,
+      "domain": "Monitoring",
+      "question": "You want to alert if a KQL query finds VMs without the 'Owner' tag. Which two are needed?",
+      "options": [
+        "A) Log alert",
+        "B) Metric alert",
+        "C) Action Group",
+        "D) Workbook"
+      ],
+      "multi_select": true,
+      "hint": "Query + notify.",
+      "correct_answers": ["A","C"],
+      "explanation": "Log alerts evaluate KQL queries and trigger when results match conditions. An Action Group defines how to notify or act. Metric alerts use numeric metrics only. Workbooks provide visualization."
+    },
+    {
+      "id": 39,
+      "domain": "BackupDR",
+      "question": "Which statement about Azure Backup vs ASR is correct?",
+      "options": [
+        "A) Backup provides VM failover",
+        "B) ASR provides file-level restore",
+        "C) Backup protects data; ASR enables DR failover",
+        "D) Both are only intra-region"
+      ],
+      "multi_select": false,
+      "hint": "Different objectives.",
+      "correct_answers": ["C"],
+      "explanation": "Azure Backup protects and restores data, such as files or whole VMs. Azure Site Recovery enables workload failover between regions. Backup does not provide failover and ASR does not restore individual files. Both support cross-region scenarios."
+    },
+    {
+      "id": 40,
+      "domain": "Security",
+      "question": "You need inbound protection and threat intelligence for traffic crossing a hub VNet. Which service is best?",
+      "options": [
+        "A) NSG only",
+        "B) Azure Firewall",
+        "C) Application Gateway",
+        "D) Bastion"
+      ],
+      "multi_select": false,
+      "hint": "Central L3/4 stateful with TI.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Firewall is a managed, stateful firewall that inspects inbound and outbound traffic with built-in threat intelligence. NSGs are basic packet filters. Application Gateway is for L7 load balancing. Bastion provides VM access, not traffic filtering."
+    },
+    {
+      "id": 41,
+      "domain": "Compute",
+      "question": "You must run a container quickly without managing VMs or orchestration. Which service?",
+      "options": [
+        "A) Azure Kubernetes Service",
+        "B) Azure Container Instances",
+        "C) VM Scale Set",
+        "D) App Service (Windows)"
+      ],
+      "multi_select": false,
+      "hint": "Fastest way for a single container.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Container Instances (ACI) runs containers directly without VM or cluster management. AKS requires orchestration. VMSS is for VMs, not containers. App Service runs web apps but not raw containers unless using Web App for Containers."
+    },
+    {
+      "id": 42,
+      "domain": "Identities",
+      "question": "A contractor needs read-only visibility of a single resource group. Which combo is correct?",
+      "options": [
+        "A) Reader at resource group scope",
+        "B) Global Admin in AAD",
+        "C) Owner at subscription scope",
+        "D) Contributor at resource group"
+      ],
+      "multi_select": false,
+      "hint": "Least privilege at narrowest scope.",
+      "correct_answers": ["A"],
+      "explanation": "Reader role at resource group scope grants read-only access limited to that group. Global Admin applies to directory, not Azure resources. Owner and Contributor allow modifications."
+    },
+    {
+      "id": 43,
+      "domain": "Storage",
+      "question": "You need to sync an on-prem file server with Azure Files, keeping hot data on-prem and full namespace in cloud. Which components?",
+      "options": [
+        "A) Azure File Sync agent + Storage Sync Service + cloud endpoint",
+        "B) AzCopy scheduled task only",
+        "C) Blob storage + lifecycle rules",
+        "D) ACI"
+      ],
+      "multi_select": false,
+      "hint": "Hybrid file solution.",
+      "correct_answers": ["A"],
+      "explanation": "Azure File Sync synchronizes on-premises file servers with Azure Files. It uses the agent, Storage Sync Service, and a cloud endpoint. AzCopy only copies data. Blob storage and ACI are not used for file server sync."
+    },
+    {
+      "id": 44,
+      "domain": "Networking",
+      "question": "You need to allow only HTTPS from Internet to a VM behind a Standard Load Balancer. Which TWO must be in place?",
+      "options": [
+        "A) LB rule for port 443",
+        "B) NAT rule for port 3389",
+        "C) NSG allow inbound 443 to backend subnet/NIC",
+        "D) WAF policy"
+      ],
+      "multi_select": true,
+      "hint": "Standard LB is closed by default.",
+      "correct_answers": ["A","C"],
+      "explanation": "To accept HTTPS traffic, you must configure a load balancing rule for 443 and allow it in the NSG. NAT rules expose management ports, not load balancing. WAF applies only to Application Gateway, not Load Balancer."
+    },
+    {
+      "id": 45,
+      "domain": "Monitoring",
+      "question": "Which statement about Metric vs Log alerts is correct?",
+      "options": [
+        "A) Metric alerts are always slower than Log alerts",
+        "B) Log alerts use KQL; Metric alerts use thresholds on metrics",
+        "C) Both require KQL",
+        "D) Neither supports Action Groups"
+      ],
+      "multi_select": false,
+      "hint": "Data sources differ.",
+      "correct_answers": ["B"],
+      "explanation": "Metric alerts trigger on numeric resource metrics. Log alerts run KQL against collected logs. Only log alerts use KQL. Both support Action Groups for notifications."
+    },
+    {
+      "id": 46,
+      "domain": "Security",
+      "question": "You must prevent direct RDP/SSH from Internet to VMs but still allow admin access when needed. Which TWO features together?",
+      "options": [
+        "A) Bastion",
+        "B) JIT via Defender for Cloud",
+        "C) NSG inbound allow 3389 from Internet",
+        "D) Public IP on each VM"
+      ],
+      "multi_select": true,
+      "hint": "Secure access pattern.",
+      "correct_answers": ["A","B"],
+      "explanation": "Azure Bastion enables secure portal-based RDP/SSH. Just-In-Time VM access restricts and times access. Allowing inbound 3389 or assigning public IPs increases risk."
+    },
+    {
+      "id": 47,
+      "domain": "BackupDR",
+      "question": "Place these steps in order to protect a VM with Azure Backup:",
+      "options": [
+        "A) 1) Create/Select RS Vault 2) Discover VMs 3) Configure backup policy 4) Enable backup",
+        "B) 1) Enable backup 2) Create vault 3) Policy 4) Discover",
+        "C) 1) Create vault 2) Enable vault locks 3) Restore 4) Backup",
+        "D) 1) Create policy 2) Create vault 3) Add tags 4) Enable backup"
+      ],
+      "multi_select": false,
+      "hint": "Vault → discover → policy → enable.",
+      "correct_answers": ["A"],
+      "explanation": "Protecting a VM requires: creating or selecting a Recovery Services vault, discovering VMs, configuring a policy, and enabling backup. The other sequences are incorrect."
+    },
+    {
+      "id": 48,
+      "domain": "Governance",
+      "question": "Which statement about Deny Assignments is true?",
+      "options": [
+        "A) They are created by Azure Policy and block actions regardless of RBAC",
+        "B) They grant permissions at resource level",
+        "C) They are the same as locks",
+        "D) They only apply at subscription scope"
+      ],
+      "multi_select": false,
+      "hint": "Policy can create hard denies.",
+      "correct_answers": ["A"],
+      "explanation": "Deny Assignments are automatically created by Azure Policy and override RBAC assignments. They don’t grant permissions. Locks are different and they apply at multiple scopes, not just subscription."
+    },
+    {
+      "id": 49,
+      "domain": "Compute",
+      "question": "You need to snapshot a VM’s OS disk before a patch. Which action is appropriate?",
+      "options": [
+        "A) Create disk snapshot of the managed disk",
+        "B) Export template",
+        "C) Capture VM image",
+        "D) Stop VM only"
+      ],
+      "multi_select": false,
+      "hint": "Point-in-time disk copy.",
+      "correct_answers": ["A"],
+      "explanation": "Creating a snapshot captures the disk state and allows rollback if the patch fails. Exporting a template or capturing an image saves configuration but not current data. Stopping a VM provides no backup."
+    },
+    {
+      "id": 50,
+      "domain": "Storage",
+      "question": "Which TWO improve security for Storage Account access from a VNet?",
+      "options": [
+        "A) Private endpoint",
+        "B) Storage firewall 'Selected networks' with VNet",
+        "C) Allow public network by default",
+        "D) Shared key in code"
+      ],
+      "multi_select": true,
+      "hint": "Network isolation patterns.",
+      "correct_answers": ["A","B"],
+      "explanation": "Private endpoints and firewalls restricting access to specific VNets enhance security. Allowing public networks or embedding keys in code reduces security."
+    },
+    {
+      "id": 51,
+      "domain": "Networking",
+      "question": "You require global failover between two active web apps in different regions with priority-based routing. Which service?",
+      "options": [
+        "A) Application Gateway",
+        "B) Traffic Manager (Priority)",
+        "C) Azure Load Balancer",
+        "D) Azure Firewall"
+      ],
+      "multi_select": false,
+      "hint": "Global DNS with ordered fallback.",
+      "correct_answers": ["B"],
+      "explanation": "Traffic Manager with the Priority routing method directs clients to the primary region first and fails over to the secondary if the primary becomes unavailable. Application Gateway and Load Balancer are regional services. Azure Firewall is for traffic filtering, not global failover."
+    },
+    {
+      "id": 52,
+      "domain": "Monitoring",
+      "question": "You want a single pane to query logs from multiple resources across subscriptions. What do you need?",
+      "options": [
+        "A) Multiple workspaces with cross-workspace queries",
+        "B) One workspace per VM only",
+        "C) Metric charts only",
+        "D) Traffic Manager"
+      ],
+      "multi_select": false,
+      "hint": "Logs can query across workspaces using unions.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Monitor Log Analytics supports cross-workspace queries, allowing data across subscriptions and resources to be queried together. Metric charts only display metrics. A single workspace per VM is unnecessary. Traffic Manager is unrelated."
+    },
+    {
+      "id": 53,
+      "domain": "Security",
+      "question": "Which is best for managing TLS certificates used by Application Gateway?",
+      "options": [
+        "A) Store in Key Vault and reference from App Gateway",
+        "B) Embed in code repository",
+        "C) Save in a VM’s file system",
+        "D) Put as plain text in App Settings"
+      ],
+      "multi_select": false,
+      "hint": "Central secure store.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Key Vault securely stores and manages TLS certificates, and Application Gateway can directly reference them. Storing certificates in code repositories, VM file systems, or app settings exposes security risks."
+    },
+    {
+      "id": 54,
+      "domain": "Identities",
+      "question": "You must ensure a group can start/stop VMs but not delete them. Which built-in role is closest?",
+      "options": [
+        "A) Virtual Machine Contributor",
+        "B) Owner",
+        "C) Reader",
+        "D) User Access Administrator"
+      ],
+      "multi_select": false,
+      "hint": "Manage VMs but limited scope.",
+      "correct_answers": ["A"],
+      "explanation": "The Virtual Machine Contributor role allows management operations such as start, stop, and restart but does not grant delete permissions. Owner has full access, Reader is view-only, and User Access Administrator only manages access assignments."
+    },
+    {
+      "id": 55,
+      "domain": "Compute",
+      "question": "You need to deploy a repeatable VM stack (VM + NIC + NSG) across envs. Which two IaC choices fit best?",
+      "options": [
+        "A) ARM/Bicep templates",
+        "B) Azure Policy",
+        "C) Terraform",
+        "D) Manual portal steps"
+      ],
+      "multi_select": true,
+      "hint": "Declarative IaC tools.",
+      "correct_answers": ["A","C"],
+      "explanation": "ARM/Bicep templates and Terraform are Infrastructure as Code tools that allow repeatable, declarative deployments. Azure Policy enforces compliance but doesn’t deploy resources. Manual steps lack consistency."
+    },
+    {
+      "id": 56,
+      "domain": "Storage",
+      "question": "For a blob used by a media pipeline with frequent hot reads, which access tier is optimal?",
+      "options": [
+        "A) Hot",
+        "B) Cool",
+        "C) Archive",
+        "D) Immutable"
+      ],
+      "multi_select": false,
+      "hint": "Frequent access.",
+      "correct_answers": ["A"],
+      "explanation": "The Hot tier is intended for frequently accessed data, offering the lowest latency. Cool and Archive are cheaper but for infrequent access. Immutable storage is for compliance scenarios, not performance."
+    },
+    {
+      "id": 57,
+      "domain": "Networking",
+      "question": "You need to allow RDP from a jumpbox subnet only. Which two controls should you configure?",
+      "options": [
+        "A) NSG inbound rule from jumpbox subnet to 3389",
+        "B) LB rule for 3389 from Internet",
+        "C) Deny * from Internet in NSG",
+        "D) NAT Gateway outbound"
+      ],
+      "multi_select": true,
+      "hint": "Restrict source to trusted subnet.",
+      "correct_answers": ["A","C"],
+      "explanation": "Configuring an NSG to allow RDP from the jumpbox subnet while denying Internet-sourced RDP enforces secure access. Load balancer rules from Internet would expose the VM. NAT Gateway controls outbound connectivity only."
+    },
+    {
+      "id": 58,
+      "domain": "Monitoring",
+      "question": "KQL: Which returns deletes of VMs from the Activity Log?",
+      "options": [
+        "A) AzureActivity | where OperationName == 'Delete Virtual Machine'",
+        "B) Perf | where CounterName == 'VMDelete'",
+        "C) Heartbeat | where Category == 'Delete'",
+        "D) AppTraces | where Message == 'Delete VM'"
+      ],
+      "multi_select": false,
+      "hint": "Activity Log table.",
+      "correct_answers": ["A"],
+      "explanation": "The AzureActivity table records management-plane operations such as VM deletions. Perf, Heartbeat, and AppTraces track other types of telemetry, not management operations."
+    },
+    {
+      "id": 59,
+      "domain": "BackupDR",
+      "question": "Which TWO are supported by Azure Backup for IaaS VMs?",
+      "options": [
+        "A) File-level recovery",
+        "B) Application-aware backup for SQL/Windows via extensions",
+        "C) Automatic ASR failover",
+        "D) Immutable legal hold configuration"
+      ],
+      "multi_select": true,
+      "hint": "Granular restore + app integration.",
+      "correct_answers": ["A","B"],
+      "explanation": "Azure Backup supports file-level recovery from VM backups and application-consistent backups for workloads like SQL using VSS-based extensions. ASR handles failover, not backup. Immutable legal hold applies to Blob storage, not VM backups."
+    },
+    {
+      "id": 60,
+      "domain": "Security",
+      "question": "You want to audit secret access and set fine-grained permissions per secret. Which combo fits?",
+      "options": [
+        "A) Key Vault with RBAC (data plane roles)",
+        "B) NSG + Firewall",
+        "C) SAS tokens only",
+        "D) App Gateway WAF"
+      ],
+      "multi_select": false,
+      "hint": "Per-secret governance.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Key Vault with RBAC enables fine-grained control of secrets and auditing. NSGs and firewalls secure networks, not secrets. SAS tokens apply to storage accounts. WAF protects web traffic, not secrets."
+    },
+    {
+      "id": 61,
+      "domain": "Compute",
+      "question": "You need to deploy 200 identical Linux VMs that scale automatically. Which option is best?",
+      "options": [
+        "A) Availability Sets",
+        "B) Availability Zones",
+        "C) VM Scale Sets",
+        "D) Dedicated Host"
+      ],
+      "multi_select": false,
+      "hint": "Think elasticity + uniform instances.",
+      "correct_answers": ["C"],
+      "explanation": "VM Scale Sets support autoscaling and load balancing of identical VMs. Availability Sets and Zones provide high availability, not scaling. Dedicated Hosts ensure isolation, not scaling."
+    },
+    {
+      "id": 62,
+      "domain": "Storage",
+      "question": "You need to enforce that all new storage accounts use hierarchical namespace. Which feature?",
+      "options": [
+        "A) Azure Policy with 'deny'",
+        "B) RBAC assignment",
+        "C) Locks",
+        "D) Tags"
+      ],
+      "multi_select": false,
+      "hint": "Compliance enforcement.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Policy with a deny effect enforces that new storage accounts must enable hierarchical namespace (for Data Lake Storage Gen2). RBAC controls access, locks prevent deletion, and tags are for metadata only."
+    },
+    {
+      "id": 63,
+      "domain": "Networking",
+      "question": "Which Azure service can distribute HTTP traffic globally with caching at edge?",
+      "options": [
+        "A) Traffic Manager",
+        "B) Azure Front Door",
+        "C) Application Gateway",
+        "D) Azure Firewall"
+      ],
+      "multi_select": false,
+      "hint": "CDN-like global accelerator.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Front Door provides global load balancing with edge caching for web traffic. Traffic Manager does DNS-based routing only. Application Gateway is regional. Azure Firewall is for network filtering."
+    },
+    {
+      "id": 64,
+      "domain": "Security",
+      "question": "Your devs need to access secrets programmatically without storing creds. Which two help?",
+      "options": [
+        "A) Managed Identity",
+        "B) Key Vault",
+        "C) SAS token hardcoded",
+        "D) Firewall rule"
+      ],
+      "multi_select": true,
+      "hint": "Identity + vault.",
+      "correct_answers": ["A","B"],
+      "explanation": "Managed Identities allow apps to authenticate without credentials. Key Vault stores and secures secrets. Hardcoding SAS tokens is insecure, and firewall rules secure networks, not secrets."
+    },
+    {
+      "id": 65,
+      "domain": "BackupDR",
+      "question": "What is the minimum redundancy option recommended for production backups in Recovery Services vaults?",
+      "options": [
+        "A) LRS",
+        "B) ZRS",
+        "C) GRS",
+        "D) RA-GRS"
+      ],
+      "multi_select": false,
+      "hint": "Geo redundancy.",
+      "correct_answers": ["C"],
+      "explanation": "Geo-Redundant Storage (GRS) is the minimum recommended option for Recovery Services vaults in production, providing resilience by replicating data to a secondary region. LRS and ZRS are less resilient. RA-GRS adds read-access but GRS is baseline."
+    },
+    {
+      "id": 66,
+      "domain": "Identities",
+      "question": "You must allow a user to reset passwords for others but not manage resources. Which built-in role?",
+      "options": [
+        "A) User Administrator (AAD)",
+        "B) Owner",
+        "C) Contributor",
+        "D) Reader"
+      ],
+      "multi_select": false,
+      "hint": "Directory role.",
+      "correct_answers": ["A"],
+      "explanation": "User Administrator in Azure AD can reset passwords and manage users without granting Azure resource access. Owner and Contributor are RBAC roles for resources. Reader is view-only."
+    },
+    {
+      "id": 67,
+      "domain": "Monitoring",
+      "question": "Which service provides app-level telemetry (requests, dependencies, exceptions)?",
+      "options": [
+        "A) Azure Monitor Metrics",
+        "B) Application Insights",
+        "C) Log Analytics",
+        "D) Action Group"
+      ],
+      "multi_select": false,
+      "hint": "APM tool.",
+      "correct_answers": ["B"],
+      "explanation": "Application Insights provides application performance monitoring, including requests, dependencies, and exceptions. Metrics and Log Analytics cover infrastructure-level data. Action Groups handle alerting."
+    },
+    {
+      "id": 68,
+      "domain": "Governance",
+      "question": "Which artifact type can a Blueprint include? (Choose 2)",
+      "options": [
+        "A) Policy assignments",
+        "B) RBAC role assignments",
+        "C) Storage blobs",
+        "D) Key Vault secrets"
+      ],
+      "multi_select": true,
+      "hint": "Policies + RBAC + templates.",
+      "correct_answers": ["A","B"],
+      "explanation": "Blueprints can include policy assignments, role assignments, ARM templates, and resource group definitions. They do not include storage data or secrets."
+    },
+    {
+      "id": 69,
+      "domain": "Compute",
+      "question": "Which feature allows automatic OS patching with reboot control on VMs?",
+      "options": [
+        "A) Update Management in Automation",
+        "B) Desired State Configuration",
+        "C) VM Extensions only",
+        "D) ASR"
+      ],
+      "multi_select": false,
+      "hint": "Patch orchestration.",
+      "correct_answers": ["A"],
+      "explanation": "Update Management schedules and applies OS patches with reboot control. DSC enforces configuration, not patch cycles. VM Extensions deploy agents. ASR is for disaster recovery."
+    },
+    {
+      "id": 70,
+      "domain": "Networking",
+      "question": "Which NSG rule priority wins if multiple match?",
+      "options": [
+        "A) Highest number",
+        "B) Lowest number",
+        "C) Alphabetical",
+        "D) Random"
+      ],
+      "multi_select": false,
+      "hint": "100–4096; smaller is stronger.",
+      "correct_answers": ["B"],
+      "explanation": "NSG rules are evaluated in order of priority, and the lowest numerical value takes precedence. Priorities range from 100 to 4096."
+    },
+    {
+      "id": 71,
+      "domain": "Storage",
+      "question": "You must migrate petabytes of data to Azure quickly offline. Which solution?",
+      "options": [
+        "A) AzCopy",
+        "B) Azure Data Box",
+        "C) ExpressRoute",
+        "D) VPN Gateway"
+      ],
+      "multi_select": false,
+      "hint": "Physical device.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Data Box is a physical appliance shipped to Microsoft for secure, offline transfer of massive data volumes. AzCopy is online only. ExpressRoute and VPN are network solutions and impractical for petabytes."
+    },
+    {
+      "id": 72,
+      "domain": "Security",
+      "question": "Which feature in Key Vault helps with regulatory compliance to prevent secret changes?",
+      "options": [
+        "A) Soft delete",
+        "B) RBAC",
+        "C) Purge protection",
+        "D) Immutable storage"
+      ],
+      "multi_select": false,
+      "hint": "Can't purge until retention expires.",
+      "correct_answers": ["C"],
+      "explanation": "Purge protection ensures objects cannot be permanently deleted before retention expires, helping meet compliance. Soft delete enables recovery but still allows purge. RBAC manages access, and immutable storage applies to blobs."
+    },
+    {
+      "id": 73,
+      "domain": "BackupDR",
+      "question": "Order steps for ASR: prepare failover for a VM.",
+      "options": [
+        "A) Enable replication → Configure target → Test failover",
+        "B) Backup VM → Enable ASR → Test failover",
+        "C) Take snapshot → Replicate → Delete source",
+        "D) Assign RBAC → Replicate → Failover"
+      ],
+      "multi_select": false,
+      "hint": "Replicate then test.",
+      "correct_answers": ["A"],
+      "explanation": "ASR requires enabling replication, configuring a target site, and then testing failover. Backup and snapshots are not part of the ASR process. RBAC is prerequisite for permissions, not an operational step."
+    },
+    {
+      "id": 74,
+      "domain": "Monitoring",
+      "question": "You want to visualize cost trends in Azure. Which tool?",
+      "options": [
+        "A) Azure Monitor Workbooks",
+        "B) Cost Management + Billing",
+        "C) Application Insights",
+        "D) Defender for Cloud"
+      ],
+      "multi_select": false,
+      "hint": "Cost view lives elsewhere.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Cost Management + Billing provides insights into costs and forecasts. Workbooks and App Insights monitor performance. Defender for Cloud is for security posture."
+    },
+    {
+      "id": 75,
+      "domain": "Networking",
+      "question": "Which two are true about VNet peering?",
+      "options": [
+        "A) Transitive by default",
+        "B) Non-transitive unless configured",
+        "C) Low-latency backbone",
+        "D) Requires VPN Gateway always"
+      ],
+      "multi_select": true,
+      "hint": "Direct Azure backbone links.",
+      "correct_answers": ["B","C"],
+      "explanation": "VNet peering uses Microsoft’s backbone for low-latency connectivity, but it is non-transitive by default. Each VNet must be explicitly peered. VPN Gateway is not required unless crossing tenants or using gateway transit."
+    },
+    {
+      "id": 76,
+      "domain": "Compute",
+      "question": "Which VM purchase option provides the lowest cost if you can tolerate interruptions?",
+      "options": [
+        "A) Reserved Instances",
+        "B) Spot VMs",
+        "C) Pay-as-you-go",
+        "D) Dedicated Hosts"
+      ],
+      "multi_select": false,
+      "hint": "Cheapest but can be evicted.",
+      "correct_answers": ["B"],
+      "explanation": "Spot VMs take advantage of unused capacity at deep discounts but can be evicted at any time. Reserved Instances provide predictable savings for long-term use. Pay-as-you-go is flexible but higher cost. Dedicated Hosts provide physical isolation, not the lowest cost."
+    },
+    {
+      "id": 77,
+      "domain": "Identities",
+      "question": "You must allow external B2B users to access a resource group securely. What is the right approach?",
+      "options": [
+        "A) Create guest users in Azure AD and assign RBAC",
+        "B) Share subscription owner key",
+        "C) Give them tenant Global Admin",
+        "D) Use shared secrets in Key Vault"
+      ],
+      "multi_select": false,
+      "hint": "B2B = guest + RBAC.",
+      "correct_answers": ["A"],
+      "explanation": "Azure AD B2B collaboration allows inviting guest users, then assigning RBAC at the resource scope. Sharing subscription keys or granting Global Admin is insecure. Key Vault stores secrets, not identities."
+    },
+    {
+      "id": 78,
+      "domain": "Storage",
+      "question": "You need append-only writes to a blob for logging data. Which blob type?",
+      "options": [
+        "A) Block blob",
+        "B) Page blob",
+        "C) Append blob",
+        "D) File share"
+      ],
+      "multi_select": false,
+      "hint": "Optimized for append operations.",
+      "correct_answers": ["C"],
+      "explanation": "Append blobs are optimized for append-only operations like logging. Block blobs are general-purpose. Page blobs are used for random I/O, such as disks. File shares use SMB access."
+    },
+    {
+      "id": 79,
+      "domain": "Governance",
+      "question": "You want to apply the same policy set to 50 subscriptions. Which scope is best?",
+      "options": [
+        "A) Management group",
+        "B) Each subscription manually",
+        "C) Each resource group",
+        "D) Each resource"
+      ],
+      "multi_select": false,
+      "hint": "Inheritance is key.",
+      "correct_answers": ["A"],
+      "explanation": "Assigning policies at the management group ensures all subscriptions under it inherit the policy. Assigning at subscription, resource group, or resource level would require repetition and is less efficient."
+    },
+    {
+      "id": 80,
+      "domain": "Networking",
+      "question": "You need to connect multiple branch offices to Azure over private connections with high bandwidth. Which service?",
+      "options": [
+        "A) VPN Gateway",
+        "B) ExpressRoute",
+        "C) Front Door",
+        "D) Application Gateway"
+      ],
+      "multi_select": false,
+      "hint": "Private dedicated circuit.",
+      "correct_answers": ["B"],
+      "explanation": "ExpressRoute provides private, high-throughput connections between branch offices and Azure. VPN Gateway uses encrypted Internet tunnels. Front Door and Application Gateway are application delivery services, not WAN connectivity."
+    },
+    {
+      "id": 81,
+      "domain": "Monitoring",
+      "question": "You need to collect guest OS logs and performance counters from VMs. Which agent?",
+      "options": [
+        "A) Azure Monitor Agent (AMA)",
+        "B) Diagnostics extension only",
+        "C) NSG flow logs",
+        "D) Network Watcher agent"
+      ],
+      "multi_select": false,
+      "hint": "Unified monitoring agent.",
+      "correct_answers": ["A"],
+      "explanation": "The Azure Monitor Agent (AMA) is the recommended agent for collecting logs and metrics from guest OS. The diagnostics extension is legacy. NSG flow logs monitor network traffic. Network Watcher is for network diagnostics."
+    },
+    {
+      "id": 82,
+      "domain": "Security",
+      "question": "Which two steps secure storage account access at the network layer?",
+      "options": [
+        "A) Enable firewall with selected VNets/IPs",
+        "B) Use private endpoints",
+        "C) Give out account keys",
+        "D) Store connection strings in app settings"
+      ],
+      "multi_select": true,
+      "hint": "Network isolation features.",
+      "correct_answers": ["A","B"],
+      "explanation": "Enabling firewalls for selected networks and using private endpoints restricts access to trusted sources. Giving out keys or storing them in app settings risks exposure."
+    },
+    {
+      "id": 83,
+      "domain": "BackupDR",
+      "question": "Which ASR failover option allows testing without affecting production?",
+      "options": [
+        "A) Planned failover",
+        "B) Unplanned failover",
+        "C) Test failover",
+        "D) Backup restore"
+      ],
+      "multi_select": false,
+      "hint": "Isolate for DR testing.",
+      "correct_answers": ["C"],
+      "explanation": "Test failover creates test VMs in an isolated network to validate recovery without impacting production workloads. Planned and unplanned failovers affect production. Backup restore is unrelated."
+    },
+    {
+      "id": 84,
+      "domain": "Compute",
+      "question": "Which two are valid VM size categories?",
+      "options": [
+        "A) B-series burstable",
+        "B) D-series general purpose",
+        "C) M-series memory optimized",
+        "D) P-series performance"
+      ],
+      "multi_select": true,
+      "hint": "Check Azure SKU naming.",
+      "correct_answers": ["A","B"],
+      "explanation": "B-series (burstable) and D-series (general purpose) are valid VM families. M-series is valid but memory optimized, not listed here. P-series is not a valid family for VMs."
+    },
+    {
+      "id": 85,
+      "domain": "Identities",
+      "question": "Which Azure AD feature provides MFA enforcement per conditional access policy?",
+      "options": [
+        "A) PIM",
+        "B) Conditional Access",
+        "C) RBAC",
+        "D) NSG"
+      ],
+      "multi_select": false,
+      "hint": "Policy-based enforcement.",
+      "correct_answers": ["B"],
+      "explanation": "Conditional Access policies enforce MFA and other access conditions in Azure AD. PIM controls privileged roles. RBAC manages resource permissions. NSGs filter traffic."
+    },
+    {
+      "id": 86,
+      "domain": "Storage",
+      "question": "Which redundancy option ensures availability if a datacenter in a region fails?",
+      "options": [
+        "A) LRS",
+        "B) ZRS",
+        "C) GRS",
+        "D) Archive"
+      ],
+      "multi_select": false,
+      "hint": "Zone-aware replication.",
+      "correct_answers": ["B"],
+      "explanation": "Zone-redundant storage (ZRS) replicates data across availability zones within a region. LRS stores data in one datacenter. GRS replicates to another region but not zone-aware. Archive is a storage tier, not redundancy."
+    },
+    {
+      "id": 87,
+      "domain": "Networking",
+      "question": "You must log all traffic to and from a subnet for analysis. Which feature?",
+      "options": [
+        "A) NSG flow logs",
+        "B) Application Gateway logs",
+        "C) Traffic Manager diagnostics",
+        "D) ExpressRoute monitor"
+      ],
+      "multi_select": false,
+      "hint": "Per NSG logging.",
+      "correct_answers": ["A"],
+      "explanation": "NSG flow logs record allowed and denied traffic at subnet or NIC level. Application Gateway logs cover HTTP traffic only. Traffic Manager doesn’t log flows. ExpressRoute monitor tracks circuit health, not traffic flows."
+    },
+    {
+      "id": 88,
+      "domain": "Monitoring",
+      "question": "Which feature collects performance and crash telemetry from client applications?",
+      "options": [
+        "A) Application Insights",
+        "B) Azure Monitor Metrics",
+        "C) Log Analytics",
+        "D) Diagnostic settings"
+      ],
+      "multi_select": false,
+      "hint": "APM SDK.",
+      "correct_answers": ["A"],
+      "explanation": "Application Insights SDK collects telemetry from client and server applications, including crashes and performance data. Metrics are infrastructure-level. Log Analytics stores logs. Diagnostic settings control data routing."
+    },
+    {
+      "id": 89,
+      "domain": "Security",
+      "question": "Which feature ensures secrets deleted from Key Vault are recoverable?",
+      "options": [
+        "A) Soft delete",
+        "B) RBAC",
+        "C) Purge protection",
+        "D) Immutable storage"
+      ],
+      "multi_select": false,
+      "hint": "Recoverability feature.",
+      "correct_answers": ["A"],
+      "explanation": "Soft delete allows recovery of deleted Key Vault objects. Purge protection prevents permanent deletion but requires soft delete enabled. RBAC manages permissions. Immutable storage applies to blobs."
+    },
+    {
+      "id": 90,
+      "domain": "Governance",
+      "question": "You need to assign multiple policies at once for compliance. Which artifact groups them?",
+      "options": [
+        "A) Initiative",
+        "B) Blueprint",
+        "C) Lock",
+        "D) Management Group"
+      ],
+      "multi_select": false,
+      "hint": "Bundle of policies.",
+      "correct_answers": ["A"],
+      "explanation": "An initiative groups multiple policies for easier assignment and compliance tracking. Blueprints include policies, RBAC, and templates. Locks prevent deletion. Management groups organize subscriptions."
+    },
+    {
+      "id": 91,
+      "domain": "Storage",
+      "question": "Which option allows mounting Azure Files shares on-prem over SMB?",
+      "options": [
+        "A) Azure File Sync",
+        "B) Direct mount with SMB + credentials",
+        "C) Blobfuse",
+        "D) SAS URL"
+      ],
+      "multi_select": false,
+      "hint": "Native SMB protocol.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Files supports SMB, allowing direct mounting with credentials. File Sync synchronizes files, Blobfuse mounts blob storage, and SAS URLs provide scoped access but not SMB mounts."
+    },
+    {
+      "id": 92,
+      "domain": "Compute",
+      "question": "Which VM deployment option guarantees physical server isolation?",
+      "options": [
+        "A) Availability Set",
+        "B) Dedicated Host",
+        "C) Scale Set",
+        "D) Availability Zone"
+      ],
+      "multi_select": false,
+      "hint": "Host-level isolation.",
+      "correct_answers": ["B"],
+      "explanation": "Dedicated Hosts provide physical isolation of VMs on dedicated hardware. Availability Sets and Zones distribute across logical or datacenter boundaries but share infrastructure. Scale Sets provide scaling, not isolation."
+    },
+    {
+      "id": 93,
+      "domain": "Networking",
+      "question": "You need to inspect and filter outbound traffic from VMs to Internet. Which service?",
+      "options": [
+        "A) NSG",
+        "B) Azure Firewall",
+        "C) Traffic Manager",
+        "D) Front Door"
+      ],
+      "multi_select": false,
+      "hint": "Centralized stateful inspection.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Firewall provides outbound traffic filtering and advanced inspection. NSGs provide only basic allow/deny rules. Traffic Manager and Front Door route traffic but do not filter VM outbound traffic."
+    },
+    {
+      "id": 94,
+      "domain": "Monitoring",
+      "question": "Which solution enables near real-time metric collection from Azure resources?",
+      "options": [
+        "A) Azure Monitor Metrics",
+        "B) Log Analytics",
+        "C) Workbooks",
+        "D) Alerts"
+      ],
+      "multi_select": false,
+      "hint": "Streaming metrics platform.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Monitor Metrics collects platform-level metrics in near real time. Log Analytics is for log data. Workbooks visualize data. Alerts notify based on metrics or logs but are not the collection mechanism."
+    },
+    {
+      "id": 95,
+      "domain": "Identities",
+      "question": "Which AAD license is required for Conditional Access and PIM?",
+      "options": [
+        "A) Free",
+        "B) Premium P1",
+        "C) Premium P2",
+        "D) Office 365 E1"
+      ],
+      "multi_select": false,
+      "hint": "Advanced identity governance.",
+      "correct_answers": ["C"],
+      "explanation": "Azure AD Premium P2 is required for Privileged Identity Management (PIM) and advanced Conditional Access features. Premium P1 supports basic Conditional Access but not PIM. Free and O365 E1 do not support these features."
+    },
+    {
+      "id": 96,
+      "domain": "Storage",
+      "question": "Which feature reduces costs by automatically tiering blobs to cooler tiers?",
+      "options": [
+        "A) Lifecycle management rules",
+        "B) Archive tier only",
+        "C) Soft delete",
+        "D) Policy initiative"
+      ],
+      "multi_select": false,
+      "hint": "Automated tiering.",
+      "correct_answers": ["A"],
+      "explanation": "Blob lifecycle management moves data between hot, cool, and archive tiers or deletes it automatically. Archive tier is a storage option but not automatic. Soft delete protects data, not tier it. Policy initiatives enforce compliance, not lifecycle management."
+    },
+    {
+      "id": 97,
+      "domain": "BackupDR",
+      "question": "What is the minimum backup retention for Azure Backup to protect against ransomware?",
+      "options": [
+        "A) 7 days",
+        "B) 14 days",
+        "C) 30 days",
+        "D) 90 days"
+      ],
+      "multi_select": false,
+      "hint": "Microsoft best practice baseline.",
+      "correct_answers": ["C"],
+      "explanation": "Microsoft recommends at least 30 days of backup retention to ensure protection against ransomware and delayed detection of issues. Shorter retention may not be sufficient."
+    },
+    {
+      "id": 98,
+      "domain": "Networking",
+      "question": "You want to connect VNets in different regions privately over Microsoft’s backbone. Which feature?",
+      "options": [
+        "A) Global VNet Peering",
+        "B) VPN Gateway",
+        "C) ExpressRoute",
+        "D) Traffic Manager"
+      ],
+      "multi_select": false,
+      "hint": "Private cross-region VNet link.",
+      "correct_answers": ["A"],
+      "explanation": "Global VNet Peering allows private connectivity between VNets across regions using Microsoft’s backbone. VPN Gateway connects on-prem to Azure. ExpressRoute connects private circuits from on-prem. Traffic Manager provides DNS-based routing."
+    },
+    {
+      "id": 99,
+      "domain": "Compute",
+      "question": "Which feature allows capturing a reusable VM image with OS and installed software?",
+      "options": [
+        "A) Snapshot",
+        "B) Managed Image",
+        "C) Availability Set",
+        "D) Scale Set"
+      ],
+      "multi_select": false,
+      "hint": "Reusable image.",
+      "correct_answers": ["B"],
+      "explanation": "Managed Images capture the OS and installed software for use in creating new VMs. Snapshots capture disks only. Availability Sets and Scale Sets are availability/scaling constructs, not imaging tools."
+    },
+    {
+      "id": 100,
+      "domain": "Security",
+      "question": "Which feature provides a tenant-wide security posture score?",
+      "options": [
+        "A) Defender for Cloud Secure Score",
+        "B) Application Insights",
+        "C) Azure Policy",
+        "D) RBAC role assignments"
+      ],
+      "multi_select": false,
+      "hint": "Measure posture.",
+      "correct_answers": ["A"],
+      "explanation": "Microsoft Defender for Cloud provides a Secure Score that measures the security posture across your environment. Application Insights is for telemetry. Azure Policy enforces compliance but doesn’t calculate scores. RBAC is access control."
+    },
+     {
+      "id": 101,
+      "domain": "Governance",
+      "question": "Which two artifacts can an Azure Blueprint include?",
+      "options": [
+        "A) Policy assignments",
+        "B) Resource group definitions",
+        "C) Application Insights telemetry",
+        "D) Azure AD users"
+      ],
+      "multi_select": true,
+      "hint": "Governance + structure.",
+      "correct_answers": ["A","B"],
+      "explanation": "Blueprints can package policy assignments, RBAC role assignments, ARM templates, and resource group definitions. They cannot include telemetry data or Azure AD users."
+    },
+    {
+      "id": 102,
+      "domain": "Storage",
+      "question": "Which blob tier is recommended for compliance data that must be retained for 7 years but rarely accessed?",
+      "options": [
+        "A) Hot",
+        "B) Cool",
+        "C) Archive",
+        "D) ZRS"
+      ],
+      "multi_select": false,
+      "hint": "Long-term, low-cost.",
+      "correct_answers": ["C"],
+      "explanation": "The Archive tier is designed for long-term data retention with very low cost, but retrieval times are slower. Hot and Cool are for more frequent access. ZRS is a redundancy option, not a tier."
+    },
+    {
+      "id": 103,
+      "domain": "Networking",
+      "question": "Which load balancing option supports distributing traffic across regions at Layer 7?",
+      "options": [
+        "A) Azure Front Door",
+        "B) Traffic Manager (DNS-based)",
+        "C) Application Gateway",
+        "D) Standard Load Balancer"
+      ],
+      "multi_select": false,
+      "hint": "Global L7 service.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Front Door provides global Layer 7 load balancing with features like SSL offload and caching. Traffic Manager is DNS-based, Application Gateway is regional, and Load Balancer operates at Layer 4."
+    },
+    {
+      "id": 104,
+      "domain": "Compute",
+      "question": "Which feature ensures VM placement on separate physical hardware for compliance?",
+      "options": [
+        "A) Availability Zone",
+        "B) Availability Set",
+        "C) Dedicated Host",
+        "D) Spot VM"
+      ],
+      "multi_select": false,
+      "hint": "Physical isolation.",
+      "correct_answers": ["C"],
+      "explanation": "Dedicated Hosts allocate physical servers to your subscription, guaranteeing isolation. Availability Zones and Sets provide logical separation and resilience. Spot VMs offer low cost but no isolation guarantee."
+    },
+    {
+      "id": 105,
+      "domain": "Security",
+      "question": "Which two features should be enabled in Key Vault for ransomware protection?",
+      "options": [
+        "A) Soft delete",
+        "B) Purge protection",
+        "C) Managed identity",
+        "D) Private endpoint"
+      ],
+      "multi_select": true,
+      "hint": "Prevent permanent loss.",
+      "correct_answers": ["A","B"],
+      "explanation": "Soft delete allows recovery of deleted secrets, while purge protection blocks permanent deletion during retention. Managed identity and private endpoints improve security but do not specifically prevent deletion."
+    },
+    {
+      "id": 106,
+      "domain": "BackupDR",
+      "question": "Which backup type allows recovery of an individual SQL database to a point-in-time?",
+      "options": [
+        "A) Azure Backup VM snapshot",
+        "B) Azure SQL PITR (point-in-time restore)",
+        "C) ASR replication",
+        "D) Disk snapshot"
+      ],
+      "multi_select": false,
+      "hint": "Database-native feature.",
+      "correct_answers": ["B"],
+      "explanation": "Azure SQL PITR uses built-in database backups for point-in-time restore. VM or disk snapshots restore infrastructure, not databases. ASR replicates VMs but does not provide PITR."
+    },
+    {
+      "id": 107,
+      "domain": "Identities",
+      "question": "Which Conditional Access condition can require MFA only for risky sign-ins?",
+      "options": [
+        "A) Sign-in risk condition",
+        "B) Named locations",
+        "C) Device compliance",
+        "D) User groups"
+      ],
+      "multi_select": false,
+      "hint": "Identity Protection signal.",
+      "correct_answers": ["A"],
+      "explanation": "Azure AD Identity Protection evaluates sign-in risk and can trigger MFA when risk is high. Named locations, device compliance, and user groups are other conditions but not tied to sign-in risk."
+    },
+    {
+      "id": 108,
+      "domain": "Networking",
+      "question": "Which service provides inbound DDoS mitigation by default?",
+      "options": [
+        "A) Azure Front Door",
+        "B) DDoS Protection Basic",
+        "C) Application Gateway",
+        "D) Azure Firewall"
+      ],
+      "multi_select": false,
+      "hint": "Always on, free.",
+      "correct_answers": ["B"],
+      "explanation": "DDoS Protection Basic is automatically included with all Azure services that expose a public IP. DDoS Standard provides enhanced protection. Front Door, App Gateway, and Firewall do not provide baseline DDoS."
+    },
+    {
+      "id": 109,
+      "domain": "Monitoring",
+      "question": "You must collect and analyze security logs from multiple subscriptions. Which service aggregates them?",
+      "options": [
+        "A) Azure Monitor Metrics",
+        "B) Log Analytics workspace",
+        "C) NSG flow logs",
+        "D) Action Group"
+      ],
+      "multi_select": false,
+      "hint": "Central log storage.",
+      "correct_answers": ["B"],
+      "explanation": "Log Analytics workspaces store log data and support queries across subscriptions. Metrics cover numeric values. NSG flow logs provide network metadata only. Action Groups notify on alerts."
+    },
+    {
+      "id": 110,
+      "domain": "Storage",
+      "question": "Which storage option provides SMB access with AD-based authentication?",
+      "options": [
+        "A) Azure Files with AD DS authentication",
+        "B) Blob storage with SAS",
+        "C) Append blob",
+        "D) Managed disks"
+      ],
+      "multi_select": false,
+      "hint": "SMB with domain integration.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Files supports SMB protocol and can use Azure AD DS or AD for authentication. Blob storage uses REST, append blobs are for logging, and managed disks attach to VMs."
+    },
+    {
+      "id": 111,
+      "domain": "Compute",
+      "question": "You must automatically scale web app instances based on HTTP queue length. Which service?",
+      "options": [
+        "A) VM Scale Sets",
+        "B) App Service autoscale",
+        "C) Traffic Manager",
+        "D) Automation Runbook"
+      ],
+      "multi_select": false,
+      "hint": "PaaS web app scaling.",
+      "correct_answers": ["B"],
+      "explanation": "App Service autoscale supports rules such as HTTP queue length. VMSS scales VMs, not PaaS apps. Traffic Manager is DNS-based. Automation runbooks are scripts, not autoscaling."
+    },
+    {
+      "id": 112,
+      "domain": "Governance",
+      "question": "Which lock type prevents both updates and deletions?",
+      "options": [
+        "A) ReadOnly",
+        "B) CanNotDelete",
+        "C) Deny assignment",
+        "D) Initiative"
+      ],
+      "multi_select": false,
+      "hint": "Maximum restriction.",
+      "correct_answers": ["A"],
+      "explanation": "A ReadOnly lock prevents any changes, including updates and deletions. CanNotDelete allows updates but blocks deletes. Deny assignments come from policies. Initiatives group policies."
+    },
+    {
+      "id": 113,
+      "domain": "Security",
+      "question": "Which Defender for Cloud tier provides regulatory compliance dashboard?",
+      "options": [
+        "A) Free",
+        "B) Standard",
+        "C) Premium",
+        "D) P1"
+      ],
+      "multi_select": false,
+      "hint": "Enhanced tier.",
+      "correct_answers": ["B"],
+      "explanation": "The Standard tier includes advanced features such as regulatory compliance dashboard and threat protection. The Free tier provides basic posture management only."
+    },
+    {
+      "id": 114,
+      "domain": "Networking",
+      "question": "Which service allows splitting inbound traffic across regions with lowest latency routing?",
+      "options": [
+        "A) Traffic Manager (Performance)",
+        "B) Front Door",
+        "C) ExpressRoute",
+        "D) VPN Gateway"
+      ],
+      "multi_select": false,
+      "hint": "DNS-based performance routing.",
+      "correct_answers": ["A"],
+      "explanation": "Traffic Manager with performance routing directs DNS requests to the lowest-latency endpoint. Front Door also provides global load balancing but works at L7 with anycast. ExpressRoute and VPN are private connectivity services."
+    },
+    {
+      "id": 115,
+      "domain": "Storage",
+      "question": "Which options allows immutable blob storage for legal hold?",
+      "options": [
+        "A) Time-based retention policy",
+        "B) Legal hold policy",
+        "C) Archive tier",
+        "D) Lifecycle management"
+      ],
+      "multi_select": true,
+      "hint": "WORM storage options.",
+      "correct_answers": ["A","B"],
+      "explanation": "Immutable blob storage supports both time-based retention and legal hold policies. Archive is a storage tier, and lifecycle management automates tiering/deletion, not immutability."
+    },
+    {
+      "id": 116,
+      "domain": "Monitoring",
+      "question": "Which query returns the count of failed sign-ins in the last 24 hours?",
+      "options": [
+        "A) SigninLogs | where ResultType != 0 | summarize count()",
+        "B) Perf | summarize count()",
+        "C) Heartbeat | where Result == 'Failed'",
+        "D) AzureActivity | summarize count()"
+      ],
+      "multi_select": false,
+      "hint": "SigninLogs table.",
+      "correct_answers": ["A"],
+      "explanation": "SigninLogs records authentication attempts. Failed logins have ResultType != 0. Perf tracks performance, Heartbeat tracks agent status, and AzureActivity records management actions."
+    },
+    {
+      "id": 117,
+      "domain": "Identities",
+      "question": "Which feature enables assigning an Azure AD role for a limited time with MFA enforcement?",
+      "options": [
+        "A) PIM",
+        "B) Conditional Access",
+        "C) RBAC",
+        "D) NSG"
+      ],
+      "multi_select": false,
+      "hint": "Just-in-time elevation.",
+      "correct_answers": ["A"],
+      "explanation": "Privileged Identity Management (PIM) allows just-in-time activation of privileged roles with optional MFA. Conditional Access applies policies, RBAC assigns roles, NSGs control traffic."
+    },
+    {
+      "id": 118,
+      "domain": "Compute",
+      "question": "Which service allows running containers without managing servers or clusters?",
+      "options": [
+        "A) Azure Container Instances",
+        "B) Azure Kubernetes Service",
+        "C) VM Scale Sets",
+        "D) Azure Functions"
+      ],
+      "multi_select": false,
+      "hint": "Serverless containers.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Container Instances run containers directly without infrastructure management. AKS is a managed Kubernetes cluster. VMSS manages VMs. Functions run code, not arbitrary containers."
+    },
+    {
+      "id": 119,
+      "domain": "Networking",
+      "question": "Which feature allows private DNS resolution for resources linked by private endpoint?",
+      "options": [
+        "A) Azure DNS private zones",
+        "B) Traffic Manager",
+        "C) Custom DNS forwarder VM",
+        "D) Front Door"
+      ],
+      "multi_select": false,
+      "hint": "Private name resolution.",
+      "correct_answers": ["A"],
+      "explanation": "Azure DNS private zones resolve names for private endpoints. Traffic Manager and Front Door are for public routing. Custom DNS forwarders can work but private zones are the native solution."
+    },
+    {
+      "id": 120,
+      "domain": "Storage",
+      "question": "You need to enforce encryption of data at rest for all new storage accounts. Which approach?",
+      "options": [
+        "A) Azure Policy 'deny' for unencrypted accounts",
+        "B) Tagging requirement",
+        "C) NSG rule",
+        "D) Using SAS tokens only"
+      ],
+      "multi_select": false,
+      "hint": "Enforce at deployment.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Policy can enforce that new storage accounts have encryption enabled. Tags do not enforce settings. NSGs manage traffic, not encryption. SAS tokens provide access, not encryption enforcement."
+    },
+    {
+      "id": 121,
+      "domain": "Governance",
+      "question": "Which Azure Policy effect prevents a deployment if non-compliant?",
+      "options": [
+        "A) Audit",
+        "B) Deny",
+        "C) Append",
+        "D) Disabled"
+      ],
+      "multi_select": false,
+      "hint": "Hard stop.",
+      "correct_answers": ["B"],
+      "explanation": "The 'Deny' effect blocks non-compliant deployments. 'Audit' logs but allows. 'Append' adds properties. 'Disabled' turns off enforcement."
+    },
+    {
+      "id": 122,
+      "domain": "Monitoring",
+      "question": "Which two are valid outputs of an Azure Monitor Action Group?",
+      "options": [
+        "A) Email notifications",
+        "B) Webhook calls",
+        "C) Workbook update",
+        "D) Private endpoint creation"
+      ],
+      "multi_select": true,
+      "hint": "Notifications + automation.",
+      "correct_answers": ["A","B"],
+      "explanation": "Action Groups can send email, SMS, push notifications, run webhooks, and trigger automation. Workbooks are dashboards, not action outputs. Private endpoints are networking constructs."
+    },
+    {
+      "id": 123,
+      "domain": "Security",
+      "question": "Which two services provide security recommendations in Azure?",
+      "options": [
+        "A) Defender for Cloud",
+        "B) Advisor",
+        "C) Traffic Manager",
+        "D) Azure Bastion"
+      ],
+      "multi_select": true,
+      "hint": "Posture + best practices.",
+      "correct_answers": ["A","B"],
+      "explanation": "Defender for Cloud gives security posture recommendations. Azure Advisor provides best practices including security. Traffic Manager and Bastion provide networking and access, not recommendations."
+    },
+    {
+      "id": 124,
+      "domain": "Compute",
+      "question": "Which features allows capturing an image from a configured VM for use in a Scale Set?",
+      "options": [
+        "A) Managed Image",
+        "B) Shared Image Gallery",
+        "C) Snapshot",
+        "D) Availability Set"
+      ],
+      "multi_select": true,
+      "hint": "Reusable templates.",
+      "correct_answers": ["A","B"],
+      "explanation": "You can capture a Managed Image or publish to a Shared Image Gallery to create multiple instances or Scale Sets. Snapshots capture disks, not full images. Availability Sets provide HA, not images."
+    },
+    {
+      "id": 125,
+      "domain": "Networking",
+      "question": "Which feature forces all Internet-bound traffic from a spoke VNet to pass through a hub?",
+      "options": [
+        "A) UDR to hub firewall",
+        "B) Global VNet Peering",
+        "C) ExpressRoute",
+        "D) Application Gateway"
+      ],
+      "multi_select": false,
+      "hint": "Hub-and-spoke.",
+      "correct_answers": ["A"],
+      "explanation": "User-defined routes (UDRs) can force spoke VNets to send Internet-bound traffic to a hub firewall for inspection. Global peering links VNets but does not route by default. ExpressRoute is for on-prem. Application Gateway is for HTTP traffic."
+    },
+    {
+      "id": 126,
+      "domain": "Storage",
+      "question": "You need to allow on-premises apps to authenticate to Azure Files using Kerberos. What is required?",
+      "options": [
+        "A) Azure AD DS or AD DS integration",
+        "B) SAS token",
+        "C) Shared key",
+        "D) VPN Gateway"
+      ],
+      "multi_select": false,
+      "hint": "Domain authentication.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Files can use Kerberos authentication when integrated with Active Directory Domain Services (AD DS or Azure AD DS). SAS tokens and shared keys provide access but not Kerberos. VPN Gateway provides connectivity but not authentication."
+    },
+    {
+      "id": 127,
+      "domain": "Compute",
+      "question": "Which VM option is cheapest if you commit to 1-year term and no interruptions?",
+      "options": [
+        "A) Spot VM",
+        "B) Reserved Instance",
+        "C) Pay-as-you-go",
+        "D) Dedicated Host"
+      ],
+      "multi_select": false,
+      "hint": "Commitment-based discount.",
+      "correct_answers": ["B"],
+      "explanation": "Reserved Instances provide deep discounts in exchange for a 1- or 3-year commitment with guaranteed capacity. Spot VMs are cheaper but can be evicted. Pay-as-you-go is flexible but more expensive. Dedicated Hosts provide isolation at higher cost."
+    },
+    {
+      "id": 128,
+      "domain": "Monitoring",
+      "question": "Which query returns CPU > 90% in the last hour?",
+      "options": [
+        "A) Perf | where CounterName == 'CPU' and CounterValue > 90 and TimeGenerated > ago(1h)",
+        "B) AzureActivity | where Activity == 'CPUHigh'",
+        "C) InsightsMetrics | summarize max(CPU)",
+        "D) Heartbeat | where CPU > 90"
+      ],
+      "multi_select": false,
+      "hint": "Perf table, filter values.",
+      "correct_answers": ["A"],
+      "explanation": "The Perf table tracks performance counters. Filtering on CounterName, CounterValue, and TimeGenerated identifies high CPU. AzureActivity logs management actions, not performance. InsightsMetrics and Heartbeat store different telemetry."
+    },
+    {
+      "id": 129,
+      "domain": "Governance",
+      "question": "Which Azure Policy effect adds missing tags automatically?",
+      "options": [
+        "A) Audit",
+        "B) Deny",
+        "C) Append",
+        "D) Modify"
+      ],
+      "multi_select": false,
+      "hint": "Adds properties.",
+      "correct_answers": ["C"],
+      "explanation": "The Append effect adds extra properties such as tags. Audit only logs. Deny prevents deployment. Modify changes resource properties but Append is explicitly for adding."
+    },
+    {
+      "id": 130,
+      "domain": "Networking",
+      "question": "You must split traffic by URL path between microservices. Which service?",
+      "options": [
+        "A) Azure Load Balancer",
+        "B) Application Gateway",
+        "C) Traffic Manager",
+        "D) VPN Gateway"
+      ],
+      "multi_select": false,
+      "hint": "L7 routing.",
+      "correct_answers": ["B"],
+      "explanation": "Application Gateway supports path-based routing at Layer 7. Load Balancer is Layer 4. Traffic Manager is DNS-based. VPN Gateway connects on-prem networks."
+    },
+    {
+      "id": 131,
+      "domain": "BackupDR",
+      "question": "Which service allows restoring files from a backed-up VM without restoring the whole VM?",
+      "options": [
+        "A) Azure Backup file-level recovery",
+        "B) ASR test failover",
+        "C) VM snapshot mount",
+        "D) Export template"
+      ],
+      "multi_select": false,
+      "hint": "Granular recovery.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Backup supports file-level recovery directly from VM backups. ASR test failover recovers workloads for DR testing, not file restore. Snapshots capture disks, not files. Export templates save resource definitions."
+    },
+    {
+      "id": 132,
+      "domain": "Identities",
+      "question": "Which license is required for Identity Protection risk-based policies?",
+      "options": [
+        "A) Azure AD Free",
+        "B) Premium P1",
+        "C) Premium P2",
+        "D) Office 365 E3"
+      ],
+      "multi_select": false,
+      "hint": "Advanced identity governance.",
+      "correct_answers": ["C"],
+      "explanation": "Azure AD Premium P2 is required for Identity Protection, risk-based Conditional Access, and PIM. P1 covers basic Conditional Access. Free and Office 365 licenses don’t include risk-based policies."
+    },
+    {
+      "id": 133,
+      "domain": "Storage",
+      "question": "Which redundancy replicates data to another paired region but is only accessible after failover?",
+      "options": [
+        "A) LRS",
+        "B) ZRS",
+        "C) GRS",
+        "D) RA-GRS"
+      ],
+      "multi_select": false,
+      "hint": "Geo but no read access.",
+      "correct_answers": ["C"],
+      "explanation": "Geo-Redundant Storage (GRS) replicates asynchronously to a paired region but is accessible only after Microsoft initiates failover. RA-GRS adds read access. LRS and ZRS keep data within one region."
+    },
+    {
+      "id": 134,
+      "domain": "Compute",
+      "question": "Which feature lets you schedule shutdowns for dev/test VMs to save costs?",
+      "options": [
+        "A) Auto-shutdown in VM settings",
+        "B) VM Scale Sets",
+        "C) Availability Sets",
+        "D) Reserved Instances"
+      ],
+      "multi_select": false,
+      "hint": "Dev/test setting.",
+      "correct_answers": ["A"],
+      "explanation": "Azure VMs have an auto-shutdown feature that can schedule daily shutdowns, useful for dev/test environments. Scale Sets provide scaling, Availability Sets HA, and Reserved Instances cost optimization."
+    },
+    {
+      "id": 135,
+      "domain": "Security",
+      "question": "Which two protect against accidental or malicious deletion of Key Vault secrets?",
+      "options": [
+        "A) Soft delete",
+        "B) Purge protection",
+        "C) NSG rule",
+        "D) Lock at resource group"
+      ],
+      "multi_select": true,
+      "hint": "Retention + purge block.",
+      "correct_answers": ["A","B"],
+      "explanation": "Soft delete allows recovery of deleted secrets, while purge protection prevents permanent deletion until retention expires. NSGs filter traffic, and locks prevent resource deletion but not individual secrets."
+    },
+    {
+      "id": 136,
+      "domain": "Monitoring",
+      "question": "Which tool helps visualize Azure resource health over time with charts?",
+      "options": [
+        "A) Azure Monitor Metrics explorer",
+        "B) Log Analytics",
+        "C) Workbooks",
+        "D) Advisor"
+      ],
+      "multi_select": false,
+      "hint": "Time series visualization.",
+      "correct_answers": ["A"],
+      "explanation": "Metrics explorer provides time-series charts of resource health. Log Analytics queries logs, Workbooks combine multiple visualizations, and Advisor provides recommendations."
+    },
+    {
+      "id": 137,
+      "domain": "Networking",
+      "question": "Which service routes on-prem to Azure over Microsoft backbone with private IPs?",
+      "options": [
+        "A) VPN Gateway",
+        "B) ExpressRoute",
+        "C) Front Door",
+        "D) Traffic Manager"
+      ],
+      "multi_select": false,
+      "hint": "Private dedicated circuit.",
+      "correct_answers": ["B"],
+      "explanation": "ExpressRoute establishes private circuits between on-premises and Azure over Microsoft’s backbone. VPN Gateway uses public Internet tunnels. Front Door and Traffic Manager are application routing services."
+    },
+    {
+      "id": 138,
+      "domain": "Compute",
+      "question": "Which feature distributes VMs across fault domains and update domains?",
+      "options": [
+        "A) Availability Set",
+        "B) Availability Zone",
+        "C) Scale Set",
+        "D) Dedicated Host"
+      ],
+      "multi_select": false,
+      "hint": "Rack-level redundancy.",
+      "correct_answers": ["A"],
+      "explanation": "Availability Sets spread VMs across fault and update domains in a datacenter. Availability Zones provide regional resiliency. Scale Sets manage scaling. Dedicated Hosts provide physical isolation."
+    },
+    {
+      "id": 139,
+      "domain": "Storage",
+      "question": "Which feature enables analytics queries over log data stored in Azure Storage?",
+      "options": [
+        "A) Azure Synapse Link",
+        "B) Azure Data Lake Storage with hierarchical namespace",
+        "C) Blob lifecycle rules",
+        "D) File Sync"
+      ],
+      "multi_select": false,
+      "hint": "Optimized for big data queries.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Data Lake Storage Gen2 with hierarchical namespace enables analytics and big data processing. Synapse Link connects to Cosmos DB. Lifecycle rules manage tiers. File Sync synchronizes files, not analytics."
+    },
+    {
+      "id": 140,
+      "domain": "Identities",
+      "question": "Which feature enforces sign-in conditions like MFA only when outside trusted networks?",
+      "options": [
+        "A) Conditional Access",
+        "B) RBAC",
+        "C) PIM",
+        "D) NSG"
+      ],
+      "multi_select": false,
+      "hint": "Adaptive policy.",
+      "correct_answers": ["A"],
+      "explanation": "Conditional Access applies policies based on conditions such as location. RBAC controls access to Azure resources. PIM manages privileged roles. NSGs filter traffic, not sign-ins."
+    },
+    {
+      "id": 141,
+      "domain": "BackupDR",
+      "question": "Which service provides long-term backup retention for SQL databases?",
+      "options": [
+        "A) Azure SQL LTR backups",
+        "B) Azure Backup vault",
+        "C) ASR",
+        "D) Point-in-time restore"
+      ],
+      "multi_select": false,
+      "hint": "LTR feature.",
+      "correct_answers": ["A"],
+      "explanation": "Azure SQL’s Long-Term Retention (LTR) backups store backups for up to 10 years. Azure Backup vault is for IaaS VMs. ASR provides DR. PITR restores recent backups but not long-term."
+    },
+    {
+      "id": 142,
+      "domain": "Networking",
+      "question": "Which service inspects outbound traffic with FQDN filtering and threat intelligence?",
+      "options": [
+        "A) NSG",
+        "B) Azure Firewall",
+        "C) Application Gateway",
+        "D) Front Door"
+      ],
+      "multi_select": false,
+      "hint": "Stateful firewall.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Firewall provides outbound inspection, FQDN filtering, and threat intelligence. NSGs allow/deny at L4 only. Application Gateway and Front Door are for inbound HTTP(S)."
+    },
+    {
+      "id": 143,
+      "domain": "Storage",
+      "question": "Which feature allows mounting blob storage as a file system on Linux?",
+      "options": [
+        "A) Blobfuse",
+        "B) Azure Files",
+        "C) Data Lake Gen2",
+        "D) Managed Disks"
+      ],
+      "multi_select": false,
+      "hint": "FUSE driver.",
+      "correct_answers": ["A"],
+      "explanation": "Blobfuse is a virtual file system driver for mounting Azure Blob storage on Linux. Azure Files uses SMB/NFS. Data Lake Gen2 provides HDFS API, not native mounting. Managed Disks attach to VMs."
+    },
+    {
+      "id": 144,
+      "domain": "Governance",
+      "question": "Which role can assign RBAC roles but not manage resources directly?",
+      "options": [
+        "A) User Access Administrator",
+        "B) Owner",
+        "C) Contributor",
+        "D) Reader"
+      ],
+      "multi_select": false,
+      "hint": "Access delegation role.",
+      "correct_answers": ["A"],
+      "explanation": "User Access Administrator can grant RBAC permissions but cannot perform resource management. Owner has full rights. Contributor can manage resources. Reader is view-only."
+    },
+    {
+      "id": 145,
+      "domain": "Compute",
+      "question": "Which Azure service provides autoscaling for containers using Kubernetes?",
+      "options": [
+        "A) AKS",
+        "B) ACI",
+        "C) VMSS",
+        "D) Functions"
+      ],
+      "multi_select": false,
+      "hint": "Kubernetes engine.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Kubernetes Service (AKS) manages Kubernetes clusters and supports container autoscaling. ACI runs single containers. VMSS manages VMs. Functions runs event-driven code."
+    },
+    {
+      "id": 146,
+      "domain": "Security",
+      "question": "Which Azure AD role is needed to configure Conditional Access policies?",
+      "options": [
+        "A) Security Administrator",
+        "B) Global Administrator",
+        "C) User Administrator",
+        "D) Reader"
+      ],
+      "multi_select": false,
+      "hint": "Policy configuration rights.",
+      "correct_answers": ["A"],
+      "explanation": "The Security Administrator can manage Conditional Access policies. Global Admin can too but is broader than required. User Admin manages users. Reader has no write privileges."
+    },
+    {
+      "id": 147,
+      "domain": "Monitoring",
+      "question": "Which feature provides a tenant-wide score of security best practice adoption?",
+      "options": [
+        "A) Secure Score in Defender for Cloud",
+        "B) Advisor",
+        "C) Policy compliance",
+        "D) App Insights"
+      ],
+      "multi_select": false,
+      "hint": "Security posture metric.",
+      "correct_answers": ["A"],
+      "explanation": "Defender for Cloud provides a Secure Score summarizing the adoption of security best practices across Azure. Advisor gives recommendations but not a unified score. Policy compliance is resource-level. App Insights monitors applications."
+    },
+    {
+      "id": 148,
+      "domain": "Networking",
+      "question": "Which load balancing method distributes TCP/UDP flows at Layer 4?",
+      "options": [
+        "A) Azure Load Balancer",
+        "B) Front Door",
+        "C) App Gateway",
+        "D) Traffic Manager"
+      ],
+      "multi_select": false,
+      "hint": "Transport layer.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Load Balancer operates at Layer 4, distributing TCP/UDP flows. Front Door and App Gateway are L7. Traffic Manager is DNS-based."
+    },
+    {
+      "id": 149,
+      "domain": "BackupDR",
+      "question": "Which option allows restoring a deleted VM if the Recovery Services vault still has a backup?",
+      "options": [
+        "A) Restore VM from backup in the vault",
+        "B) Snapshot only",
+        "C) ASR",
+        "D) Soft delete for Key Vault"
+      ],
+      "multi_select": false,
+      "hint": "VM-level restore.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Backup allows restoring entire VMs from a Recovery Services vault backup, even if the original VM was deleted. Snapshots and ASR are different mechanisms. Soft delete applies to Key Vault, not VMs."
+    },
+    {
+      "id": 150,
+      "domain": "Storage",
+      "question": "Which option provides lowest cost for data that must be immutable and stored for years?",
+      "options": [
+        "A) Archive tier with legal hold",
+        "B) Hot tier",
+        "C) Cool tier",
+        "D) Premium SSD"
+      ],
+      "multi_select": false,
+      "hint": "Long-term + compliance.",
+      "correct_answers": ["A"],
+      "explanation": "Archive tier combined with immutability policies such as legal hold provides the lowest cost and compliance guarantees for long-term data retention. Hot and Cool are more expensive for infrequently accessed data. Premium SSD is for VM disks."
+    },
+     {
+      "id": 151,
+      "domain": "Compute",
+      "question": "Which VM feature automatically migrates workloads to healthy hardware in case of host failure?",
+      "options": [
+        "A) Availability Set",
+        "B) Live Migration by Azure",
+        "C) Availability Zone",
+        "D) VM Scale Set"
+      ],
+      "multi_select": false,
+      "hint": "Azure handles host maintenance.",
+      "correct_answers": ["B"],
+      "explanation": "Azure performs live migration of VMs to healthy hosts during planned maintenance or hardware issues. Availability Sets and Zones provide redundancy but not live migration. VM Scale Sets enable scaling, not host-level movement."
+    },
+    {
+      "id": 152,
+      "domain": "Storage",
+      "question": "Which feature allows object lock to prevent modification or deletion of blob data?",
+      "options": [
+        "A) Immutable blob storage (WORM)",
+        "B) Soft delete",
+        "C) Snapshots",
+        "D) RA-GRS"
+      ],
+      "multi_select": false,
+      "hint": "Compliance immutability.",
+      "correct_answers": ["A"],
+      "explanation": "Immutable blob storage enforces write-once, read-many (WORM) protection through retention or legal hold. Soft delete allows recovery but not immutability. Snapshots capture state. RA-GRS provides redundancy."
+    },
+    {
+      "id": 153,
+      "domain": "Networking",
+      "question": "Which Azure service accelerates traffic by using Microsoft’s global network instead of the public Internet?",
+      "options": [
+        "A) ExpressRoute",
+        "B) Front Door",
+        "C) Application Gateway",
+        "D) Traffic Manager"
+      ],
+      "multi_select": false,
+      "hint": "Anycast edge service.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Front Door uses Microsoft’s global edge network to optimize traffic routing with anycast. ExpressRoute is for private circuits. App Gateway is regional. Traffic Manager is DNS-based."
+    },
+    {
+      "id": 154,
+      "domain": "Monitoring",
+      "question": "Which Log Analytics query shows the top 5 IPs denied by NSG?",
+      "options": [
+        "A) AzureDiagnostics | where Action == 'Deny' | summarize count() by SrcIp_s | top 5 by count_",
+        "B) Perf | where Action == 'Deny'",
+        "C) Heartbeat | top 5 by IP",
+        "D) AzureActivity | where Category == 'Deny'"
+      ],
+      "multi_select": false,
+      "hint": "Diagnostics table.",
+      "correct_answers": ["A"],
+      "explanation": "NSG flow log data is stored in AzureDiagnostics. Filtering for Deny and summarizing by source IP provides insight. Perf and Heartbeat tables are unrelated. AzureActivity tracks management actions, not traffic."
+    },
+    {
+      "id": 155,
+      "domain": "Governance",
+      "question": "Which two are benefits of Management Groups?",
+      "options": [
+        "A) Apply policies across subscriptions",
+        "B) Consolidate billing",
+        "C) Assign RBAC at group scope",
+        "D) Host resources directly"
+      ],
+      "multi_select": true,
+      "hint": "Think inheritance.",
+      "correct_answers": ["A","C"],
+      "explanation": "Management Groups allow centralized policy and RBAC assignment inherited by child subscriptions. They do not consolidate billing or host resources directly."
+    },
+    {
+      "id": 156,
+      "domain": "Security",
+      "question": "Which Key Vault feature prevents permanent deletion of a secret until retention expires?",
+      "options": [
+        "A) Purge protection",
+        "B) Soft delete",
+        "C) Immutable blob",
+        "D) RBAC"
+      ],
+      "multi_select": false,
+      "hint": "Hard-delete protection.",
+      "correct_answers": ["A"],
+      "explanation": "Purge protection ensures that items cannot be permanently deleted before the retention period ends. Soft delete allows recovery but still allows purge. Immutable blob applies to storage. RBAC manages access."
+    },
+    {
+      "id": 157,
+      "domain": "Compute",
+      "question": "Which feature allows scaling containerized workloads without managing the control plane?",
+      "options": [
+        "A) Azure Container Instances",
+        "B) Azure Kubernetes Service",
+        "C) VM Scale Sets",
+        "D) App Service"
+      ],
+      "multi_select": false,
+      "hint": "Managed Kubernetes.",
+      "correct_answers": ["B"],
+      "explanation": "Azure Kubernetes Service (AKS) provides managed Kubernetes with autoscaling. ACI runs individual containers. VMSS scales VMs, not containers. App Service runs web apps, not arbitrary container clusters."
+    },
+    {
+      "id": 158,
+      "domain": "Networking",
+      "question": "Which feature forces all traffic from a VNet to an NVA in a hub for inspection?",
+      "options": [
+        "A) User-defined route (UDR)",
+        "B) NSG",
+        "C) Traffic Manager",
+        "D) Application Gateway"
+      ],
+      "multi_select": false,
+      "hint": "Custom routing.",
+      "correct_answers": ["A"],
+      "explanation": "User-defined routes can direct traffic to a network virtual appliance (NVA) in a hub. NSGs filter traffic but don’t control routing. Traffic Manager and App Gateway are application-level services."
+    },
+    {
+      "id": 159,
+      "domain": "Storage",
+      "question": "Which storage option allows high IOPS and throughput tuning per disk?",
+      "options": [
+        "A) Ultra SSD",
+        "B) Premium SSD",
+        "C) Standard SSD",
+        "D) Standard HDD"
+      ],
+      "multi_select": false,
+      "hint": "Custom performance.",
+      "correct_answers": ["A"],
+      "explanation": "Ultra SSD supports configurable IOPS and throughput per disk, ideal for demanding workloads. Premium SSD offers high performance but with fixed tiers. Standard SSD and HDD are cost-focused."
+    },
+    {
+      "id": 160,
+      "domain": "Monitoring",
+      "question": "Which service visualizes dependencies between VMs and processes?",
+      "options": [
+        "A) Service Map (Dependency Agent)",
+        "B) Network Watcher Connection Monitor",
+        "C) Workbooks",
+        "D) Advisor"
+      ],
+      "multi_select": false,
+      "hint": "App dependency mapping.",
+      "correct_answers": ["A"],
+      "explanation": "Service Map uses the Dependency Agent to map VM and process dependencies. Connection Monitor tracks network connectivity only. Workbooks visualize data, Advisor provides recommendations."
+    },
+    {
+      "id": 161,
+      "domain": "Security",
+      "question": "Which Defender for Cloud feature recommends enabling JIT access?",
+      "options": [
+        "A) Secure Score",
+        "B) Compliance dashboard",
+        "C) Just-in-Time VM access",
+        "D) Policy initiative"
+      ],
+      "multi_select": false,
+      "hint": "Defender recommendation.",
+      "correct_answers": ["C"],
+      "explanation": "Defender for Cloud includes Just-in-Time VM access to minimize attack surface. Secure Score measures posture, the compliance dashboard shows regulations, and initiatives group policies."
+    },
+    {
+      "id": 162,
+      "domain": "Compute",
+      "question": "Which feature allows you to capture a VM image and share it across regions?",
+      "options": [
+        "A) Shared Image Gallery",
+        "B) Managed Image only",
+        "C) Snapshot",
+        "D) Scale Set"
+      ],
+      "multi_select": false,
+      "hint": "Image replication.",
+      "correct_answers": ["A"],
+      "explanation": "Shared Image Gallery enables VM image replication across regions and sharing with others. Managed Images are limited to a region. Snapshots capture disks only. Scale Sets deploy VMs but don’t share images."
+    },
+    {
+      "id": 163,
+      "domain": "Networking",
+      "question": "Which service enables DNS-based routing across multiple endpoints with geographic routing?",
+      "options": [
+        "A) Traffic Manager",
+        "B) Front Door",
+        "C) App Gateway",
+        "D) ExpressRoute"
+      ],
+      "multi_select": false,
+      "hint": "DNS-based decisions.",
+      "correct_answers": ["A"],
+      "explanation": "Traffic Manager uses DNS-based methods, including geographic routing. Front Door works at L7, App Gateway is regional, and ExpressRoute is private connectivity."
+    },
+    {
+      "id": 164,
+      "domain": "Storage",
+      "question": "Which feature enables analytics workloads using HDFS APIs in Azure Storage?",
+      "options": [
+        "A) Data Lake Storage Gen2",
+        "B) Blobfuse",
+        "C) Azure Files",
+        "D) Premium SSD"
+      ],
+      "multi_select": false,
+      "hint": "HDFS compatibility.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Data Lake Storage Gen2 supports hierarchical namespace and HDFS APIs for analytics. Blobfuse mounts blobs on Linux but is not HDFS. Azure Files uses SMB. Premium SSD is block storage."
+    },
+    {
+      "id": 165,
+      "domain": "Governance",
+      "question": "Which feature prevents accidental deletion of a subscription resource group?",
+      "options": [
+        "A) Resource lock (CanNotDelete)",
+        "B) RBAC Reader",
+        "C) Policy Audit",
+        "D) NSG rule"
+      ],
+      "multi_select": false,
+      "hint": "Deletion protection.",
+      "correct_answers": ["A"],
+      "explanation": "Applying a CanNotDelete lock prevents deletions. Reader limits permissions but doesn’t block deletes by Owners. Policy Audit only reports. NSGs filter traffic."
+    },
+    {
+      "id": 166,
+      "domain": "Monitoring",
+      "question": "Which feature collects network traffic data for flow analysis?",
+      "options": [
+        "A) NSG Flow Logs",
+        "B) Application Insights",
+        "C) Activity Log",
+        "D) Metrics Explorer"
+      ],
+      "multi_select": false,
+      "hint": "Per-flow telemetry.",
+      "correct_answers": ["A"],
+      "explanation": "NSG Flow Logs record information about IP traffic through NSGs. Application Insights monitors applications. Activity Log records management events. Metrics Explorer visualizes numeric metrics."
+    },
+    {
+      "id": 167,
+      "domain": "Identities",
+      "question": "Which role can grant access but not manage resources?",
+      "options": [
+        "A) User Access Administrator",
+        "B) Owner",
+        "C) Contributor",
+        "D) Reader"
+      ],
+      "multi_select": false,
+      "hint": "Access-only role.",
+      "correct_answers": ["A"],
+      "explanation": "User Access Administrator can manage RBAC assignments without resource permissions. Owner has full control. Contributor manages resources. Reader views resources only."
+    },
+    {
+      "id": 168,
+      "domain": "Security",
+      "question": "Which feature of Azure AD enforces passwordless access with conditional policies?",
+      "options": [
+        "A) Conditional Access with passwordless methods",
+        "B) RBAC",
+        "C) NSG",
+        "D) Firewall"
+      ],
+      "multi_select": false,
+      "hint": "Adaptive auth.",
+      "correct_answers": ["A"],
+      "explanation": "Conditional Access supports requiring passwordless methods such as Windows Hello or FIDO2. RBAC manages resource permissions. NSGs and Firewalls control networking."
+    },
+    {
+      "id": 169,
+      "domain": "Compute",
+      "question": "Which feature enables automatic OS patching across multiple VMs?",
+      "options": [
+        "A) Update Management in Automation",
+        "B) VM Extensions",
+        "C) ASR",
+        "D) Reserved Instances"
+      ],
+      "multi_select": false,
+      "hint": "Patch orchestration.",
+      "correct_answers": ["A"],
+      "explanation": "Update Management orchestrates OS patching across VMs. Extensions install agents, ASR replicates for DR, and Reserved Instances affect billing only."
+    },
+    {
+      "id": 170,
+      "domain": "Networking",
+      "question": "Which Azure service provides secure remote access to VMs without public IPs?",
+      "options": [
+        "A) Bastion",
+        "B) NSG",
+        "C) Firewall",
+        "D) Load Balancer"
+      ],
+      "multi_select": false,
+      "hint": "Browser-based access.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Bastion allows RDP/SSH over SSL from the portal without exposing public IPs. NSGs, Firewalls, and Load Balancers don’t provide direct management access."
+    },
+    {
+      "id": 171,
+      "domain": "Storage",
+      "question": "Which feature automatically moves blobs between hot, cool, and archive tiers?",
+      "options": [
+        "A) Lifecycle management",
+        "B) Soft delete",
+        "C) Immutable storage",
+        "D) Snapshots"
+      ],
+      "multi_select": false,
+      "hint": "Automatic tiering.",
+      "correct_answers": ["A"],
+      "explanation": "Blob lifecycle management rules transition blobs between tiers or delete them. Soft delete protects against deletion. Immutable storage enforces WORM. Snapshots capture point-in-time states."
+    },
+    {
+      "id": 172,
+      "domain": "Monitoring",
+      "question": "Which Azure service lets you configure alerts and actions based on metrics or logs?",
+      "options": [
+        "A) Azure Monitor Alerts",
+        "B) Log Analytics",
+        "C) NSG Flow Logs",
+        "D) Metrics Explorer"
+      ],
+      "multi_select": false,
+      "hint": "Notification + automation.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Monitor Alerts evaluate metrics or logs and trigger actions such as email, webhooks, or automation. Log Analytics stores logs, NSG flow logs track traffic, Metrics Explorer visualizes data."
+    },
+    {
+      "id": 173,
+      "domain": "Governance",
+      "question": "Which Azure Policy effect both modifies and adds missing tags?",
+      "options": [
+        "A) Audit",
+        "B) Deny",
+        "C) Append",
+        "D) Modify"
+      ],
+      "multi_select": false,
+      "hint": "More flexible than append.",
+      "correct_answers": ["D"],
+      "explanation": "The Modify effect can alter or add resource properties dynamically, including tags. Append adds properties but cannot change existing ones. Audit logs non-compliance, Deny blocks deployments."
+    },
+    {
+      "id": 174,
+      "domain": "Compute",
+      "question": "Which option allows you to capture a golden image and distribute to many subscriptions?",
+      "options": [
+        "A) Shared Image Gallery",
+        "B) Managed Image only",
+        "C) Snapshot",
+        "D) Availability Set"
+      ],
+      "multi_select": false,
+      "hint": "Image replication service.",
+      "correct_answers": ["A"],
+      "explanation": "Shared Image Gallery replicates images globally for consistent deployments. Managed Images are regional. Snapshots capture disks. Availability Sets ensure HA but not image sharing."
+    },
+    {
+      "id": 175,
+      "domain": "Security",
+      "question": "Which two steps protect secrets in Key Vault from accidental deletion?",
+      "options": [
+        "A) Enable soft delete",
+        "B) Enable purge protection",
+        "C) Store in code repository",
+        "D) Set NSG deny rules"
+      ],
+      "multi_select": true,
+      "hint": "Recovery + purge lock.",
+      "correct_answers": ["A","B"],
+      "explanation": "Soft delete allows recovery of deleted items, and purge protection prevents permanent removal. Storing secrets in code is insecure. NSGs secure networks, not secrets."
+    },
+    {
+      "id": 176,
+      "domain": "Networking",
+      "question": "Which service provides global load balancing with SSL offload and web application firewall?",
+      "options": [
+        "A) Azure Front Door",
+        "B) Traffic Manager",
+        "C) Application Gateway",
+        "D) Azure Load Balancer"
+      ],
+      "multi_select": false,
+      "hint": "Global + WAF.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Front Door provides global Layer 7 load balancing, SSL offload, caching, and WAF protection. Traffic Manager is DNS-based only. Application Gateway is regional. Load Balancer works at Layer 4 without WAF."
+    },
+    {
+      "id": 177,
+      "domain": "Storage",
+      "question": "Which type of blob is optimized for random read/write operations?",
+      "options": [
+        "A) Block blob",
+        "B) Page blob",
+        "C) Append blob",
+        "D) File share"
+      ],
+      "multi_select": false,
+      "hint": "Used for VHDs.",
+      "correct_answers": ["B"],
+      "explanation": "Page blobs are optimized for random I/O operations and are used for Azure managed disks. Block blobs store general-purpose data, append blobs are for sequential appends, and file shares provide SMB/NFS."
+    },
+    {
+      "id": 178,
+      "domain": "Governance",
+      "question": "Which feature lets you deploy a consistent set of policies, RBAC, and resources across subscriptions?",
+      "options": [
+        "A) Management Groups",
+        "B) Blueprints",
+        "C) Locks",
+        "D) Tags"
+      ],
+      "multi_select": false,
+      "hint": "Packaging governance artifacts.",
+      "correct_answers": ["B"],
+      "explanation": "Blueprints allow packaging of ARM templates, policies, and RBAC assignments for consistent deployment across subscriptions. Management Groups organize scope. Locks prevent deletion. Tags add metadata."
+    },
+    {
+      "id": 179,
+      "domain": "Compute",
+      "question": "Which option provides physical isolation of VMs for compliance?",
+      "options": [
+        "A) Availability Set",
+        "B) Dedicated Host",
+        "C) VM Scale Set",
+        "D) Availability Zone"
+      ],
+      "multi_select": false,
+      "hint": "Dedicated hardware.",
+      "correct_answers": ["B"],
+      "explanation": "Dedicated Hosts allocate physical servers for your exclusive use. Availability Sets and Zones provide logical distribution, and VM Scale Sets provide scaling."
+    },
+    {
+      "id": 180,
+      "domain": "Security",
+      "question": "Which Azure AD role allows resetting passwords and managing user properties but not assigning admin roles?",
+      "options": [
+        "A) User Administrator",
+        "B) Global Administrator",
+        "C) Security Administrator",
+        "D) Reader"
+      ],
+      "multi_select": false,
+      "hint": "Delegated user management.",
+      "correct_answers": ["A"],
+      "explanation": "The User Administrator role can manage users and reset passwords but cannot assign privileged roles. Global Admin has full control. Security Administrator manages security settings. Reader is view-only."
+    },
+    {
+      "id": 181,
+      "domain": "Monitoring",
+      "question": "Which table stores Azure resource management operations like create/delete?",
+      "options": [
+        "A) AzureActivity",
+        "B) Perf",
+        "C) Heartbeat",
+        "D) InsightsMetrics"
+      ],
+      "multi_select": false,
+      "hint": "Control plane logs.",
+      "correct_answers": ["A"],
+      "explanation": "The AzureActivity table contains control-plane operations such as create, update, and delete. Perf stores performance data. Heartbeat tracks agent availability. InsightsMetrics stores resource telemetry."
+    },
+    {
+      "id": 182,
+      "domain": "BackupDR",
+      "question": "Which ASR option enables planned failover with no data loss?",
+      "options": [
+        "A) Planned failover",
+        "B) Unplanned failover",
+        "C) Test failover",
+        "D) Backup restore"
+      ],
+      "multi_select": false,
+      "hint": "Graceful switchover.",
+      "correct_answers": ["A"],
+      "explanation": "Planned failover synchronizes data before switching, ensuring no data loss. Unplanned failover happens during outages with possible data loss. Test failover is for validation. Backup restore recovers data but isn’t failover."
+    },
+    {
+      "id": 183,
+      "domain": "Networking",
+      "question": "Which two features are provided by Azure Firewall?",
+      "options": [
+        "A) Threat intelligence filtering",
+        "B) FQDN-based filtering",
+        "C) URL path routing",
+        "D) NSG rule logging"
+      ],
+      "multi_select": true,
+      "hint": "Advanced firewall features.",
+      "correct_answers": ["A","B"],
+      "explanation": "Azure Firewall supports threat intelligence-based filtering and FQDN-based rules. URL path routing is an Application Gateway feature. NSG flow logs capture traffic metadata, not firewall filtering."
+    },
+    {
+      "id": 184,
+      "domain": "Compute",
+      "question": "Which VM series is optimized for memory-intensive workloads?",
+      "options": [
+        "A) D-series",
+        "B) F-series",
+        "C) M-series",
+        "D) B-series"
+      ],
+      "multi_select": false,
+      "hint": "Largest RAM-to-core ratio.",
+      "correct_answers": ["C"],
+      "explanation": "M-series VMs provide very high memory-to-CPU ratios for SAP HANA and other memory-intensive workloads. D-series are general purpose, F-series are compute-optimized, and B-series are burstable."
+    },
+    {
+      "id": 185,
+      "domain": "Storage",
+      "question": "Which option lets you recover deleted blobs within a retention period?",
+      "options": [
+        "A) Soft delete",
+        "B) Immutable blob",
+        "C) Lifecycle rules",
+        "D) Archive tier"
+      ],
+      "multi_select": false,
+      "hint": "Undelete feature.",
+      "correct_answers": ["A"],
+      "explanation": "Soft delete retains deleted blobs for a configurable retention period, allowing recovery. Immutable blob prevents changes. Lifecycle rules manage data tiering. Archive is a storage tier."
+    },
+    {
+      "id": 186,
+      "domain": "Governance",
+      "question": "Which Policy effect adds a tag if missing but does not block deployment?",
+      "options": [
+        "A) Deny",
+        "B) Audit",
+        "C) Append",
+        "D) Modify"
+      ],
+      "multi_select": false,
+      "hint": "Non-blocking tag injection.",
+      "correct_answers": ["C"],
+      "explanation": "Append adds extra properties such as tags without blocking deployment. Deny blocks, Audit logs, Modify can change properties but Append is specifically used for tags."
+    },
+    {
+      "id": 187,
+      "domain": "Identities",
+      "question": "Which Azure AD capability provides automated risk-based responses like forcing password reset?",
+      "options": [
+        "A) Identity Protection",
+        "B) Conditional Access",
+        "C) PIM",
+        "D) MFA registration"
+      ],
+      "multi_select": false,
+      "hint": "Risk-based protection.",
+      "correct_answers": ["A"],
+      "explanation": "Azure AD Identity Protection detects risky sign-ins and can enforce actions like MFA or password reset. Conditional Access applies static policies. PIM manages privileged roles. MFA registration sets up MFA but not adaptive responses."
+    },
+    {
+      "id": 188,
+      "domain": "Monitoring",
+      "question": "Which feature groups multiple policies for simplified assignment?",
+      "options": [
+        "A) Initiative",
+        "B) Lock",
+        "C) Blueprint",
+        "D) RBAC"
+      ],
+      "multi_select": false,
+      "hint": "Bundle of policies.",
+      "correct_answers": ["A"],
+      "explanation": "An initiative is a collection of policies that can be assigned as a single unit. Locks protect resources, Blueprints include multiple artifacts, RBAC manages permissions."
+    },
+    {
+      "id": 189,
+      "domain": "Security",
+      "question": "Which Defender for Cloud plan provides threat protection for Azure VMs?",
+      "options": [
+        "A) Free tier",
+        "B) Defender for Servers plan",
+        "C) Defender for SQL",
+        "D) Sentinel"
+      ],
+      "multi_select": false,
+      "hint": "VM-specific protection.",
+      "correct_answers": ["B"],
+      "explanation": "Defender for Servers provides advanced threat detection and protection for Azure and hybrid servers. The free tier only provides posture management. Defender for SQL is database-specific. Sentinel is SIEM, not per-resource protection."
+    },
+    {
+      "id": 190,
+      "domain": "Networking",
+      "question": "Which DNS option provides name resolution for resources in a VNet?",
+      "options": [
+        "A) Azure DNS private zones",
+        "B) Traffic Manager",
+        "C) Custom DNS forwarder",
+        "D) Public DNS"
+      ],
+      "multi_select": false,
+      "hint": "Private DNS integration.",
+      "correct_answers": ["A"],
+      "explanation": "Azure DNS private zones resolve names for private endpoints and VNet resources. Traffic Manager routes traffic globally, custom forwarders are optional, public DNS does not resolve private resources."
+    },
+    {
+      "id": 191,
+      "domain": "Compute",
+      "question": "Which VM size is most cost-efficient for burstable dev/test workloads?",
+      "options": [
+        "A) B-series",
+        "B) D-series",
+        "C) F-series",
+        "D) M-series"
+      ],
+      "multi_select": false,
+      "hint": "Bursts, cheaper.",
+      "correct_answers": ["A"],
+      "explanation": "B-series are burstable VMs that accumulate credits during idle time and use them for bursts, making them cost-efficient for dev/test. D-series is general purpose, F-series compute-optimized, M-series memory optimized."
+    },
+    {
+      "id": 192,
+      "domain": "Storage",
+      "question": "Which feature ensures deleted files in Azure Files are recoverable?",
+      "options": [
+        "A) Soft delete for file shares",
+        "B) Blob snapshots",
+        "C) Immutable policy",
+        "D) Archive tier"
+      ],
+      "multi_select": false,
+      "hint": "File undelete.",
+      "correct_answers": ["A"],
+      "explanation": "Soft delete for file shares retains deleted files for recovery. Blob snapshots apply to blob storage only. Immutable policies are for compliance. Archive tier is for rarely accessed blob data."
+    },
+    {
+      "id": 193,
+      "domain": "Governance",
+      "question": "Which service provides recommendations on performance, cost, and security?",
+      "options": [
+        "A) Azure Advisor",
+        "B) Defender for Cloud",
+        "C) Policy",
+        "D) Blueprints"
+      ],
+      "multi_select": false,
+      "hint": "Best practice advisor.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Advisor analyzes usage and provides recommendations across cost, performance, reliability, and security. Defender for Cloud focuses on security. Policy enforces rules. Blueprints package governance artifacts."
+    },
+    {
+      "id": 194,
+      "domain": "Security",
+      "question": "Which option prevents a user from permanently deleting a Key Vault secret?",
+      "options": [
+        "A) Purge protection",
+        "B) Soft delete",
+        "C) RBAC",
+        "D) Immutable blob"
+      ],
+      "multi_select": false,
+      "hint": "Retention enforcement.",
+      "correct_answers": ["A"],
+      "explanation": "Purge protection prevents permanent deletion until the retention period expires. Soft delete allows recovery but does not block purge. RBAC manages access. Immutable blob is for storage accounts."
+    },
+    {
+      "id": 195,
+      "domain": "Compute",
+      "question": "Which compute service lets you run code on demand without provisioning servers?",
+      "options": [
+        "A) Azure Functions",
+        "B) VM Scale Sets",
+        "C) App Service",
+        "D) ACI"
+      ],
+      "multi_select": false,
+      "hint": "Serverless code execution.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Functions is a serverless compute option where you run event-driven code without managing servers. VMSS and App Service are managed compute but require infrastructure. ACI runs containers."
+    },
+    {
+      "id": 196,
+      "domain": "Networking",
+      "question": "Which service enables monitoring and diagnosing network issues like packet loss?",
+      "options": [
+        "A) Network Watcher",
+        "B) Traffic Manager",
+        "C) ExpressRoute",
+        "D) NSG"
+      ],
+      "multi_select": false,
+      "hint": "Network diagnostics tool.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Network Watcher provides tools like Connection Monitor and packet capture. Traffic Manager does routing, ExpressRoute is private connectivity, and NSGs control traffic but don’t monitor."
+    },
+    {
+      "id": 197,
+      "domain": "Storage",
+      "question": "Which option provides the lowest cost for rarely accessed blob data?",
+      "options": [
+        "A) Hot tier",
+        "B) Cool tier",
+        "C) Archive tier",
+        "D) Premium SSD"
+      ],
+      "multi_select": false,
+      "hint": "Lowest cost, high latency.",
+      "correct_answers": ["C"],
+      "explanation": "The Archive tier is lowest cost for data that is rarely accessed and can tolerate retrieval delays. Cool is cheaper than hot but more expensive than archive. Premium SSD is for VM disks, not blob data."
+    },
+    {
+      "id": 198,
+      "domain": "Monitoring",
+      "question": "Which two features are part of Azure Monitor?",
+      "options": [
+        "A) Metrics",
+        "B) Logs",
+        "C) NSG rules",
+        "D) Traffic Manager"
+      ],
+      "multi_select": true,
+      "hint": "Core data types.",
+      "correct_answers": ["A","B"],
+      "explanation": "Azure Monitor collects both metrics and logs. NSG rules are networking. Traffic Manager is DNS-based routing."
+    },
+    {
+      "id": 199,
+      "domain": "Identities",
+      "question": "Which Azure AD role is needed to configure PIM?",
+      "options": [
+        "A) Privileged Role Administrator",
+        "B) User Administrator",
+        "C) Security Reader",
+        "D) Contributor"
+      ],
+      "multi_select": false,
+      "hint": "Role for privileged role settings.",
+      "correct_answers": ["A"],
+      "explanation": "Privileged Role Administrator configures PIM settings. User Administrator manages users. Security Reader views security information. Contributor manages Azure resources, not directory roles."
+    },
+    {
+      "id": 200,
+      "domain": "BackupDR",
+      "question": "Which option allows you to test disaster recovery without impacting production?",
+      "options": [
+        "A) ASR Test failover",
+        "B) Backup restore",
+        "C) Planned failover",
+        "D) Unplanned failover"
+      ],
+      "multi_select": false,
+      "hint": "Isolated testing.",
+      "correct_answers": ["A"],
+      "explanation": "ASR Test failover creates isolated test environments for validating recovery. Backup restore recovers data but doesn’t simulate DR. Planned and unplanned failovers affect production workloads."
+    },
+    {
+      "id": 201,
+      "domain": "Networking",
+      "question": "Which service provides DNS-based load balancing with failover between regions?",
+      "options": [
+        "A) Traffic Manager",
+        "B) Front Door",
+        "C) Application Gateway",
+        "D) Load Balancer"
+      ],
+      "multi_select": false,
+      "hint": "DNS-level routing.",
+      "correct_answers": ["A"],
+      "explanation": "Traffic Manager uses DNS-based load balancing with routing methods like priority for failover. Front Door is global but works at Layer 7. Application Gateway is regional. Load Balancer operates at Layer 4."
+    },
+    {
+      "id": 202,
+      "domain": "Storage",
+      "question": "Which option provides shared access with SMB protocol in Azure?",
+      "options": [
+        "A) Azure Files",
+        "B) Blob storage",
+        "C) Managed Disks",
+        "D) Page Blobs"
+      ],
+      "multi_select": false,
+      "hint": "SMB in Azure.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Files provides fully managed file shares accessible via SMB or NFS. Blob storage is object-based. Managed Disks and Page Blobs are block storage for VMs."
+    },
+    {
+      "id": 203,
+      "domain": "Governance",
+      "question": "Which lock type prevents deletion but allows updates?",
+      "options": [
+        "A) CanNotDelete",
+        "B) ReadOnly",
+        "C) Append",
+        "D) Deny"
+      ],
+      "multi_select": false,
+      "hint": "Block delete only.",
+      "correct_answers": ["A"],
+      "explanation": "A CanNotDelete lock allows updates but prevents deletion. ReadOnly blocks both updates and deletes. Append and Deny are policy effects, not lock types."
+    },
+    {
+      "id": 204,
+      "domain": "Compute",
+      "question": "Which compute service runs containers without requiring orchestration?",
+      "options": [
+        "A) Azure Container Instances",
+        "B) AKS",
+        "C) VM Scale Sets",
+        "D) Functions"
+      ],
+      "multi_select": false,
+      "hint": "Simple container hosting.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Container Instances (ACI) lets you run containers directly without orchestration or VM management. AKS manages Kubernetes clusters. VMSS manages VMs. Functions runs event-driven code, not arbitrary containers."
+    },
+    {
+      "id": 205,
+      "domain": "Security",
+      "question": "Which feature enforces MFA for users only when outside corporate network?",
+      "options": [
+        "A) Conditional Access with named locations",
+        "B) RBAC",
+        "C) NSG",
+        "D) PIM"
+      ],
+      "multi_select": false,
+      "hint": "Adaptive MFA policy.",
+      "correct_answers": ["A"],
+      "explanation": "Conditional Access policies can require MFA based on conditions such as named locations. RBAC manages resource access, NSGs filter traffic, and PIM manages privileged roles."
+    },
+    {
+      "id": 206,
+      "domain": "BackupDR",
+      "question": "Which backup option protects Azure VMs at the disk level?",
+      "options": [
+        "A) Azure Backup with Recovery Services Vault",
+        "B) SQL PITR",
+        "C) ASR replication",
+        "D) File Sync"
+      ],
+      "multi_select": false,
+      "hint": "VM-level protection.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Backup with Recovery Services Vault protects Azure VMs at the disk level. SQL PITR is for databases. ASR replicates for DR. File Sync synchronizes files, not VM disks."
+    },
+    {
+      "id": 207,
+      "domain": "Networking",
+      "question": "Which service provides inbound TLS termination and path-based routing within a region?",
+      "options": [
+        "A) Application Gateway",
+        "B) Load Balancer",
+        "C) Traffic Manager",
+        "D) Bastion"
+      ],
+      "multi_select": false,
+      "hint": "Regional L7 gateway.",
+      "correct_answers": ["A"],
+      "explanation": "Application Gateway provides TLS termination, URL routing, and WAF features within a region. Load Balancer works at L4. Traffic Manager is DNS-based. Bastion provides remote VM access."
+    },
+    {
+      "id": 208,
+      "domain": "Identities",
+      "question": "Which feature provides just-in-time elevation to Azure AD roles?",
+      "options": [
+        "A) Privileged Identity Management (PIM)",
+        "B) Conditional Access",
+        "C) RBAC",
+        "D) Secure Score"
+      ],
+      "multi_select": false,
+      "hint": "Temporary privileged roles.",
+      "correct_answers": ["A"],
+      "explanation": "PIM allows temporary activation of privileged roles with approval and MFA. Conditional Access enforces access policies. RBAC assigns permissions. Secure Score measures posture."
+    },
+    {
+      "id": 209,
+      "domain": "Monitoring",
+      "question": "Which solution provides interactive dashboards combining metrics and log queries?",
+      "options": [
+        "A) Workbooks",
+        "B) Alerts",
+        "C) Metrics explorer",
+        "D) NSG flow logs"
+      ],
+      "multi_select": false,
+      "hint": "Visualization tool.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Monitor Workbooks combine metrics, logs, and visualizations into interactive dashboards. Alerts notify users, Metrics Explorer visualizes metrics only, and NSG flow logs capture traffic data."
+    },
+    {
+      "id": 210,
+      "domain": "Storage",
+      "question": "Which storage feature supports big data analytics workloads with hierarchical namespace?",
+      "options": [
+        "A) Azure Data Lake Storage Gen2",
+        "B) Azure Files",
+        "C) Page Blob",
+        "D) Managed Disk"
+      ],
+      "multi_select": false,
+      "hint": "HDFS compatibility.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Data Lake Storage Gen2 provides hierarchical namespace and HDFS API support for analytics. Azure Files uses SMB/NFS. Page blobs back disks. Managed Disks are VM storage."
+    },
+    {
+      "id": 211,
+      "domain": "Governance",
+      "question": "Which Azure Policy effect reports non-compliance but does not stop deployment?",
+      "options": [
+        "A) Audit",
+        "B) Deny",
+        "C) Append",
+        "D) Modify"
+      ],
+      "multi_select": false,
+      "hint": "Reporting only.",
+      "correct_answers": ["A"],
+      "explanation": "The Audit effect logs non-compliance but does not block resources. Deny prevents deployment. Append adds properties. Modify alters resources."
+    },
+    {
+      "id": 212,
+      "domain": "Compute",
+      "question": "Which VM purchase option provides savings for predictable workloads over 3 years?",
+      "options": [
+        "A) Pay-as-you-go",
+        "B) Reserved Instances",
+        "C) Spot VMs",
+        "D) Dedicated Host"
+      ],
+      "multi_select": false,
+      "hint": "Commitment-based discount.",
+      "correct_answers": ["B"],
+      "explanation": "Reserved Instances provide discounted rates for 1- or 3-year commitments, ideal for predictable workloads. Pay-as-you-go is flexible but more expensive. Spot VMs are cheaper but can be evicted. Dedicated Host provides isolation."
+    },
+    {
+      "id": 213,
+      "domain": "Security",
+      "question": "Which feature of Azure Key Vault allows limiting secret access by time and permissions?",
+      "options": [
+        "A) SAS token delegation",
+        "B) RBAC for Key Vault",
+        "C) Immutable blob",
+        "D) Firewall rules"
+      ],
+      "multi_select": false,
+      "hint": "Granular permissions.",
+      "correct_answers": ["B"],
+      "explanation": "Key Vault RBAC or access policies allow fine-grained control over secret access. SAS tokens apply to storage. Immutable blob is for compliance data. Firewalls restrict networks, not per-secret permissions."
+    },
+    {
+      "id": 214,
+      "domain": "Networking",
+      "question": "Which service allows private IP-based connectivity to PaaS services?",
+      "options": [
+        "A) Private Endpoint",
+        "B) Service Endpoint",
+        "C) VPN Gateway",
+        "D) ExpressRoute"
+      ],
+      "multi_select": false,
+      "hint": "Maps PaaS to private IP.",
+      "correct_answers": ["A"],
+      "explanation": "Private Endpoints map PaaS services to private IPs in your VNet. Service Endpoints secure traffic but still use public IPs. VPN Gateway and ExpressRoute provide connectivity, not private PaaS access."
+    },
+    {
+      "id": 215,
+      "domain": "BackupDR",
+      "question": "Which backup feature provides item-level restore for Exchange Online and SharePoint?",
+      "options": [
+        "A) Microsoft 365 Backup",
+        "B) Azure Backup",
+        "C) ASR",
+        "D) Blob snapshots"
+      ],
+      "multi_select": false,
+      "hint": "M365-specific.",
+      "correct_answers": ["A"],
+      "explanation": "Microsoft 365 Backup enables granular restore of Exchange Online and SharePoint items. Azure Backup protects Azure resources. ASR handles DR, and blob snapshots apply to storage."
+    },
+    {
+      "id": 216,
+      "domain": "Identities",
+      "question": "Which license is required for Privileged Identity Management (PIM)?",
+      "options": [
+        "A) Free",
+        "B) Premium P1",
+        "C) Premium P2",
+        "D) Office 365 E1"
+      ],
+      "multi_select": false,
+      "hint": "Advanced identity governance.",
+      "correct_answers": ["C"],
+      "explanation": "Azure AD Premium P2 is required for PIM, which provides just-in-time role elevation and approval workflows. P1 supports basic features. Free and Office 365 licenses do not include PIM."
+    },
+    {
+      "id": 217,
+      "domain": "Storage",
+      "question": "Which feature ensures recoverability of deleted file shares?",
+      "options": [
+        "A) Soft delete for file shares",
+        "B) Blob snapshots",
+        "C) Archive tier",
+        "D) ZRS"
+      ],
+      "multi_select": false,
+      "hint": "Recovery feature.",
+      "correct_answers": ["A"],
+      "explanation": "Soft delete for file shares retains deleted shares for recovery. Blob snapshots apply to blobs. Archive is a storage tier. ZRS is redundancy, not recoverability."
+    },
+    {
+      "id": 218,
+      "domain": "Compute",
+      "question": "Which feature provides high availability by placing VMs across datacenters within a region?",
+      "options": [
+        "A) Availability Zones",
+        "B) Availability Sets",
+        "C) Scale Sets",
+        "D) Dedicated Host"
+      ],
+      "multi_select": false,
+      "hint": "Datacenter-level fault tolerance.",
+      "correct_answers": ["A"],
+      "explanation": "Availability Zones distribute VMs across separate datacenters in a region. Availability Sets distribute across racks. Scale Sets scale VMs. Dedicated Host isolates workloads."
+    },
+    {
+      "id": 219,
+      "domain": "Monitoring",
+      "question": "Which Azure service provides SIEM and SOAR capabilities?",
+      "options": [
+        "A) Sentinel",
+        "B) Defender for Cloud",
+        "C) Azure Monitor",
+        "D) Log Analytics"
+      ],
+      "multi_select": false,
+      "hint": "Cloud-native SIEM.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Sentinel is Microsoft’s cloud-native SIEM and SOAR platform. Defender for Cloud focuses on security posture. Azure Monitor provides observability. Log Analytics stores and queries logs."
+    },
+    {
+      "id": 220,
+      "domain": "Security",
+      "question": "Which feature ensures deleted Key Vault secrets can be restored?",
+      "options": [
+        "A) Soft delete",
+        "B) Purge protection",
+        "C) Immutable blob",
+        "D) RBAC"
+      ],
+      "multi_select": false,
+      "hint": "Recoverability.",
+      "correct_answers": ["A"],
+      "explanation": "Soft delete allows recovery of deleted secrets within retention. Purge protection blocks permanent deletion but requires soft delete. Immutable blob applies to storage. RBAC manages access control."
+    },
+    {
+      "id": 221,
+      "domain": "Governance",
+      "question": "Which Azure artifact lets you group policies, RBAC, and resource templates for deployment?",
+      "options": [
+        "A) Blueprint",
+        "B) Initiative",
+        "C) Lock",
+        "D) Management Group"
+      ],
+      "multi_select": false,
+      "hint": "Governance packaging.",
+      "correct_answers": ["A"],
+      "explanation": "Blueprints include policies, RBAC, resource groups, and ARM templates. Initiatives only group policies. Locks prevent modification. Management Groups organize scope."
+    },
+    {
+      "id": 222,
+      "domain": "Networking",
+      "question": "Which service enables monitoring of packet loss between Azure and on-premises?",
+      "options": [
+        "A) Network Watcher Connection Monitor",
+        "B) Traffic Manager",
+        "C) ExpressRoute",
+        "D) Application Gateway"
+      ],
+      "multi_select": false,
+      "hint": "Network diagnostics.",
+      "correct_answers": ["A"],
+      "explanation": "Network Watcher Connection Monitor tracks connectivity and packet loss between Azure and on-premises. Traffic Manager does DNS routing. ExpressRoute is connectivity, not monitoring. Application Gateway is L7 load balancing."
+    },
+    {
+      "id": 223,
+      "domain": "Compute",
+      "question": "Which compute option provides the simplest hosting for web apps with scaling and managed patches?",
+      "options": [
+        "A) App Service",
+        "B) VM Scale Sets",
+        "C) Functions",
+        "D) AKS"
+      ],
+      "multi_select": false,
+      "hint": "PaaS for web apps.",
+      "correct_answers": ["A"],
+      "explanation": "Azure App Service provides PaaS hosting for web apps with autoscaling and patching handled. VMSS manages VMs. Functions is serverless code. AKS is container orchestration."
+    },
+    {
+      "id": 224,
+      "domain": "Storage",
+      "question": "Which redundancy option replicates data synchronously across three zones in a region?",
+      "options": [
+        "A) LRS",
+        "B) ZRS",
+        "C) GRS",
+        "D) RA-GRS"
+      ],
+      "multi_select": false,
+      "hint": "Zone-level replication.",
+      "correct_answers": ["B"],
+      "explanation": "Zone-redundant storage (ZRS) replicates synchronously across three availability zones in a region. LRS is within a single datacenter. GRS and RA-GRS replicate asynchronously to another region."
+    },
+    {
+      "id": 225,
+      "domain": "BackupDR",
+      "question": "Which option ensures VM backups are retained for 7 years?",
+      "options": [
+        "A) Azure Backup with long-term retention policy",
+        "B) Soft delete",
+        "C) ASR test failover",
+        "D) Archive tier"
+      ],
+      "multi_select": false,
+      "hint": "Backup retention settings.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Backup allows long-term retention policies (up to 99 years) to meet compliance. Soft delete protects against accidental deletion. ASR handles DR. Archive tier is blob storage, not VM backup retention."
+    },
+     {
+      "id": 226,
+      "domain": "Networking",
+      "question": "Which feature forces spoke VNets to send Internet-bound traffic to a hub firewall?",
+      "options": [
+        "A) UDR to hub firewall",
+        "B) VNet peering only",
+        "C) Traffic Manager",
+        "D) App Gateway"
+      ],
+      "multi_select": false,
+      "hint": "Hub-and-spoke routing.",
+      "correct_answers": ["A"],
+      "explanation": "User-defined routes (UDRs) can force traffic from spoke VNets to the hub firewall for inspection. Peering alone does not enforce routing. Traffic Manager is DNS-based, and App Gateway is for HTTP traffic."
+    },
+    {
+      "id": 227,
+      "domain": "Storage",
+      "question": "Which storage redundancy allows read access to the secondary region?",
+      "options": [
+        "A) LRS",
+        "B) ZRS",
+        "C) GRS",
+        "D) RA-GRS"
+      ],
+      "multi_select": false,
+      "hint": "Geo + read access.",
+      "correct_answers": ["D"],
+      "explanation": "RA-GRS provides asynchronous replication to a paired region and allows read access. GRS replicates but is only usable after failover. LRS and ZRS stay within a single region."
+    },
+    {
+      "id": 228,
+      "domain": "Compute",
+      "question": "Which feature lets you distribute traffic across multiple VMs using NAT rules?",
+      "options": [
+        "A) Load Balancer",
+        "B) Application Gateway",
+        "C) Traffic Manager",
+        "D) Bastion"
+      ],
+      "multi_select": false,
+      "hint": "Layer 4 NAT.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Load Balancer distributes TCP/UDP traffic at Layer 4 and supports inbound NAT rules. Application Gateway works at Layer 7. Traffic Manager is DNS-based. Bastion provides secure remote access."
+    },
+    {
+      "id": 229,
+      "domain": "Identities",
+      "question": "Which Azure AD role allows management of security-related features like MFA and CA?",
+      "options": [
+        "A) Security Administrator",
+        "B) User Administrator",
+        "C) Reader",
+        "D) Contributor"
+      ],
+      "multi_select": false,
+      "hint": "Focus on security settings.",
+      "correct_answers": ["A"],
+      "explanation": "The Security Administrator role manages security features such as Conditional Access and MFA. User Administrator manages users. Reader and Contributor are resource RBAC roles."
+    },
+    {
+      "id": 230,
+      "domain": "BackupDR",
+      "question": "Which option allows restoring individual files from a backed-up Azure VM?",
+      "options": [
+        "A) File-level recovery from Azure Backup",
+        "B) Snapshot restore",
+        "C) ASR",
+        "D) Archive tier"
+      ],
+      "multi_select": false,
+      "hint": "Granular restore.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Backup supports file-level recovery for VM backups. Snapshots restore entire disks. ASR provides DR replication. Archive tier is blob storage, not VM backups."
+    },
+    {
+      "id": 231,
+      "domain": "Monitoring",
+      "question": "Which Azure service provides a unified dashboard for cost, performance, and security recommendations?",
+      "options": [
+        "A) Azure Advisor",
+        "B) Sentinel",
+        "C) Policy compliance",
+        "D) Cost Management"
+      ],
+      "multi_select": false,
+      "hint": "Advisor service.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Advisor provides recommendations on cost, performance, reliability, and security. Sentinel is a SIEM. Policy compliance enforces rules. Cost Management tracks spending but not other areas."
+    },
+    {
+      "id": 232,
+      "domain": "Security",
+      "question": "Which two steps secure a storage account from Internet access?",
+      "options": [
+        "A) Enable private endpoint",
+        "B) Restrict firewall to selected networks",
+        "C) Allow public access",
+        "D) Use shared keys in code"
+      ],
+      "multi_select": true,
+      "hint": "Network isolation.",
+      "correct_answers": ["A","B"],
+      "explanation": "Private endpoints and firewalls with selected networks restrict access. Allowing public access and embedding shared keys weaken security."
+    },
+    {
+      "id": 233,
+      "domain": "Compute",
+      "question": "Which VM feature enables automatic scaling based on CPU usage?",
+      "options": [
+        "A) VM Scale Sets",
+        "B) Availability Set",
+        "C) Reserved Instance",
+        "D) Dedicated Host"
+      ],
+      "multi_select": false,
+      "hint": "Elastic scaling.",
+      "correct_answers": ["A"],
+      "explanation": "VM Scale Sets support autoscaling rules such as CPU usage. Availability Sets provide HA, Reserved Instances optimize cost, and Dedicated Hosts provide isolation."
+    },
+    {
+      "id": 234,
+      "domain": "Networking",
+      "question": "Which service provides outbound Internet access from a VNet with a static public IP?",
+      "options": [
+        "A) NAT Gateway",
+        "B) Load Balancer",
+        "C) Application Gateway",
+        "D) Traffic Manager"
+      ],
+      "multi_select": false,
+      "hint": "SNAT for outbound.",
+      "correct_answers": ["A"],
+      "explanation": "NAT Gateway provides outbound connectivity with a static IP and high scalability. Load Balancer distributes inbound traffic. App Gateway is for L7. Traffic Manager is DNS-based."
+    },
+    {
+      "id": 235,
+      "domain": "Governance",
+      "question": "Which Azure Policy effect prevents non-compliant resources from being created?",
+      "options": [
+        "A) Deny",
+        "B) Audit",
+        "C) Append",
+        "D) Modify"
+      ],
+      "multi_select": false,
+      "hint": "Hard block.",
+      "correct_answers": ["A"],
+      "explanation": "The Deny effect blocks deployment of non-compliant resources. Audit logs but allows. Append adds properties. Modify changes resources after deployment."
+    },
+    {
+      "id": 236,
+      "domain": "Storage",
+      "question": "Which type of blob is ideal for storing large media files with sequential access?",
+      "options": [
+        "A) Block blob",
+        "B) Page blob",
+        "C) Append blob",
+        "D) File share"
+      ],
+      "multi_select": false,
+      "hint": "Default blob type.",
+      "correct_answers": ["A"],
+      "explanation": "Block blobs are optimized for large file storage such as media and documents. Page blobs are for random I/O, append blobs for logging, and file shares use SMB."
+    },
+    {
+      "id": 237,
+      "domain": "Compute",
+      "question": "Which VM option provides the best discount if you can tolerate eviction?",
+      "options": [
+        "A) Spot VM",
+        "B) Reserved Instance",
+        "C) Pay-as-you-go",
+        "D) Dedicated Host"
+      ],
+      "multi_select": false,
+      "hint": "Eviction risk.",
+      "correct_answers": ["A"],
+      "explanation": "Spot VMs are deeply discounted but can be evicted when capacity is needed. Reserved Instances provide predictable savings. Pay-as-you-go is flexible but costly. Dedicated Hosts are expensive isolation."
+    },
+    {
+      "id": 238,
+      "domain": "Monitoring",
+      "question": "Which Azure Monitor feature triggers actions when a KQL query returns results?",
+      "options": [
+        "A) Log alert",
+        "B) Metric alert",
+        "C) Workbook",
+        "D) Action Group only"
+      ],
+      "multi_select": false,
+      "hint": "Query-based detection.",
+      "correct_answers": ["A"],
+      "explanation": "Log alerts run KQL queries on log data and trigger Action Groups. Metric alerts evaluate numeric metrics. Workbooks visualize data. Action Groups execute responses but require an alert source."
+    },
+    {
+      "id": 239,
+      "domain": "Security",
+      "question": "Which Key Vault feature ensures secrets cannot be permanently deleted during retention?",
+      "options": [
+        "A) Purge protection",
+        "B) Soft delete",
+        "C) Immutable storage",
+        "D) RBAC"
+      ],
+      "multi_select": false,
+      "hint": "Hard-delete protection.",
+      "correct_answers": ["A"],
+      "explanation": "Purge protection ensures items cannot be permanently deleted until retention expires. Soft delete allows recovery but can still be purged. Immutable storage applies to blobs. RBAC controls access."
+    },
+    {
+      "id": 240,
+      "domain": "Identities",
+      "question": "Which feature detects risky sign-ins and can enforce automatic password reset?",
+      "options": [
+        "A) Identity Protection",
+        "B) Conditional Access",
+        "C) MFA",
+        "D) RBAC"
+      ],
+      "multi_select": false,
+      "hint": "Adaptive risk response.",
+      "correct_answers": ["A"],
+      "explanation": "Azure AD Identity Protection detects risky sign-ins and can enforce policies such as MFA or password reset. Conditional Access applies static conditions. MFA requires second factor but not risk detection. RBAC manages resource access."
+    },
+    {
+      "id": 241,
+      "domain": "Networking",
+      "question": "Which service provides secure remote VM access via the portal without public IPs?",
+      "options": [
+        "A) Bastion",
+        "B) NSG",
+        "C) Firewall",
+        "D) Load Balancer"
+      ],
+      "multi_select": false,
+      "hint": "Browser-based RDP/SSH.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Bastion enables RDP/SSH from the portal over SSL without requiring public IPs. NSGs filter traffic. Firewalls inspect. Load Balancers distribute traffic, not admin access."
+    },
+    {
+      "id": 242,
+      "domain": "Storage",
+      "question": "Which option allows direct mounting of Azure Files on Linux using SMB?",
+      "options": [
+        "A) Azure Files with SMB",
+        "B) Blobfuse",
+        "C) Managed Disks",
+        "D) Page blob"
+      ],
+      "multi_select": false,
+      "hint": "SMB mount.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Files provides SMB shares mountable on Linux or Windows. Blobfuse mounts blob storage but not SMB. Managed Disks attach to VMs. Page blobs back disks."
+    },
+    {
+      "id": 243,
+      "domain": "Governance",
+      "question": "Which feature provides compliance score across Azure resources?",
+      "options": [
+        "A) Defender for Cloud compliance dashboard",
+        "B) Secure Score",
+        "C) Policy initiative",
+        "D) Advisor"
+      ],
+      "multi_select": false,
+      "hint": "Regulatory compliance.",
+      "correct_answers": ["A"],
+      "explanation": "Defender for Cloud includes a regulatory compliance dashboard showing compliance against standards. Secure Score measures security posture. Policy initiatives group rules. Advisor provides recommendations."
+    },
+    {
+      "id": 244,
+      "domain": "Compute",
+      "question": "Which Azure compute option is serverless and scales automatically per event?",
+      "options": [
+        "A) Azure Functions",
+        "B) App Service",
+        "C) VMSS",
+        "D) AKS"
+      ],
+      "multi_select": false,
+      "hint": "Event-driven compute.",
+      "correct_answers": ["A"],
+      "explanation": "Azure Functions is an event-driven serverless compute option that scales automatically. App Service is PaaS for web apps. VMSS manages VM scaling. AKS orchestrates containers."
+    },
+    {
+      "id": 245,
+      "domain": "BackupDR",
+      "question": "Which feature ensures backups cannot be deleted for a defined period?",
+      "options": [
+        "A) Immutable backup vault (immutability settings)",
+        "B) Soft delete",
+        "C) ASR",
+        "D) ZRS"
+      ],
+      "multi_select": false,
+      "hint": "WORM for backups.",
+      "correct_answers": ["A"],
+      "explanation": "Immutable backup vault settings enforce WORM protection on backups for a defined retention period. Soft delete allows recovery but not immutability. ASR handles DR, and ZRS is a redundancy model."
+    }
+  ]
+}

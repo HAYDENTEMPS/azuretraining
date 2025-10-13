@@ -1,0 +1,804 @@
+[
+  {
+  "id": 1,
+  "explanation": "The Premium Functions plan avoids cold starts by keeping pre-warmed instances available while still supporting automatic scaling. The Consumption plan can scale elastically but experiences cold starts, and Dedicated plans require fixed VM instances. Premium provides the balance of elasticity and predictable performance."
+},
+{
+  "id": 2,
+  "explanation": "Cosmos DB Change Feed continuously streams inserts and updates in near real time, enabling event-driven processing and analytics pipelines. Triggers only fire on individual operations, RU throttling is about capacity limits, and the Table API is a different data model and does not provide change streams."
+},
+{
+  "id": 3,
+  "explanation": "Single-page applications (SPAs) should use the OAuth2 Authorization Code flow with PKCE, which adds security against token interception. Implicit flow is deprecated for SPAs, Client Credentials is for daemon apps, and Device Code is for devices with limited input capability."
+},
+{
+  "id": 4,
+  "explanation": "Application Insights provides synthetic availability tests that continuously ping your app from various regions to monitor uptime and responsiveness. Log Analytics is used for querying telemetry, Traffic Manager distributes DNS traffic, and Load Balancer manages network traffic but does not perform synthetic testing."
+},
+{
+  "id": 5,
+  "explanation": "Event Hubs is designed for massive telemetry ingestion, supporting millions of events per second with partitioning for scalability. Service Bus is for enterprise workflows and guaranteed delivery, Event Grid is for lightweight event routing, and Storage Queues provide basic message queuing."
+},
+{
+  "id": 6,
+  "explanation": "Bicep is the domain-specific language that transpiles into ARM JSON templates, making infrastructure-as-code authoring simpler. Terraform is cross-cloud but does not compile to ARM directly, Ansible and Chef are configuration management tools, not Azure-native IaC compilers."
+},
+{
+  "id": 7,
+  "explanation": "App Service Deployment Slots enable staged deployments with zero downtime, supporting blue-green or canary releases. Scaling adds capacity but doesn’t stage deployments, App Service Environments provide isolation, and Traffic Manager distributes traffic across endpoints but not between slots."
+},
+{
+  "id": 8,
+  "explanation": "Blob Storage supports both Soft Delete and Versioning to recover accidentally deleted or overwritten data. CORS configures cross-origin requests and CDN accelerates content delivery, but neither provides data recovery."
+},
+{
+  "id": 9,
+  "explanation": "Managed Identity allows applications to authenticate securely to Key Vault and other Azure resources without storing credentials in code. Shared Secrets, IP Firewalls, or RBAC alone do not provide the same seamless, secretless integration."
+},
+{
+  "id": 10,
+  "explanation": "The Snapshot Debugger in Application Insights allows capturing snapshots of variables and call stacks when exceptions occur in production. NSG logs capture network traffic, Azure Monitor aggregates metrics, and Autoscale adjusts capacity but none provide code-level snapshots."
+},
+{
+  "id": 11,
+  "explanation": "The validate-jwt policy in API Management verifies that incoming tokens are valid and unaltered. This ensures requests are properly authenticated before being passed to the backend. Other policies like rate-limit or cache-lookup serve different purposes unrelated to token validation."
+},
+{
+  "id": 12,
+  "explanation": "The Custom Script Extension for VMs allows running post-deployment scripts to configure software or perform initialization. DSC configures desired state over time, OMS is a monitoring extension, and Diagnostics captures logs, not arbitrary script execution."
+},
+{
+  "id": 13,
+  "explanation": "The Consumption plan charges only for the actual execution time and resources consumed by Azure Functions. This makes it cost-efficient for bursty workloads, but functions may experience cold starts. Premium and Dedicated eliminate cold starts but come with fixed costs."
+},
+{
+  "id": 14,
+  "explanation": "Cosmos DB partition keys distribute data and throughput evenly across physical partitions, preventing hot spots. Consistency level defines read guarantees, RU/s is throughput capacity, and indexing policy affects query performance but not partition distribution."
+},
+{
+  "id": 15,
+  "explanation": "Daemon apps should use the Client Credentials flow because they run without user interaction and authenticate directly with Azure AD using an app identity. PKCE is designed for SPAs, ROPC is insecure and not recommended, and Implicit is deprecated."
+},
+{
+  "id": 16,
+  "explanation": "Log Analytics is the Azure service that allows querying logs with Kusto Query Language (KQL). Metrics Explorer visualizes numeric metrics only, Alerts notify based on conditions, and Monitor Insights provide overviews but not ad-hoc querying."
+},
+{
+  "id": 17,
+  "explanation": "Service Bus supports sessions to enable ordered message delivery across multiple receivers. Storage Queues don’t support sessions, Event Hubs is for telemetry ingestion, and Event Grid is for lightweight event routing."
+},
+{
+  "id": 18,
+  "explanation": "The 'az deployment group what-if' command previews resource changes without applying them, allowing safe dry-run validation of templates. 'az bicep build' transpiles Bicep to ARM JSON, 'az resource show' inspects resources, and 'az group create' creates groups."
+},
+{
+  "id": 19,
+  "explanation": "App Service Deployment Slots allow routing a percentage of traffic to different slots, enabling safe canary releases. Access Restrictions limit inbound traffic sources, Scaling adjusts capacity, and ASE provides network isolation."
+},
+{
+  "id": 20,
+  "explanation": "Blob Legal Hold (Immutable Storage) prevents data from being modified or deleted until explicitly released, ensuring compliance. Archive tier reduces costs but doesn’t prevent deletion, Soft Delete allows recovery, and CORS configures access rules."
+},
+{
+  "id": 21,
+  "explanation": "APIs should validate the 'aud' (audience) claim to ensure the token is intended for them and the 'iss' (issuer) claim to confirm it comes from the trusted authority. Tenant ID may appear in claims but is not always required, and resource group is irrelevant."
+},
+{
+  "id": 22,
+  "explanation": "Adaptive sampling with exception exclusions reduces telemetry volume while ensuring all error events are retained. Fixed sampling may drop errors, disabling sampling is costly, and Live Metrics shows near real-time data but isn’t sampling control."
+},
+{
+  "id": 23,
+  "explanation": "Event Grid provides lightweight pub/sub eventing with multiple subscribers and low latency. Event Hubs ingests telemetry at scale, Service Bus provides enterprise queues, and Queue Storage offers basic messaging."
+},
+{
+  "id": 24,
+  "explanation": "Cloud-init is the native Linux bootstrapping tool that configures settings on first boot, including packages and networking. DSC is for Windows, OMS relates to monitoring, and the Guest Agent provides VM interaction but not full initialization scripting."
+},
+{
+  "id": 25,
+  "explanation": "The Async HTTP API pattern in Durable Functions returns a 202 Accepted response with a status endpoint, allowing clients to poll for results. Fan-out/fan-in handles parallel tasks, External Events wait for signals, and Entity Functions manage stateful entities."
+},
+{
+  "id": 26,
+  "explanation": "The 'If-None-Match=*' ETag condition in blob uploads ensures the operation only succeeds if the blob does not already exist, preventing accidental overwrites. SAS tokens grant access, tiers set cost/performance, but neither enforce concurrency control."
+},
+{
+  "id": 27,
+  "explanation": "The Device Code flow is designed for devices with limited input like TVs or IoT, letting users complete sign-in on another device. Auth Code is for apps with full browsers, PKCE is for SPAs, and Client Credentials is for daemons."
+},
+{
+  "id": 28,
+  "explanation": "Log Analytics provides the ability to query telemetry across resources using KQL. Metrics provides numeric counters, Alerts trigger on conditions, and App Service Logs are per-app but lack cross-resource querying."
+},
+{
+  "id": 29,
+  "explanation": "The 'rate-limit-by-key' policy in API Management enforces per-subscription request limits. Validate-jwt checks tokens, rewrite-uri transforms requests, and retry replays failed requests."
+},
+{
+  "id": 30,
+  "explanation": "String interpolation in Bicep allows dynamically constructing resource names or parameters, often using parameters for environment names. Modules provide reuse, Conditions enable conditional deployments, and SecureString is for sensitive parameters."
+},
+{
+  "id": 31,
+  "explanation": "The Queue Storage trigger in Functions automatically scales the number of function instances based on the queue length. Timer triggers run on schedules, Event Grid triggers react to events, and HTTP triggers respond to requests."
+},
+{
+  "id": 32,
+  "explanation": "Strong consistency in Cosmos DB provides linearizable reads globally, ensuring clients always see the latest committed write. Session is weaker but scoped to a client session, Bounded Staleness provides controlled lag, and Eventual offers minimal guarantees."
+},
+{
+  "id": 33,
+  "explanation": "Key Vault references in App Service configuration allow secrets to be injected via the @Microsoft.KeyVault syntax without modifying application code. Managed Identity provides authentication, while app settings and FTP deployment don’t secure secrets."
+},
+{
+  "id": 34,
+  "explanation": "The 'bin()' function in KQL groups events into fixed time buckets, such as 5-minute intervals. Extend() creates calculated columns, project() selects fields, and where() filters rows."
+},
+{
+  "id": 35,
+  "explanation": "Event Grid is the service for routing cloud-native events to subscribers like Functions or Logic Apps with low latency. Service Bus is for enterprise messaging, Event Hubs ingests telemetry, and Queue Storage is simpler queuing."
+},
+{
+  "id": 36,
+  "explanation": "The Custom Script Extension for Windows VMs runs scripts post-deployment to install software or perform setup. DSC enforces desired state, Diagnostics collects monitoring data, and OMS is for monitoring integration."
+},
+{
+  "id": 37,
+  "explanation": "Azure Container Apps support scaling to zero and integrate with KEDA for event-driven scaling. AKS is full Kubernetes, ACI runs single containers without scaling, and App Service Linux is for web apps not microservices."
+},
+{
+  "id": 38,
+  "explanation": "Soft delete in Blob Storage allows restoring blobs deleted within the retention period, acting like a recycle bin. Versioning retains previous versions, Legal Hold locks data, and Archive tier changes storage cost."
+},
+{
+  "id": 39,
+  "explanation": "OAuth scopes and App Roles are valid approaches for API authorization since they integrate with Azure AD claims. Shared secrets hardcoded in code and disabling validation are insecure and not recommended."
+},
+{
+  "id": 40,
+  "explanation": "Workbooks provide interactive dashboards that can aggregate telemetry across multiple subscriptions using KQL queries. Metrics Explorer is scoped per resource, Traffic Manager is DNS load balancing, and Log Analytics provides raw query capability."
+},
+{
+  "id": 41,
+  "explanation": "Service Bus supports sessions to guarantee FIFO delivery within a session, making it suitable for ordered enterprise workflows. Event Hubs and Event Grid do not guarantee order, and Queue Storage is basic messaging without FIFO sessions."
+},
+{
+  "id": 42,
+  "explanation": "The 'secureString' parameter type in Bicep/ARM ensures sensitive values like passwords are handled securely and not logged. Regular strings are visible in logs, objects hold structured data, and bool is for true/false values."
+},
+{
+  "id": 43,
+  "explanation": "WebJobs allow running background jobs attached to App Service apps, suitable for lightweight tasks. Functions provide serverless execution, Logic Apps handle workflows, and Batch is for large-scale compute jobs."
+},
+{
+  "id": 44,
+  "explanation": "Cosmos DB autoscale throughput automatically adjusts RU/s between a configured range based on workload demand. Manual throughput is fixed, serverless charges per request, and free tier reduces costs but does not autoscale."
+},
+{
+  "id": 45,
+  "explanation": "Key Vault references in App Service settings allow apps to retrieve secrets securely without code changes. SDK calls require explicit programming, hardcoded secrets are insecure, and FTP deployment does not manage secrets."
+},
+{
+  "id": 46,
+  "explanation": "The Application Insights SDK automatically collects dependency tracking in .NET applications, showing calls to SQL, HTTP, or other services. NSG flow logs capture network activity, Log Analytics queries logs, and Alerts only notify conditions."
+},
+{
+  "id": 47,
+  "explanation": "Event Grid webhook subscriptions require the subscriber to echo back the validationCode during handshake to confirm ownership. Returning 200 always or sending SAS is incorrect, and 401 rejects the handshake."
+},
+{
+  "id": 48,
+  "explanation": "Modules in Bicep allow packaging and reusing resource definitions across templates, promoting modular design. Outputs return values, params define input, and conditions enable conditional deployment."
+},
+{
+  "id": 49,
+  "explanation": "The fan-out/fan-in pattern in Durable Functions runs multiple tasks in parallel and then aggregates the results. Chaining runs sequentially, Async HTTP API provides polling, and External Events wait for external signals."
+},
+{
+  "id": 50,
+  "explanation": "Cosmos DB Serverless charges only per request without requiring provisioned throughput. Autoscale adjusts provisioned RUs, provisioned throughput reserves RUs, and manual provisioning is static."
+},
+{
+  "id": 51,
+  "explanation": "App Roles in Azure AD applications grant permissions to service principals and can be assigned to users or groups. Role assignments are for Azure RBAC, tenants and subscriptions define scope but don’t directly grant app-level permissions."
+},
+{
+  "id": 52,
+  "explanation": "Live Metrics Stream in Application Insights provides real-time telemetry such as requests, failures, and performance. Log Analytics queries historical logs, Alerts trigger on conditions, and Workbooks provide dashboards."
+},
+{
+  "id": 53,
+  "explanation": "Consumer groups in Event Hubs allow multiple independent applications to read the same event stream without interfering with each other. Sessions are for ordered messaging in Service Bus, partitions divide load, and topics are a Service Bus concept."
+},
+{
+  "id": 54,
+  "explanation": "The 'existing' keyword in Bicep allows referencing already deployed resources instead of creating new ones. 'Resource' declares new resources, 'import' is not valid in Bicep, and 'output' defines outputs."
+},
+{
+  "id": 55,
+  "explanation": "Setting WEBSITE_RUN_FROM_PACKAGE to 1 in App Service enables running apps directly from a read-only zip package. This improves consistency and speeds up deployment. Always On keeps apps warm but doesn’t affect deployment packaging."
+},
+{
+  "id": 56,
+  "explanation": "Choosing a high-cardinality partition key in Cosmos DB spreads load evenly, helping avoid hot partitions. Strong consistency affects reads, free tier is cost-related, and secondary indexes improve queries but not partition balance."
+},
+{
+  "id": 57,
+  "explanation": "The Implicit flow is deprecated and no longer recommended because it exposes tokens in URLs. PKCE is the modern replacement for SPAs, Device Code is for devices with limited input, and Client Credentials is for daemons."
+},
+{
+  "id": 58,
+  "explanation": "Diagnostic settings configure which logs and metrics from a resource are sent to Log Analytics, Event Hub, or Storage. Alerts respond to conditions, Metrics Explorer charts values, and Action Groups define alert responses."
+},
+{
+  "id": 59,
+  "explanation": "The quota-by-key policy in API Management enforces usage quotas per subscription key, limiting total calls over a time period. Rate-limit-by-key controls request rate but not quota, cache-lookup affects caching, and validate-jwt checks tokens."
+},
+{
+  "id": 60,
+  "explanation": "Cloud-init is the native Linux initialization tool used for bootstrapping VMs with configurations like users and packages. DSC is a Windows configuration tool, Puppet is third-party, and OMS relates to monitoring."
+},
+
+ {
+  "id": 61,
+  "explanation": "The Functions Timer trigger allows you to run scheduled tasks in a serverless way with no infrastructure management. Logic Apps with recurrence also schedule tasks but are more for workflow integration. AKS CronJobs require Kubernetes and server management. WebJobs Continuous run constantly, not on schedules."
+},
+{
+  "id": 62,
+  "explanation": "Session consistency is the default in Cosmos DB. It provides read-your-writes and monotonic reads within a client session, balancing performance and guarantees. Strong consistency is slower and costly, Bounded Staleness provides controlled lag, and Eventual is fast but provides weaker guarantees."
+},
+{
+  "id": 63,
+  "explanation": "RBAC is the recommended model for Key Vault access as it aligns with Azure-wide role-based security. Access policies are still supported but considered legacy. Firewalls restrict networking only, and public access is insecure and not recommended."
+},
+{
+  "id": 64,
+  "explanation": "Workbooks allow custom dashboards combining KQL queries, visualizations, and metrics across multiple resources. Metrics Explorer is limited to metrics. Live Metrics shows near real-time telemetry. Alerts notify on conditions but do not create dashboards."
+},
+{
+  "id": 65,
+  "explanation": "The Event Grid trigger in Logic Apps responds to blob creation events and other Azure events in near real time. Timer triggers are schedule-based, HTTP triggers start workflows via calls, and Queue triggers react to queued messages instead of events."
+},
+{
+  "id": 66,
+  "explanation": "Bicep registries (br:) allow publishing and referencing reusable modules, supporting modular IaC patterns. Blob storage and GitHub repos can host files but are not integrated registries. Key Vault is for secrets, not code modules."
+},
+{
+  "id": 67,
+  "explanation": "Azure Kubernetes Service (AKS) provides full Kubernetes orchestration with autoscaling, upgrades, and networking. Container Apps abstract away Kubernetes, ACI runs single containers, and Functions provide serverless execution, not orchestration."
+},
+{
+  "id": 68,
+  "explanation": "Shared Access Signatures (SAS) grant time-limited access to blob resources without sharing account keys. Account keys provide full access and should be avoided. CORS manages cross-origin rules, and public containers expose data without restriction."
+},
+{
+  "id": 69,
+  "explanation": "Authorization Code with PKCE is the modern recommended OAuth2 flow for SPAs, offering enhanced security. Client Credentials is for daemon apps, Device Code is for limited input devices, and ROPC is insecure and discouraged."
+},
+{
+  "id": 70,
+  "explanation": "Log alerts are created from KQL queries in Log Analytics and trigger when conditions are met. Metric alerts evaluate numeric metrics, Activity log alerts capture control-plane events, and Action groups define alert actions but are not alert types."
+},
+{
+  "id": 71,
+  "explanation": "Event Hubs is optimized for telemetry ingestion at scale, handling millions of events per second. Service Bus is enterprise messaging with ordering and transactions. Event Grid is for event routing. Queue Storage is for basic messaging."
+},
+{
+  "id": 72,
+  "explanation": "The secureObject type in ARM/Bicep allows structured sensitive inputs such as JSON objects with secrets. SecureString protects single values, while int and array handle non-sensitive types."
+},
+{
+  "id": 73,
+  "explanation": "Dedicated Functions plans (App Service plan) provide predictable pricing by reserving dedicated VM instances. Premium and Consumption scale dynamically. ASE is for isolated environments, not predictable reserved pricing."
+},
+{
+  "id": 74,
+  "explanation": "Cosmos DB multi-master replication allows active-active writes across regions with conflict resolution. Eventual consistency defines read behavior, Change Feed streams updates, and Indexing policy improves query performance."
+},
+{
+  "id": 75,
+  "explanation": "Access tokens are bearer tokens used to authorize API access. ID tokens authenticate users to client apps, Refresh tokens obtain new access tokens, and cookies are web session artifacts."
+},
+{
+  "id": 76,
+  "explanation": "Snapshot Debugger in Application Insights captures process memory and variables when exceptions occur, helping debug production issues. Log Analytics queries telemetry, Profiler samples performance traces, and Action Groups trigger alert responses."
+},
+{
+  "id": 77,
+  "explanation": "The validate-jwt policy in API Management enforces token validation on inbound requests, ensuring only valid JWTs pass through. Quota policies manage call limits, set-variable modifies context, and cache-store affects caching."
+},
+{
+  "id": 78,
+  "explanation": "The 'az deployment group what-if' command previews Bicep or ARM changes before applying them. 'az resource show' inspects resources, 'az group create' creates groups, and 'az bicep build' transpiles code to ARM JSON but doesn’t preview changes."
+},
+{
+  "id": 79,
+  "explanation": "Durable Functions external events pattern pauses workflows until an external signal (approval, callback) is received. Fan-out/fan-in runs parallel tasks, Async HTTP API provides polling, and chaining executes sequential steps."
+},
+{
+  "id": 80,
+  "explanation": "The SQL API in Cosmos DB supports SQL-like querying of JSON documents. The MongoDB API supports Mongo syntax, Cassandra API supports wide-column stores, and Gremlin API supports graph workloads."
+},
+{
+  "id": 81,
+  "explanation": "Managed Identity provides temporary credentials automatically managed by Azure, enabling secure access to resources without storing secrets. Service principals with secrets require manual rotation, App Registrations are identities, and SAS URLs are for storage access only."
+},
+{
+  "id": 82,
+  "explanation": "The percentile() KQL function calculates percentile metrics such as 95th latency. Top() returns highest values, avg() calculates mean, and summarize() aggregates but requires functions like percentile inside."
+},
+{
+  "id": 83,
+  "explanation": "Service Bus provides enterprise messaging with at-least-once delivery guarantees and Dead Letter Queues for undeliverable messages. Event Hubs is for telemetry, Queue Storage is basic, and Event Grid is for lightweight pub/sub."
+},
+{
+  "id": 84,
+  "explanation": "The secureObject parameter in Bicep secures structured secrets like JSON. Strings are plain, vars are local values, and ints are numeric, none offering secure object handling."
+},
+{
+  "id": 85,
+  "explanation": "Consumption Functions scale to zero when idle and charge only per execution, making them ideal for low-traffic APIs. Premium Functions provide reserved instances, App Service provides constant hosting, and AKS is container orchestration."
+},
+{
+  "id": 86,
+  "explanation": "Immutable storage with Legal Hold enforces WORM (write once, read many) compliance, preventing modification or deletion. Versioning saves past copies, Archive reduces costs, and Soft Delete allows recovery but not immutability."
+},
+{
+  "id": 87,
+  "explanation": "Refresh tokens are long-lived and allow requesting new access tokens without user reauthentication. Access tokens authorize APIs, ID tokens authenticate users, and cookies manage sessions."
+},
+{
+  "id": 88,
+  "explanation": "Activity Log alerts trigger on Azure control-plane events such as resource deletion. Metric alerts monitor performance counters, Log alerts query telemetry, and Action Groups define alert responses."
+},
+{
+  "id": 89,
+  "explanation": "Logic Apps provide a low-code designer to visually build workflows integrating SaaS and Azure services. Functions are code-first, API Management secures APIs, and Event Grid routes events."
+},
+{
+  "id": 90,
+  "explanation": "The output keyword in Bicep exposes resource values (like connection strings) after deployment. Vars are internal, existing references existing resources, and conditions enable conditional logic."
+},
+{
+  "id": 91,
+  "explanation": "Entity Functions in Durable Functions manage state as single entities, similar to actors. Async HTTP API is for polling, External Events for signals, and Fan-out/fan-in for parallel workloads."
+},
+{
+  "id": 92,
+  "explanation": "Blob leases enforce concurrency control, preventing multiple writers. SAS grants scoped access, firewalls control network, and CORS configures cross-origin requests but do not lock blobs."
+},
+{
+  "id": 93,
+  "explanation": "The Client Credentials flow allows an API or daemon app to access another API without user interaction, authenticating with its app identity. PKCE is for SPAs, Device Code for limited input devices, and ROPC is insecure."
+},
+{
+  "id": 94,
+  "explanation": "Log Analytics workspaces centralize log ingestion from multiple subscriptions and resources. Storage Accounts store data but don’t analyze, Monitor Metrics aggregates counters, and Alerts notify conditions."
+},
+{
+  "id": 95,
+  "explanation": "Service Bus Topics and Subscriptions implement enterprise pub/sub, letting multiple subscribers receive filtered messages. Queue Storage is point-to-point, Event Hubs ingests telemetry, and Event Grid routes events."
+},
+{
+  "id": 96,
+  "explanation": "The DSC (Desired State Configuration) extension enforces compliance and configuration on Windows VMs. Custom Script runs arbitrary scripts, Diagnostics collects logs, and cloud-init is Linux bootstrapping."
+},
+{
+  "id": 97,
+  "explanation": "Slot swaps with traffic routing in App Service enable gradual rollout between deployment slots. GitHub Actions automate CI/CD, FTP publish is manual, and Kudu exec is a command-line tool."
+},
+{
+  "id": 98,
+  "explanation": "Change Feed in Cosmos DB streams inserts and updates in order for downstream processing. Partition Key distributes data, Multi-master supports multi-region writes, and Indexing speeds up queries but doesn’t stream changes."
+},
+{
+  "id": 99,
+  "explanation": "ID tokens are issued via OpenID Connect to prove user authentication to the client app. Access tokens are for APIs, Refresh tokens get new tokens, and SAML assertions are used in SAML-based auth flows."
+},
+{
+  "id": 100,
+  "explanation": "Application Insights Profiler samples running code in production to identify performance bottlenecks such as slow methods, dependencies, or database calls. Snapshot Debugger is for debugging exceptions, Metrics Explorer is for charts, and Live Metrics is for near real-time telemetry."
+},
+{
+  "id": 101,
+  "explanation": "Azure Container Instances (ACI) are best for short-lived, single-container workloads with no orchestration. They start quickly, require minimal setup, and are ideal for proof-of-concepts or jobs under 24 hours. AKS and Container Apps add orchestration overhead, and App Service is better for web hosting."
+},
+{
+  "id": 102,
+  "explanation": "Azure Cache for Redis is an in-memory cache that improves API response times by reducing load on back-end systems. Table Storage, SQL Database, and Blob Storage are persistent stores and not designed for low-latency caching."
+},
+{
+  "id": 103,
+  "explanation": "A multi-tenant app registration in Azure AD allows users from any Azure AD tenant to authenticate. Single-tenant apps restrict access, service principals are identities for automation, and managed identities are for Azure-hosted resources only."
+},
+{
+  "id": 104,
+  "explanation": "Deployment slots with traffic routing allow gradual rollout by directing a percentage of users to the staging slot before full release. This enables zero-downtime testing. Autoscale adjusts capacity, Traffic Manager is DNS-based routing, and Always On prevents idle timeouts but doesn’t manage deployments."
+},
+{
+  "id": 105,
+  "explanation": "Blob Storage immutability is achieved with Legal Hold and Time-Based Retention, enforcing WORM compliance. These prevent modification or deletion for a specified time. Soft delete allows recovery but not compliance, and Blob Index is for tagging."
+},
+{
+  "id": 106,
+  "explanation": "A Logic App should use an Event Grid trigger to respond efficiently to new blob uploads. Event Grid delivers push-based events with low latency. Polling is inefficient, Service Bus is for messaging, and HTTP triggers require an external call."
+},
+{
+  "id": 107,
+  "explanation": "Workbooks allow custom dashboards and queries across multiple subscriptions using KQL and visualizations. Metrics Explorer is limited to single resources, Live Metrics shows streaming telemetry, and Alerts notify based on conditions."
+},
+{
+  "id": 108,
+  "explanation": "Azure Key Vault now uses Azure RBAC as the recommended model, replacing access policies. RBAC integrates with Azure AD roles and scopes, providing centralized and granular permission management."
+},
+{
+  "id": 109,
+  "explanation": "Azure API Management is the full API gateway solution providing quotas, JWT validation, caching, and rate limiting. Front Door and Application Gateway are focused on routing and security at the network layer, and Functions Proxies are lightweight proxies only."
+},
+{
+  "id": 110,
+  "explanation": "Azure Kubernetes Service (AKS) provides full control of Kubernetes clusters, with features like custom networking and ingress. Container Apps simplify container hosting, ACI is for single containers, and App Service is optimized for web apps."
+},
+{
+  "id": 111,
+  "explanation": "Cosmos DB multi-master replication allows active-active writes across multiple regions, enabling low-latency global applications. Change Feed streams updates, Indexing policies tune queries, and Serverless is for cost optimization."
+},
+{
+  "id": 112,
+  "explanation": "A metric alert monitors performance counters like CPU or memory usage and fires when thresholds are crossed. Activity log alerts capture control-plane actions, log alerts run KQL queries, and action groups define responses but aren’t alerts themselves."
+},
+{
+  "id": 113,
+  "explanation": "The Client Credentials flow is used for daemon apps or background services where no user is present. Device Code is for limited-input devices, Authorization Code + PKCE is for user-facing apps, and Implicit is legacy and insecure."
+},
+{
+  "id": 114,
+  "explanation": "Event Hubs is designed for massive telemetry ingestion (millions of messages per second) with partitioning and low latency. Event Grid is for lightweight notifications, Service Bus is for ordered enterprise messaging, and Storage Queues are basic queues."
+},
+{
+  "id": 115,
+  "explanation": "GitHub Actions with the Azure Functions Deploy action automates CI/CD for Functions. FTP and manual zip deploys are error-prone, and Storage Explorer is for data management, not deployments."
+},
+{
+  "id": 116,
+  "explanation": "Deployment slots with traffic routing in App Service enable zero-downtime deployments and traffic splitting (like 20% rollout). Scaling adjusts resources, Front Door manages global traffic, and Always On prevents idle but doesn’t control deployment strategy."
+},
+{
+  "id": 117,
+  "explanation": "The Client Credentials flow is correct for daemon services calling Microsoft Graph without user interaction. PKCE is for SPAs/mobile, Device Code is for limited-input devices, and Implicit is legacy."
+},
+{
+  "id": 118,
+  "explanation": "Event Hubs is built for IoT and telemetry ingestion, supporting millions of events per second and low-latency analytics. Event Grid routes events, Service Bus supports ordered enterprise workflows, and Queue Storage is basic."
+},
+{
+  "id": 119,
+  "explanation": "Adaptive sampling in Application Insights reduces telemetry volume while still capturing all exceptions. This minimizes noise but ensures error visibility. Fixed sampling may drop exceptions, Activity Log and Metric Alerts don’t capture exceptions."
+},
+{
+  "id": 120,
+  "explanation": "Cosmos DB multi-master replication supports active-active writes across regions for global availability. Session consistency affects reads, Change Feed streams updates, and Free Tier is a pricing model."
+},
+{
+  "id": 121,
+  "explanation": "Switching to the Premium plan eliminates cold starts for Functions by keeping pre-warmed instances. Consumption is billed per execution but suffers cold starts, Always On applies only to App Service Plans, and caching via Front Door doesn’t solve cold starts."
+},
+{
+  "id": 122,
+  "explanation": "Blob leases prevent overwrites by locking a blob for a client. Soft delete recovers deleted data, Legal Hold enforces immutability, and Immutable Storage enforces WORM compliance."
+},
+{
+  "id": 123,
+  "explanation": "SPAs should use Authorization Code Flow with PKCE, which is secure against token interception. Implicit Flow is deprecated, ROPC is insecure, and Client Credentials is for daemons."
+},
+{
+  "id": 124,
+  "explanation": "The Application Insights SDK automatically tracks dependencies such as SQL queries and HTTP calls. Log Analytics agent captures logs, Network Watcher monitors network, and Profiler samples performance traces."
+},
+{
+  "id": 125,
+  "explanation": "Logic App with Event Grid trigger provides event-driven execution for blob uploads, avoiding polling and reducing costs. Polling is inefficient, Service Bus is messaging, and Event Hubs is for telemetry ingestion."
+},
+{
+  "id": 126,
+  "explanation": "Cloud-init is the native Linux configuration method for provisioning, supporting SSH keys, package installs, and script execution. DSC extension is for Windows, Custom Script runs after provisioning, and Diagnostics captures logs."
+},
+{
+  "id": 127,
+  "explanation": "The Fan-out/Fan-in Durable Functions pattern runs tasks in parallel and aggregates results. Chaining is sequential, Async HTTP API is for polling, and External Events wait for signals."
+},
+{
+  "id": 128,
+  "explanation": "Hot partitions in Cosmos DB can be mitigated by using a high-cardinality partition key and enabling autoscale throughput. Lower consistency or disabling indexing won’t fix uneven partition distribution."
+},
+{
+  "id": 129,
+  "explanation": "A multi-tenant Azure AD app registration allows client apps from multiple tenants to authenticate and call your API. Managed identities are for Azure-hosted services, service principals are tenant-specific, and group-based RBAC controls Azure resources."
+},
+{
+  "id": 130,
+  "explanation": "Live Metrics Stream shows near real-time telemetry such as requests, failures, and performance, making it useful during incidents. Snapshot Debugger is for exceptions, Profiler samples performance, and Diagnostic Settings export logs."
+},
+{
+  "id": 131,
+  "explanation": "Event Grid provides lightweight pub/sub for events such as user sign-ups, allowing multiple subscribers. Event Hubs is for telemetry ingestion, Service Bus is for enterprise messaging, and Storage Queues are basic."
+},
+{
+  "id": 132,
+  "explanation": "The 'az deployment group what-if' command previews changes before applying them, showing adds, deletes, or modifications. Validate checks syntax, bicep build transpiles, and resource show inspects an existing resource."
+},
+{
+  "id": 133,
+  "explanation": "The Dedicated (App Service Plan) hosting option provides reserved compute with predictable pricing for Functions. Consumption and Premium are elastic, and ASE is for isolation but costly."
+},
+{
+  "id": 134,
+  "explanation": "Cosmos DB Session consistency guarantees read-your-writes within a session and allows replication lag across regions. Strong provides strict consistency, Eventual is weakest, and Bounded Staleness enforces lag constraints."
+},
+{
+  "id": 135,
+  "explanation": "APIs must validate the issuer (iss) to ensure tokens are from a trusted authority and the audience (aud) to ensure they are intended for the API. Expiration and not-before are secondary claims."
+},
+{
+  "id": 136,
+  "explanation": "Workbooks provide customizable dashboards combining KQL queries, metrics, and logs across resources and subscriptions. Metrics Explorer is per-resource, Log Analytics is query-only, and Alerts notify on conditions."
+},
+{
+  "id": 137,
+  "explanation": "Service Bus with sessions ensures ordered processing of related messages (FIFO per session). Event Hubs is for telemetry, Event Grid is pub/sub events, and Storage Queues are basic."
+},
+{
+  "id": 138,
+  "explanation": "SecureObject in Bicep secures structured inputs like JSON objects containing secrets. String, object, or array types aren’t encrypted."
+},
+{
+  "id": 139,
+  "explanation": "WebJobs run background or scheduled jobs inside App Service alongside your web app. Functions are standalone serverless, Logic Apps are workflow-based, and Batch is for HPC jobs."
+},
+{
+  "id": 140,
+  "explanation": "Cosmos DB multi-master replication enables active-active writes with low latency across multiple regions. Strong consistency governs reads, Partition keys distribute data, and Change Feed streams updates."
+},
+{
+  "id": 141,
+  "explanation": "The recommended approach is Key Vault references with Managed Identity, allowing App Service to retrieve secrets without storing them in code or config files. Appsettings.json or hardcoding secrets are insecure."
+},
+{
+  "id": 142,
+  "explanation": "Snapshot Debugger captures stack traces and variable values when exceptions occur in production, helping debug without redeployments. Profiler is for performance, Live Metrics shows telemetry, and NSG logs track network flow."
+},
+{
+  "id": 143,
+  "explanation": "Event Hubs is the right choice for massive, partitioned telemetry ingestion pipelines. Event Grid is for event notifications, Service Bus is for enterprise workflows, and Storage Queues are basic."
+},
+{
+  "id": 144,
+  "explanation": "Bicep modules allow reusing infrastructure definitions across projects, improving modularity and maintainability. Outputs return values, variables define constants, and conditions toggle resources."
+},
+{
+  "id": 145,
+  "explanation": "The Async HTTP API pattern in Durable Functions provides a 202 Accepted response with a status URL for clients to poll long-running workflows. Fan-out/Fan-in is for parallel work, chaining is sequential, and entity functions model state."
+},
+{
+  "id": 146,
+  "explanation": "Immutable storage with time-based retention ensures compliance by preventing modifications for a fixed duration. This is the proper mechanism for enforcing 7-year data retention policies."
+},
+{
+  "id": 147,
+  "explanation": "The Client Credentials flow is used by daemon apps to call APIs like Microsoft Graph without user context. PKCE is for SPAs, Device Code is for limited-input devices, and Implicit is legacy."
+},
+{
+  "id": 148,
+  "explanation": "Activity Log Alerts notify on control-plane operations such as resource deletions or updates. Metric alerts are performance-based, Log alerts use queries, and Action Groups define responses."
+},
+{
+  "id": 149,
+  "explanation": "The quota-by-key policy in API Management enforces quotas and rate limits per subscription key. Validate-jwt enforces token validity, set-header changes headers, and cache policies affect response caching."
+},
+{
+  "id": 150,
+  "explanation": "Cloud-init is the standard Linux-native initialization method, used at provisioning for tasks like setting SSH keys, installing packages, or configuring services. Custom Script runs post-provisioning."
+},
+{
+  "id": 151,
+  "explanation": "WebJobs allow background jobs to run alongside an App Service app, triggered by timers, queues, or continuously. Functions provide standalone serverless execution, Batch is for HPC, and Logic Apps for workflows."
+},
+{
+  "id": 152,
+  "explanation": "When Cosmos DB returns 429 errors, the recommended practice is to retry with exponential backoff. This respects RU/s limits until throughput is available. Consistency changes or disabling partitioning won’t solve throttling."
+},
+{
+  "id": 153,
+  "explanation": "SPAs should use Authorization Code Flow with PKCE. Implicit is insecure, Client Credentials is for daemons, and ROPC bypasses modern security features."
+},
+{
+  "id": 154,
+  "explanation": "Live Metrics Stream enables real-time queries against telemetry as it streams, helping during incidents. Profiler samples performance, Diagnostic settings export logs, and Activity Log tracks control-plane events."
+},
+{
+  "id": 155,
+  "explanation": "Service Bus supports dead-letter queues (DLQs) for failed messages, ensuring they can be inspected and retried. Event Grid and Event Hubs don’t support DLQs, and Queue Storage is basic."
+},
+{
+  "id": 156,
+  "explanation": "The 'existing' keyword in Bicep allows referencing already-deployed resources in a new template. Resource defines new resources, output returns values, and import is not valid in Bicep."
+},
+{
+  "id": 157,
+  "explanation": "The Consumption plan bills Functions per execution and allows them to scale to zero when idle. Premium and Dedicated plans reserve capacity, and ASE provides isolation at higher cost."
+},
+{
+  "id": 158,
+  "explanation": "The SQL API in Cosmos DB supports SQL-like queries against JSON documents, making it the most commonly used API. MongoDB and Cassandra APIs emulate other databases, and Gremlin is for graph data."
+},
+{
+  "id": 159,
+  "explanation": "Refresh tokens allow obtaining new access tokens without reauthenticating the user. Access tokens authorize APIs, ID tokens prove authentication, and session tokens are app-level constructs."
+},
+{
+  "id": 160,
+  "explanation": "Log alerts in Azure Monitor use KQL queries to analyze log data and fire alerts when conditions are met. Metric alerts monitor counters, Activity Log alerts cover control-plane operations, and Action Groups define responses."
+},
+  {
+  "id": 161,
+  "explanation": "The validate-jwt policy in API Management ensures incoming requests include valid JWT tokens. It validates the signature, issuer, audience, and expiration. Quota-by-key and rate-limit enforce usage policies, while set-header only manipulates headers."
+},
+{
+  "id": 162,
+  "explanation": "The Desired State Configuration (DSC) extension enforces Windows configuration compliance on VMs. Custom Script Extension runs scripts, cloud-init is for Linux, and the OMS agent is for monitoring, not configuration."
+},
+{
+  "id": 163,
+  "explanation": "Azure Kubernetes Service (AKS) provides fully managed Kubernetes clusters for container orchestration. Container Apps abstract Kubernetes, Container Instances run single containers, and App Service Linux is for web hosting."
+},
+{
+  "id": 164,
+  "explanation": "Soft delete in Blob Storage retains deleted blobs for a retention period, allowing recovery. Versioning saves previous versions of blobs, Archive reduces storage cost, and Immutable Storage enforces WORM compliance."
+},
+{
+  "id": 165,
+  "explanation": "Access tokens are bearer tokens used by clients to access APIs. ID tokens prove authentication to clients, Refresh tokens request new tokens, and cookies manage sessions in web apps."
+},
+{
+  "id": 166,
+  "explanation": "Application Insights Profiler collects performance traces from production apps to find performance bottlenecks. Snapshot Debugger is for exceptions, Live Metrics shows streaming telemetry, and Workbooks visualize telemetry."
+},
+{
+  "id": 167,
+  "explanation": "Logic Apps is the low-code workflow service for integrating SaaS and Azure services with visual design. Functions are code-based, Event Grid routes events, and API Management secures and manages APIs."
+},
+{
+  "id": 168,
+  "explanation": "The output keyword in Bicep allows exposing values, such as connection strings or resource IDs, after deployment. Param declares inputs, var defines constants, and resource declares resources."
+},
+{
+  "id": 169,
+  "explanation": "Entity Functions in Durable Functions represent stateful entities, following the actor model. Async HTTP API handles long-running APIs, Fan-out/Fan-in runs parallel work, and Chaining executes sequential workflows."
+},
+{
+  "id": 170,
+  "explanation": "A blob lease ensures only one writer can modify a blob at a time, enforcing concurrency control. Immutable Storage locks data permanently, SAS tokens grant access, and Soft Delete provides recovery."
+},
+{
+  "id": 171,
+  "explanation": "Azure Container Instances (ACI) are the best fit for running containerized background jobs without cluster management. AKS and Container Apps add orchestration overhead, and App Service is tailored for web apps."
+},
+{
+  "id": 172,
+  "explanation": "Session consistency in Cosmos DB ensures read-your-writes within a session, making it the default and best balance of performance and guarantees. Strong consistency enforces strict ordering but adds latency, while Bounded Staleness and Eventual relax guarantees."
+},
+{
+  "id": 173,
+  "explanation": "Authorization Code Flow with PKCE is the recommended OAuth2 flow for mobile apps, protecting against token interception. Implicit Flow is insecure, Client Credentials is app-only, and ROPC is legacy and risky."
+},
+{
+  "id": 174,
+  "explanation": "Live Metrics Stream provides near real-time telemetry such as request latency and failures, useful during outages. Profiler samples performance, Snapshot Debugger helps debug exceptions, and Workbooks visualize telemetry."
+},
+{
+  "id": 175,
+  "explanation": "Event Grid delivers lightweight events to multiple subscribers with minimal overhead, making it ideal for reactive, event-driven integration. Service Bus is for enterprise workflows, Event Hubs is for telemetry ingestion, and Storage Queues are basic."
+},
+{
+  "id": 176,
+  "explanation": "The 'az deployment group what-if' command previews changes to resources before deployment. Validate checks syntax, bicep build transpiles to ARM JSON, and resource show retrieves properties of an existing resource."
+},
+{
+  "id": 177,
+  "explanation": "WebJobs allow scheduled or continuous jobs to run within App Service apps, suitable for background tasks. Functions are separate serverless apps, Batch handles HPC workloads, and Logic Apps orchestrate SaaS integrations."
+},
+{
+  "id": 178,
+  "explanation": "Immutable Storage with time-based retention and Legal Hold enforce WORM compliance for Blob Storage, ensuring data cannot be deleted or modified. Soft delete and Versioning protect against accidental changes but do not guarantee compliance."
+},
+{
+  "id": 179,
+  "explanation": "A multi-tenant app registration allows an API to validate tokens from users in multiple Azure AD tenants. Managed identities are for Azure resources, app roles define in-app authorization, and service principals are tenant-specific."
+},
+{
+  "id": 180,
+  "explanation": "Application Insights Profiler automatically collects performance traces when request latency exceeds thresholds, identifying performance issues. Snapshot Debugger is for debugging exceptions, Log Analytics queries telemetry, and Workbooks visualize data."
+},
+{
+  "id": 181,
+  "explanation": "Event Grid is ideal for fan-out scenarios where multiple subscribers need to react to the same event, such as triggering payment and notification services simultaneously. Service Bus provides queues, Event Hubs ingests telemetry, and Storage Queues are basic."
+},
+{
+  "id": 182,
+  "explanation": "Bicep registries with br: references let you publish and reuse modules across projects. Modules enable reuse locally, Outputs expose values, and Variables define constants but aren’t reusable across projects."
+},
+{
+  "id": 183,
+  "explanation": "The External Events pattern in Durable Functions pauses workflows until a signal, such as an approval, is received from outside the system. Fan-out/Fan-in runs parallel tasks, Async HTTP API handles polling, and Chaining executes sequential steps."
+},
+{
+  "id": 184,
+  "explanation": "Using the If-None-Match condition with an ETag ensures writes fail if the blob already exists, preventing overwrites. SAS tokens grant access, Immutable Storage enforces retention, and Legal Hold prevents deletion."
+},
+{
+  "id": 185,
+  "explanation": "APIs should validate the 'iss' (issuer) to confirm the token comes from a trusted authority and 'aud' (audience) to ensure it is intended for the API. Expiration and not-before are also important but secondary to iss and aud."
+},
+{
+  "id": 186,
+  "explanation": "Log Analytics workspaces centralize logs from multiple subscriptions and resources, enabling cross-resource queries. Metrics Explorer provides charts, Workbooks visualize, and Diagnostic Settings export logs but don’t centralize them."
+},
+{
+  "id": 187,
+  "explanation": "The rate-limit-by-key policy in API Management enforces throttling on incoming requests per subscription key. Quota-by-key enforces usage over a time window, validate-jwt validates tokens, and set-header modifies headers."
+},
+{
+  "id": 188,
+  "explanation": "The secureObject parameter type in Bicep is used to pass sensitive JSON objects, such as credentials, securely. Plain object or string types don’t protect values, and arrays are for collections."
+},
+{
+  "id": 189,
+  "explanation": "The Premium Functions plan eliminates cold starts by keeping pre-warmed instances, while still scaling elastically. Consumption can scale to zero but suffers cold starts, Dedicated uses fixed VMs, and ASE is isolated and costly."
+},
+{
+  "id": 190,
+  "explanation": "Shared Access Signatures (SAS) provide temporary, scoped access to Blob Storage without exposing account keys. Shared keys provide full access, CORS controls cross-origin rules, and Legal Hold enforces immutability."
+},
+{
+  "id": 191,
+  "explanation": "Azure Container Apps support HTTP scaling, zero-downtime deployments, and Dapr sidecar integration for microservices, making them ideal for this scenario. AKS is heavier, ACI is for standalone containers, and App Service is for web apps."
+},
+{
+  "id": 192,
+  "explanation": "When Cosmos DB returns 429 errors, the best practices are to implement retries with exponential backoff and increase RU/s or enable autoscale. Event Grid isn’t for database throttling, and lowering partition cardinality worsens hotspots."
+},
+{
+  "id": 193,
+  "explanation": "SPAs should use Authorization Code Flow with PKCE and configure CORS for trusted origins only. Storing secrets in local storage is insecure, and Implicit Flow is deprecated."
+},
+{
+  "id": 194,
+  "explanation": "The Application Insights SDK provides automatic instrumentation for .NET applications, capturing requests, dependencies (like SQL), exceptions, and performance metrics. NSG flow logs capture network traffic only."
+},
+{
+  "id": 195,
+  "explanation": "Azure Service Bus supports ordered message delivery, transactions, and dead-letter queues, making it the right choice for guaranteed delivery. Event Grid routes events, Event Hubs ingests telemetry, and Storage Queues are basic."
+},
+{
+  "id": 196,
+  "explanation": "Bicep modules and registries (br: references) allow reusing infrastructure definitions across projects. Outputs share values within a template, and variables/parameters are local to a deployment."
+},
+{
+  "id": 197,
+  "explanation": "The Chaining pattern in Durable Functions executes functions sequentially, passing the output of one as input to the next. Fan-out/Fan-in is parallel, External Events wait for signals, and Async HTTP API enables polling."
+},
+{
+  "id": 198,
+  "explanation": "Shared Access Signatures (SAS) provide read-only, time-limited access to blob files. Immutable Storage locks data, public access exposes everything, and Managed Identity is for service authentication."
+},
+{
+  "id": 199,
+  "explanation": "Managed Identities allow daemon apps to securely authenticate to Azure resources without storing credentials in code. Shared keys or secrets in appsettings.json are insecure, and roles cannot be hardcoded in code."
+},
+{
+  "id": 200,
+  "explanation": "Diagnostic Settings on a resource configure the collection of logs and metrics to destinations like Log Analytics, Storage, or Event Hub. Activity Logs capture control-plane events, Profiler samples performance, and Live Metrics shows real-time telemetry."
+}
+
+]
