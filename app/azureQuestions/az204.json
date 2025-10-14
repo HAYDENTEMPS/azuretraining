@@ -3987,19 +3987,19 @@
     {
       "id": 233,
       "domain": "Integration",
-      "question": "Complete the missing CLI command to create an Event Grid topic named 'myTopic' in resource group 'myRG' located in East US.",
+      "question": "Complete the missing CLI flag: az ____ topic create --name myTopic --resource-group myRG --location eastus",
       "options": [
-        "A) az eventgrid topic create --name myTopic --resource-group myRG --location eastus",
-        "B) az eventgrid create topic myTopic --rg myRG",
-        "C) az create eventgrid topic myTopic",
-        "D) az eventgrid topic --new myTopic --resource myRG"
+        "A) eventgrid",
+        "B) azeventgrid",
+        "C) event",
+        "D) eg"
       ],
       "multi_select": false,
-      "hint": "Service → noun → verb structure in Azure CLI.",
+      "hint": "Service name used for event routing.",
       "correct_answers": [
         "A"
       ],
-      "explanation": "The correct syntax is 'az eventgrid topic create --name myTopic --resource-group myRG --location eastus'."
+      "explanation": "The 'eventgrid' subcommand is used to manage Azure Event Grid resources such as topics and domains."
     },
     {
       "id": 234,
@@ -4112,19 +4112,19 @@
     {
       "id": 240,
       "domain": "Security",
-      "question": "Complete the CLI command to assign a Key Vault Secrets User role to a managed identity.",
+      "question": "Complete the missing CLI flag: az role assignment create ____ <identityId> --role 'Key Vault Secrets User' --scope <vaultId>",
       "options": [
-        "A) az role assignment create --assignee <identityId> --role 'Key Vault Secrets User' --scope <vaultId>",
-        "B) az keyvault set-policy --name <vault> --spn <id> --secret-permissions get",
-        "C) az role add keyvault --user <id>",
-        "D) az ad assign-role --keyvault <id>"
+        "A) --assignee",
+        "B) --user",
+        "C) --principal",
+        "D) --identity"
       ],
       "multi_select": false,
-      "hint": "RBAC uses 'az role assignment create'.",
+      "hint": "Flag used to specify the target identity.",
       "correct_answers": [
         "A"
       ],
-      "explanation": "RBAC roles are granted using 'az role assignment create' specifying assignee, role name, and scope."
+      "explanation": "The '--assignee' flag identifies which user, group, or managed identity receives the role assignment."
     },
     {
       "id": 241,
