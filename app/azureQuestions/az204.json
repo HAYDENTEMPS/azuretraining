@@ -4215,19 +4215,19 @@
     {
       "id": 246,
       "domain": "Integration",
-      "question": "Complete the missing command to create a Service Bus namespace.",
+      "question": "Complete the missing CLI flag: az ____ namespace create --name myNS --resource-group myRG --location westeurope",
       "options": [
-        "A) az servicebus namespace create --name myNS --resource-group myRG --location westeurope",
-        "B) az servicebus create namespace myNS",
-        "C) az namespace servicebus new myRG myNS",
-        "D) az bus create ns myNS"
+        "A) servicebus",
+        "B) sb",
+        "C) bus",
+        "D) messaging"
       ],
       "multi_select": false,
-      "hint": "Order is service → noun → create.",
+      "hint": "Service name for Azure messaging and queues.",
       "correct_answers": [
         "A"
       ],
-      "explanation": "The correct syntax is 'az servicebus namespace create' with name, RG, and location."
+      "explanation": "The 'servicebus' subcommand manages Azure Service Bus resources, including namespaces, queues, and topics."
     },
     {
       "id": 247,
