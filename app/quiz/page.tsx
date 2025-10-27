@@ -22,6 +22,7 @@ function QuizPageContent() {
 
   useEffect(() => {
     loadQuestions();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedExam]); // Reload when exam changes
 
   /**

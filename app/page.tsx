@@ -14,6 +14,7 @@ export default function HomePage() {
   // Load question count when exam changes
   useEffect(() => {
     loadQuestionCount();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedExam]);
 
   const loadQuestionCount = async () => {

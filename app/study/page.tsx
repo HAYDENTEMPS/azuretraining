@@ -24,6 +24,7 @@ function StudyPageContent() {
 
   useEffect(() => {
     loadData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedExam]); // Reload when exam changes
 
   /**

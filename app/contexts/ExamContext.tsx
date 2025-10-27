@@ -38,7 +38,7 @@ export const EXAM_CONFIGS: Record<ExamType, ExamConfig> = {
 
 interface ExamContextType {
   selectedExam: ExamType;
-  setSelectedExam: (exam: ExamType) => void;
+  setSelectedExam: (_exam: ExamType) => void;
   examConfig: ExamConfig;
 }
 
@@ -60,9 +60,9 @@ export function ExamProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // Save to localStorage when changed
-  const setSelectedExam = (exam: ExamType) => {
-    setSelectedExamState(exam);
-    localStorage.setItem(STORAGE_KEY, exam);
+  const setSelectedExam = (_exam: ExamType) => {
+    setSelectedExamState(_exam);
+    localStorage.setItem(STORAGE_KEY, _exam);
   };
 
   const examConfig = EXAM_CONFIGS[selectedExam];
