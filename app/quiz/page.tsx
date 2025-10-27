@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Quiz from '@/components/Quiz';
 import type { Question, QuizMode } from '@/types';
 import { useEffect, useState } from 'react';
+import { useExam } from '@/contexts/ExamContext';
 
 /**
  * Quiz page content component
@@ -14,13 +15,14 @@ function QuizPageContent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const searchParams = useSearchParams();
+  const { selectedExam, examConfig } = useExam();
   
   // Get initial mode from URL params
   const mode = (searchParams.get('mode') as QuizMode) || 'practice';
 
   useEffect(() => {
     loadQuestions();
-  }, []);
+  }, [selectedExam]); // Reload when exam changes
 
   /**
    * Load questions from the API endpoint
@@ -30,8 +32,8 @@ function QuizPageContent() {
       setLoading(true);
       setError(null);
 
-      console.log('Loading questions...');
-      const response = await fetch('/api/questions');
+      console.log(`Loading questions for ${selectedExam}...`);
+      const response = await fetch(`/api/questions?exam=${selectedExam}`);
       
       if (!response.ok) {
         throw new Error(`Failed to load questions: ${response.statusText}`);
@@ -48,7 +50,7 @@ function QuizPageContent() {
       }
 
       setQuestions(data.questions);
-      console.log(`Loaded ${data.questions.length} questions`);
+      console.log(`Loaded ${data.questions.length} questions for ${selectedExam}`);
 
     } catch (err) {
       console.error('Error loading questions:', err);
@@ -65,7 +67,7 @@ function QuizPageContent() {
         <div className="text-center space-y-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-azure-600 dark:border-azure-400 mx-auto"></div>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Loading Quiz...</h2>
-          <p className="text-gray-600 dark:text-gray-300">Preparing your AZ-104 questions</p>
+          <p className="text-gray-600 dark:text-gray-300">Preparing your {examConfig.name} questions</p>
         </div>
       </div>
     );
@@ -120,10 +122,10 @@ function QuizPageContent() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-            AZ-104 Quiz
+            {examConfig.name} Quiz
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
-            Test your Azure Administrator knowledge with practice questions
+            Test your {examConfig.title} knowledge with practice questions
           </p>
         </div>
         
@@ -142,7 +144,7 @@ function QuizPageLoading() {
       <div className="text-center space-y-4">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-azure-600 dark:border-azure-400 mx-auto"></div>
         <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Loading Quiz...</h2>
-        <p className="text-gray-600 dark:text-gray-300">Preparing your AZ-104 questions</p>
+        <p className="text-gray-600 dark:text-gray-300">Preparing your questions</p>
       </div>
     </div>
   );

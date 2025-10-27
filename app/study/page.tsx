@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Quiz from '@/components/Quiz';
 import GuidePane from '@/components/GuidePane';
 import type { Question, QuizMode } from '@/types';
+import { useExam } from '@/contexts/ExamContext';
 
 /**
  * Study page content component
@@ -16,13 +17,14 @@ function StudyPageContent() {
   const [error, setError] = useState<string | null>(null);
   const [currentDomain, setCurrentDomain] = useState<string>('');
   const searchParams = useSearchParams();
+  const { selectedExam, examConfig } = useExam();
   
   // Get initial mode from URL params, default to practice for study mode
   const mode = (searchParams.get('mode') as QuizMode) || 'practice';
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [selectedExam]); // Reload when exam changes
 
   /**
    * Load both questions and guide content
@@ -32,10 +34,10 @@ function StudyPageContent() {
       setLoading(true);
       setError(null);
 
-      // Load questions and guide content in parallel
+      // Load questions and guide content in parallel for selected exam
       const [questionsResponse, guideResponse] = await Promise.all([
-        fetch('/api/questions'),
-        fetch('/api/guide')
+        fetch(`/api/questions?exam=${selectedExam}`),
+        fetch(`/api/guide?exam=${selectedExam}`)
       ]);
 
       // Check questions response
@@ -56,7 +58,7 @@ function StudyPageContent() {
         setGuideContent(guideData.content || '');
       } else {
         console.warn('Guide content not available, using fallback');
-        setGuideContent('<h1>Study Guide</h1><p>Guide content is loading...</p>');
+        setGuideContent(`<h1>Study Guide</h1><p>Guide content for ${examConfig.name} is loading...</p>`);
       }
 
     } catch (err) {
@@ -74,7 +76,7 @@ function StudyPageContent() {
         <div className="text-center space-y-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-azure-600 dark:border-azure-400 mx-auto"></div>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Loading Study Mode...</h2>
-          <p className="text-gray-600 dark:text-gray-300">Preparing quiz questions and study guide</p>
+          <p className="text-gray-600 dark:text-gray-300">Preparing {examConfig.name} quiz questions and study guide</p>
         </div>
       </div>
     );
@@ -139,7 +141,7 @@ function StudyPageContent() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center space-x-3">
             <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-              🔬 Study Mode
+              🔬 Study Mode - {examConfig.name}
             </h1>
             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-azure-100 text-azure-800 dark:bg-azure-900/50 dark:text-azure-200">
               {mode === 'practice' ? '📚 Practice' : '📝 Exam'}

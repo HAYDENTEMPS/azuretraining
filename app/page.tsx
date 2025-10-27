@@ -1,21 +1,35 @@
+'use client';
+
 import Link from 'next/link';
-import fs from 'fs';
-import path from 'path';
-import type { QuizData } from '@/types';
+import { useEffect, useState } from 'react';
+import { useExam } from '@/contexts/ExamContext';
 import UpdateExplanationsButton from './components/UpdateExplanationsButton';
 
 // Home page component with quiz stats and mode selection
 export default function HomePage() {
-  // Load questions to get count
-  let questionsCount = 0;
-  try {
-    const questionsPath = path.join(process.cwd(), 'app', 'azureQuestions', 'az204.json');
-    const questionsFile = fs.readFileSync(questionsPath, 'utf-8');
-    const quizData: QuizData = JSON.parse(questionsFile);
-    questionsCount = quizData.questions?.length || quizData.meta?.count || 0;
-  } catch (error) {
-    console.error('Error loading questions:', error);
-  }
+  const { selectedExam, examConfig } = useExam();
+  const [questionsCount, setQuestionsCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  // Load question count when exam changes
+  useEffect(() => {
+    loadQuestionCount();
+  }, [selectedExam]);
+
+  const loadQuestionCount = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`/api/questions?exam=${selectedExam}`);
+      if (response.ok) {
+        const data = await response.json();
+        setQuestionsCount(data.questions?.length || 0);
+      }
+    } catch (error) {
+      console.error('Error loading question count:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-azure-50 to-blue-50 dark:bg-gradient-to-br dark:from-gray-900 dark:to-slate-800 py-12">
@@ -26,15 +40,15 @@ export default function HomePage() {
           <div className="mb-6">
             <div className="text-6xl mb-4">⚡</div>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              AZ-104 Quiz Master
+              {examConfig.name} Quiz Master
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              Master the Azure Administrator certification with interactive quizzes, 
+              Master the {examConfig.title} certification with interactive quizzes, 
               first-class hints, and an integrated study guide.
             </p>
           </div>
           
-          {questionsCount > 0 && (
+          {!loading && questionsCount > 0 && (
             <div className="inline-flex items-center px-4 py-2 bg-azure-100 text-azure-800 dark:bg-azure-900/50 dark:text-azure-200 rounded-full text-sm font-medium">
               📚 {questionsCount} practice questions available
             </div>
@@ -115,7 +129,7 @@ export default function HomePage() {
               <div className="text-5xl mb-4">📝</div>
               <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Exam Mode</h2>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Simulate the real AZ-104 exam experience with no hints, 
+                Simulate the real {examConfig.name} exam experience with no hints, 
                 timed challenges, and end-of-quiz explanations.
               </p>
             </div>
@@ -159,7 +173,7 @@ export default function HomePage() {
             <div className="text-4xl mb-3">📖</div>
             <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Study Guide</h3>
             <p className="text-gray-600 dark:text-gray-300">
-              Complete AZ-104 reference with searchable content and 
+              Complete {examConfig.name} reference with searchable content and 
               deep-links from quiz questions.
             </p>
             <div className="mt-4 text-azure-600 dark:text-azure-400 font-medium">
@@ -236,10 +250,17 @@ export default function HomePage() {
             
             function loadStats() {
               try {
-                // Load practice stats
-                const practiceTime = localStorage.getItem('az104-best-practice-time');
-                const practiceScore = localStorage.getItem('az104-best-practice-score');
-                const examTime = localStorage.getItem('az104-best-exam-time');
+                // Get current exam from localStorage
+                const currentExam = localStorage.getItem('azure-quiz-selected-exam') || 'az104';
+                
+                // Load practice stats for current exam
+                const practiceTimeKey = currentExam + '-best-practice-time';
+                const practiceScoreKey = currentExam + '-best-practice-score';
+                const examTimeKey = currentExam + '-best-exam-time';
+                
+                const practiceTime = localStorage.getItem(practiceTimeKey);
+                const practiceScore = localStorage.getItem(practiceScoreKey);
+                const examTime = localStorage.getItem(examTimeKey);
                 
                 if (practiceScore) {
                   const score = JSON.parse(practiceScore);

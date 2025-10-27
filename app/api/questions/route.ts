@@ -1,22 +1,36 @@
 import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import type { QuizData } from '@/types';
 
 /**
  * API route to serve quiz questions
- * GET /api/questions - Returns all quiz questions from az204.json
+ * GET /api/questions?exam=az104|az204|az500 - Returns all quiz questions from specified exam JSON
  */
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    // Get exam parameter from query string, default to az104
+    const searchParams = request.nextUrl.searchParams;
+    const exam = searchParams.get('exam') || 'az104';
+    
+    // Validate exam parameter
+    const validExams = ['az104', 'az204', 'az500'];
+    if (!validExams.includes(exam)) {
+      return NextResponse.json(
+        { error: 'Invalid exam parameter. Must be one of: az104, az204, az500' },
+        { status: 400 }
+      );
+    }
+
     // Construct path to questions file within app structure
-    const questionsPath = path.join(process.cwd(), 'app', 'azureQuestions', 'az204.json');
+    const questionsPath = path.join(process.cwd(), 'app', 'azureQuestions', `${exam}.json`);
     
     // Check if file exists
     if (!fs.existsSync(questionsPath)) {
       console.error('Questions file not found at:', questionsPath);
       return NextResponse.json(
-        { error: 'Questions file not found', path: questionsPath },
+        { error: 'Questions file not found', path: questionsPath, exam },
         { status: 404 }
       );
     }
@@ -63,13 +77,14 @@ export async function GET() {
       };
     });
 
-    console.log(`Loaded ${validatedQuestions.length} questions from ${questionsPath}`);
+    console.log(`Loaded ${validatedQuestions.length} questions from ${exam}.json`);
 
     return NextResponse.json({
       meta: quizData.meta || { 
-        title: 'AZ-104 Questions',
+        title: `${exam.toUpperCase()} Questions`,
         count: validatedQuestions.length,
-        notes: 'Loaded from az204.json'
+        exam: exam,
+        notes: `Loaded from ${exam}.json`
       },
       questions: validatedQuestions
     });

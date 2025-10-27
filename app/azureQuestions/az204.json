@@ -5726,6 +5726,806 @@
         "A"
       ],
       "explanation": "Azure Policy enforces the 'httpsOnly' configuration across all Function Apps for compliance."
+    },
+    {
+      "id": 331,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You need to create an alert that notifies when an App Service plan's CPU usage exceeds 80% for five minutes. Which Azure CLI command should you use?",
+      "options": [
+        "A) az webapp log config --name myApp --detailed-error-messages true",
+        "B) az monitor metrics alert create --name cpuAlert --scopes /subscriptions/<id>/resourceGroups/myRG/providers/Microsoft.Web/serverfarms/myPlan --condition \"avg Percentage CPU > 80\" --window-size 5m --evaluation-frequency 1m",
+        "C) az monitor activity-log alert create --name cpuAlert --scope myPlan --condition \"CPU > 80\"",
+        "D) az monitor metrics list --resource myPlan --metric Percentage CPU"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "B"
+      ],
+      "explanation": "Metric alerts are created with 'az monitor metrics alert create'. It allows conditions on performance counters like Percentage CPU. Activity log alerts track control-plane events only."
+    },
+    {
+      "id": 332,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You want to stream diagnostic logs from an App Service to Azure Monitor Logs. What should you configure first?",
+      "options": [
+        "A) Diagnostic settings on the App Service resource",
+        "B) Application Insights live metrics",
+        "C) Azure Advisor recommendations",
+        "D) Service Health alerts"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Diagnostic settings define the destination for platform logs and metrics. Without them, data cannot flow into Azure Monitor or Log Analytics."
+    },
+    {
+      "id": 333,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "An Azure Function in the Consumption plan stops after long executions. You must capture logs for timeout exceptions. What should you enable?",
+      "options": [
+        "A) Host.json functionTimeout setting with Application Insights logging",
+        "B) Durable Functions fan-out pattern",
+        "C) Live Metrics Stream only",
+        "D) Storage analytics logging"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Timeouts are controlled by the functionTimeout property in host.json. Application Insights records the exception details for analysis."
+    },
+    {
+      "id": 334,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You must detect when a Cosmos DB account exceeds 90% RU usage for more than 10 minutes. Which command accomplishes this?",
+      "options": [
+        "A) az cosmosdb show-usage",
+        "B) az monitor metrics alert create --name ruAlert --scopes /subscriptions/<id>/resourceGroups/myRG/providers/Microsoft.DocumentDB/databaseAccounts/mydb --condition \"avg TotalRequestUnits > 90\" --window-size 10m",
+        "C) az monitor activity-log alert create --scope mydb --condition 'RU > 90'",
+        "D) az cosmosdb sql database throughput update"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "B"
+      ],
+      "explanation": "Cosmos DB exposes RU/s as a metric. A metric alert can evaluate it over a window and trigger notifications when the threshold is exceeded."
+    },
+    {
+      "id": 335,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You need to visualize failures across multiple Function Apps within one dashboard. Which tool should you use?",
+      "options": [
+        "A) Azure Workbook in Application Insights",
+        "B) Azure CLI 'az monitor metrics list'",
+        "C) Log Analytics Saved Search",
+        "D) Service Health blade"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Workbooks can combine metrics and logs from several Application Insights resources for unified visualization of availability and failure rates."
+    },
+    {
+      "id": 336,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You suspect dependency latency in your API. You need end-to-end tracing between microservices. Which feature provides this?",
+      "options": [
+        "A) Distributed tracing in Application Insights",
+        "B) Azure Service Health",
+        "C) Activity log alerts",
+        "D) Container Insights"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Distributed tracing correlates telemetry across service boundaries using operation and dependency IDs, allowing performance bottlenecks to be identified."
+    },
+    {
+      "id": 337,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You must continuously monitor custom performance counters on a VM and trigger alerts. Which service should you use?",
+      "options": [
+        "A) Azure Monitor Agent (AMA)",
+        "B) Azure Automation Runbook",
+        "C) Azure Diagnostics Extension (classic)",
+        "D) Log Analytics Workspace only"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The Azure Monitor Agent collects guest metrics and custom counters for VM insights and alerting, replacing the older Diagnostics Extension."
+    },
+    {
+      "id": 338,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You need to enable Application Insights for an existing App Service using the CLI. Which command should you run?",
+      "options": [
+        "A) az monitor app-insights component create --app myAppInsights --location westeurope --resource-group myRG",
+        "B) az webapp config appsettings set --name myApp --resource-group myRG --settings APPINSIGHTS_INSTRUMENTATIONKEY=<key>",
+        "C) Both A and B",
+        "D) az monitor metrics alert create --name aiEnable"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "C"
+      ],
+      "explanation": "You must first create an Application Insights resource and then set the APPINSIGHTS_INSTRUMENTATIONKEY setting on the web app to link it."
+    },
+    {
+      "id": 339,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "A development team wants to collect logs from multiple containerized applications running in Azure Container Apps into Log Analytics. What should you enable?",
+      "options": [
+        "A) Container App Environment diagnostics with Log Analytics workspace",
+        "B) App Insights live metrics",
+        "C) Blob storage logging",
+        "D) Activity Log streaming"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Container App Environments can forward logs and metrics to a connected Log Analytics workspace for centralized observability."
+    },
+    {
+      "id": 340,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You are troubleshooting slow API responses. You want to review request traces directly in Application Insights. Which feature should you use?",
+      "options": [
+        "A) Search > Requests and Dependencies",
+        "B) Smart Detection",
+        "C) Azure Advisor",
+        "D) Availability Tests"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The Search blade in Application Insights lets you query individual request and dependency telemetry to analyze detailed timings and failures."
+    },
+    {
+      "id": 341,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You need to identify the root cause of a performance issue in an Azure App Service by correlating metrics and logs. What should you use?",
+      "options": [
+        "A) Application Insights Performance blade",
+        "B) Azure Monitor Logs with KQL queries",
+        "C) Metrics Explorer only",
+        "D) Service Health alerts"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "B"
+      ],
+      "explanation": "Kusto Query Language (KQL) queries in Log Analytics let you correlate metrics, traces, and dependencies across telemetry for root cause analysis."
+    },
+    {
+      "id": 342,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You are troubleshooting a failed deployment in an Azure App Service. The deployment center shows no recent activity. What should you inspect next?",
+      "options": [
+        "A) Kudu diagnostic logs",
+        "B) Azure Advisor recommendations",
+        "C) Azure CLI command history",
+        "D) Application Insights availability tests"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Kudu provides detailed deployment and build logs for App Service deployments, allowing investigation when the Deployment Center lacks details."
+    },
+    {
+      "id": 343,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You manage several Azure Functions apps. You must detect when execution failures exceed 5% in any function over a 10-minute period. Which feature should you configure?",
+      "options": [
+        "A) Application Insights Smart Detection",
+        "B) Azure Monitor metric alert using 'Function Execution Count' and 'Function Failed Count'",
+        "C) Activity log alert",
+        "D) Function health check"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "B"
+      ],
+      "explanation": "Metric alerts can be configured to monitor failure percentages using multiple function performance metrics and time aggregation."
+    },
+    {
+      "id": 344,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You need to retrieve Application Insights trace logs for a specific request ID via CLI. Which command should you run?",
+      "options": [
+        "A) az monitor app-insights query --app myApp --analytics-query \"traces | where operation_Id == 'abc123'\"",
+        "B) az monitor metrics list --metric Requests",
+        "C) az webapp log download",
+        "D) az monitor activity-log list"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The 'az monitor app-insights query' command executes KQL queries directly against Application Insights for precise trace retrieval."
+    },
+    {
+      "id": 345,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You must investigate failed dependency calls to a third-party API from your web app. Which Application Insights feature should you use?",
+      "options": [
+        "A) Failures blade",
+        "B) Live Metrics Stream",
+        "C) Smart Detection",
+        "D) Metrics Explorer"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The Failures blade in Application Insights categorizes exceptions, failed requests, and failed dependency calls for detailed troubleshooting."
+    },
+    {
+      "id": 346,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You need to query logs for requests that took longer than 3 seconds to complete. Which KQL query should you use?",
+      "options": [
+        "A) requests | where duration > 3000",
+        "B) requests | where duration > 3s",
+        "C) requests | where duration > 3000ms",
+        "D) requests | where duration > 00:00:03"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "D"
+      ],
+      "explanation": "Durations are stored as timespans in Application Insights. The proper format uses hh:mm:ss syntax such as 00:00:03."
+    },
+    {
+      "id": 347,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "An App Service web app shows intermittent 500 errors. You need to capture the HTTP responses that cause the issue. What should you enable?",
+      "options": [
+        "A) Detailed error logging",
+        "B) Failed request tracing",
+        "C) Application Insights sampling",
+        "D) Deployment logs"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "B"
+      ],
+      "explanation": "Failed request tracing records complete request-response data including IIS pipeline events to diagnose 500-series errors."
+    },
+    {
+      "id": 348,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You must configure an alert that triggers if a VM’s network output drops to zero for more than five minutes. Which Azure CLI command is correct?",
+      "options": [
+        "A) az monitor metrics alert create --name vmNet --scopes /subscriptions/<id>/resourceGroups/myRG/providers/Microsoft.Compute/virtualMachines/vm1 --condition \"avg Network Out Total < 1\" --window-size 5m",
+        "B) az vm monitor create --threshold 0",
+        "C) az monitor activity-log alert create --condition NetworkOut = 0",
+        "D) az monitor diagnostic-settings create --logs Network"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Network throughput metrics can be monitored using metric alerts via 'az monitor metrics alert create'. Activity log alerts don’t track runtime metrics."
+    },
+    {
+      "id": 349,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You must analyze request rates and server response times together for your Azure Function app. Which KQL query should you use in Application Insights?",
+      "options": [
+        "A) requests | summarize avg(duration), count() by bin(timestamp, 5m)",
+        "B) traces | summarize avg(duration) by name",
+        "C) dependencies | where duration > 1s",
+        "D) exceptions | summarize count()"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Summarizing over a five-minute bin lets you visualize both count and average duration trends for incoming requests."
+    },
+    {
+      "id": 350,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You need to track when the Azure Function app stops processing events from Event Hub. Which metric should you monitor?",
+      "options": [
+        "A) Function Execution Count",
+        "B) Trigger Queue Length",
+        "C) Dead Letter Message Count",
+        "D) Function Failed Count"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "B"
+      ],
+      "explanation": "Trigger queue length indicates backlogs in event processing. If it continues to grow, the function isn’t consuming messages fast enough."
+    },
+    {
+      "id": 351,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You need to troubleshoot an Azure Function that failed due to dependency timeouts. You want to see dependency call duration distribution. Which Application Insights feature should you use?",
+      "options": [
+        "A) Performance > Dependencies tab",
+        "B) Failures blade",
+        "C) Smart Detection",
+        "D) Metrics Explorer"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The Performance blade’s Dependencies tab visualizes dependency call duration histograms, helping diagnose timeout patterns."
+    },
+    {
+      "id": 352,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You have enabled log collection on a VM. You want to check CPU usage trends by using Kusto Query Language (KQL). Which query should you use?",
+      "options": [
+        "A) Perf | where CounterName == 'Processor Time' | summarize avg(CounterValue) by bin(TimeGenerated, 5m)",
+        "B) Heartbeat | summarize count() by bin(TimeGenerated, 5m)",
+        "C) Event | where EventLevelName == 'Error'",
+        "D) AzureDiagnostics | summarize count()"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The Perf table holds guest OS performance metrics, including CPU usage counters such as Processor Time."
+    },
+    {
+      "id": 353,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You must detect when an Azure Function starts failing due to connection string misconfiguration. Which alert type is most appropriate?",
+      "options": [
+        "A) Application Insights Log Alert using KQL query for exceptions",
+        "B) Metric Alert on Function Execution Count",
+        "C) Activity Log Alert for configuration changes",
+        "D) Service Health Alert"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "KQL-based log alerts can detect exception types or specific messages like connection string errors, allowing proactive notifications."
+    },
+    {
+      "id": 354,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You want to monitor an Event Hub's incoming message rate and trigger an alert if it drops below 10 messages per second. Which CLI command should you use?",
+      "options": [
+        "A) az monitor metrics alert create --name eventHubRate --scopes /subscriptions/<id>/resourceGroups/myRG/providers/Microsoft.EventHub/namespaces/ns1/eventhubs/ev1 --condition \"avg IncomingMessagesPerSec < 10\" --window-size 5m",
+        "B) az eventhubs eventhub monitor create --threshold 10",
+        "C) az monitor activity-log alert create --scope ev1 --condition IncomingMessagesPerSec < 10",
+        "D) az eventgrid monitor alert create --rate 10"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Event Hubs exposes metrics like IncomingMessagesPerSec. The metric alert command monitors and triggers on rate thresholds."
+    },
+    {
+      "id": 355,
+      "domain": "Monitor and troubleshoot Azure solutions",
+      "question": "You are diagnosing intermittent failures in an Azure Function that processes queue messages. You suspect a specific message triggers the error. Which diagnostic step should you take first?",
+      "options": [
+        "A) Enable Application Insights telemetry for message correlation using operation_Id",
+        "B) Configure retry policy in host.json",
+        "C) Requeue messages automatically",
+        "D) Increase function timeout"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Correlating telemetry via operation_Id allows you to trace function executions tied to a particular message for root cause analysis."
+    },
+    {
+      "id": 356,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You need to consume messages from an Azure Service Bus queue in a .NET application using the latest SDK. Which class should you use?",
+      "options": [
+        "A) ServiceBusProcessor",
+        "B) QueueClient",
+        "C) ServiceBusReceiver",
+        "D) MessageReceiver"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The 'ServiceBusProcessor' class in the Azure.Messaging.ServiceBus SDK provides an event-driven message processing model with automatic message completion."
+    },
+    {
+      "id": 357,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You must connect an Azure Function to an Event Hub to process incoming telemetry. Which binding type should you use?",
+      "options": [
+        "A) EventHubTrigger",
+        "B) QueueTrigger",
+        "C) BlobTrigger",
+        "D) CosmosDBTrigger"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "An EventHubTrigger binding automatically listens for Event Hub messages and passes them to the function when events arrive."
+    },
+    {
+      "id": 358,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You are building a function that must write messages to an Azure Queue Storage. Which output binding should you use?",
+      "options": [
+        "A) [Queue(\"myqueue\")] IAsyncCollector<string>",
+        "B) [ServiceBus(\"myqueue\")] ICollector<string>",
+        "C) [Blob(\"mycontainer\")] IAsyncCollector<string>",
+        "D) [EventHub(\"myevents\")] string"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Using the [Queue] output binding with IAsyncCollector allows writing multiple messages asynchronously to an Azure Queue."
+    },
+    {
+      "id": 359,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "A function app must publish messages to a Service Bus topic named 'orders'. Which CLI command creates the topic?",
+      "options": [
+        "A) az servicebus topic create --name orders --resource-group myRG --namespace-name myNS",
+        "B) az servicebus namespace create-topic orders",
+        "C) az bus topic new orders",
+        "D) az servicebus topic new myNS orders"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The correct syntax for topic creation follows 'az servicebus topic create' with explicit namespace and resource group parameters."
+    },
+    {
+      "id": 360,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You need to trigger an Azure Logic App whenever a blob is uploaded to a container. Which connector should you use?",
+      "options": [
+        "A) Azure Blob Storage trigger",
+        "B) Event Grid event subscription",
+        "C) Service Bus topic subscription",
+        "D) Queue Storage trigger"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "B"
+      ],
+      "explanation": "Using Event Grid provides near real-time notifications for blob uploads and integrates seamlessly with Logic Apps for automation."
+    },
+    {
+      "id": 361,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You need to subscribe an Azure Function to Event Grid events when new blobs are created. Which Azure CLI command should you use?",
+      "options": [
+        "A) az eventgrid event-subscription create --name blobSub --source-resource-id /subscriptions/<id>/resourceGroups/myRG/providers/Microsoft.Storage/storageAccounts/mySA --endpoint https://myfunc.azurewebsites.net/runtime/webhooks/eventgrid",
+        "B) az eventgrid topic subscribe --source blob --name blobSub",
+        "C) az storage blob trigger create --function blobFunc",
+        "D) az eventhubs eventhub subscription create --name blobSub"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "You create an Event Grid event subscription that targets the Azure Function endpoint URL to process blob-created events."
+    },
+    {
+      "id": 362,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "A Logic App must send messages to a Service Bus queue whenever a new Salesforce record is created. Which connector combination should you use?",
+      "options": [
+        "A) Salesforce trigger and Service Bus action",
+        "B) Event Grid trigger and Salesforce action",
+        "C) HTTP trigger and Queue Storage action",
+        "D) Azure Functions trigger only"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Logic Apps provide native Salesforce connectors that can trigger flows on record creation and use the Service Bus action to enqueue messages."
+    },
+    {
+      "id": 363,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You need to expose an internal API to partners securely through Azure API Management. Partners must authenticate using OAuth 2.0. What should you configure?",
+      "options": [
+        "A) validate-jwt policy in the inbound section",
+        "B) IP restriction on the backend service",
+        "C) CORS policy in the outbound section",
+        "D) Subscription key only"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The 'validate-jwt' policy checks bearer tokens in incoming requests and enforces OAuth 2.0 security for partner APIs."
+    },
+    {
+      "id": 364,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You must create an API Management policy to limit clients to 100 requests per minute. Which XML snippet should you use?",
+      "options": [
+        "A) <rate-limit calls=\"100\" renewal-period=\"60\" />",
+        "B) <quota calls=\"100\" renewal-period=\"60\" />",
+        "C) <set-header name=\"RateLimit\" value=\"100\" />",
+        "D) <limit-bandwidth kbps=\"100\" />"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The 'rate-limit' policy restricts the number of allowed calls per specified renewal period, enforcing usage quotas in API Management."
+    },
+    {
+      "id": 365,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You are developing a .NET app that calls Microsoft Graph to retrieve user profiles. Which authentication flow should you use for delegated permissions?",
+      "options": [
+        "A) Authorization code flow",
+        "B) Client credentials flow",
+        "C) Device code flow",
+        "D) On-behalf-of flow"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The authorization code flow is used by web apps or native apps that sign in users and act on their behalf, supporting delegated permissions."
+    },
+    {
+      "id": 366,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You need to send a custom event to an Event Grid topic from the CLI. Which command should you use?",
+      "options": [
+        "A) az eventgrid event send --topic-name myTopic --subject 'customEvent' --data '{\"key\":\"value\"}' --event-type myType",
+        "B) az eventgrid topic publish --data '{\"key\":\"value\"}'",
+        "C) az eventhubs event send --topic myTopic",
+        "D) az eventgrid publish --json event.json"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The 'az eventgrid event send' command allows publishing custom events with subject, event type, and data payload to a topic."
+    },
+    {
+      "id": 367,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "A company uses Azure Storage queues to trigger Azure Functions. They notice message duplication. How should you ensure messages are processed only once?",
+      "options": [
+        "A) Use 'DequeueCount' and message visibility timeout handling",
+        "B) Enable duplicate detection on the queue",
+        "C) Add session state management",
+        "D) Configure Event Grid filtering"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Azure Storage queues do not guarantee exactly-once delivery. Logic should handle 'DequeueCount' and delete messages upon successful processing."
+    },
+    {
+      "id": 368,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You need to integrate a Function App with a private Event Hub that uses a VNet. What should you configure?",
+      "options": [
+        "A) Function App with VNet integration and private endpoint for Event Hub",
+        "B) Managed identity only",
+        "C) Public endpoint access",
+        "D) Service Bus hybrid connection"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "To access an Event Hub with a private endpoint, the Function App must use regional VNet integration within the same network."
+    },
+    {
+      "id": 369,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You need to connect an Azure Function to Azure SignalR Service to broadcast messages. What binding should you use?",
+      "options": [
+        "A) SignalR output binding",
+        "B) Event Hub output binding",
+        "C) Queue Storage binding",
+        "D) Service Bus topic binding"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "SignalR output bindings allow Azure Functions to send real-time messages to connected SignalR clients."
+    },
+    {
+      "id": 370,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You are developing a REST API that needs to send messages to Service Bus. Which header must you include when using Shared Access Signature (SAS) authentication?",
+      "options": [
+        "A) Authorization: SharedAccessSignature sr=<URI>&sig=<signature>&se=<expiry>&skn=<keyName>",
+        "B) x-ms-key: <key>",
+        "C) Bearer <token>",
+        "D) api-key: <sas>"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The Authorization header with 'SharedAccessSignature' is required to authenticate REST calls to Service Bus using SAS tokens."
+    },
+    {
+      "id": 371,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You need to trigger a Logic App only when an Event Grid event meets a specific subject pattern. What should you configure?",
+      "options": [
+        "A) Event Grid advanced filters on the event subscription",
+        "B) Logic App trigger condition expression",
+        "C) Event Hub consumer group filter",
+        "D) API Management route filter"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Event Grid supports advanced filtering options like subjectBeginsWith and subjectEndsWith, allowing selective event delivery to Logic Apps."
+    },
+    {
+      "id": 372,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You must call an external REST API from an Azure Function using managed identity. Which package and class should you use in .NET?",
+      "options": [
+        "A) Azure.Identity package with DefaultAzureCredential",
+        "B) Microsoft.Identity.Client with ConfidentialClientApplication",
+        "C) Azure.Security.KeyVault package with KeyVaultClient",
+        "D) System.Net.Http.HttpClient only"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "DefaultAzureCredential in the Azure.Identity package automatically retrieves managed identity tokens when running in Azure, simplifying authentication."
+    },
+    {
+      "id": 373,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "A system must reliably deliver messages to multiple subscribers. Which Service Bus feature should you use?",
+      "options": [
+        "A) Topics and subscriptions",
+        "B) Message sessions",
+        "C) Duplicate detection",
+        "D) Dead-letter queues"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Service Bus topics support a publish/subscribe pattern that delivers each message copy to all active subscriptions reliably."
+    },
+    {
+      "id": 374,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You need to reduce outbound REST calls to a third-party API by caching responses in Azure. What should you use?",
+      "options": [
+        "A) Azure API Management response caching policy",
+        "B) Azure CDN endpoint",
+        "C) Redis caching with session state",
+        "D) Blob Storage with public access"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "API Management supports the 'cache-lookup' and 'cache-store' policies, allowing you to reduce backend load by caching REST responses."
+    },
+    {
+      "id": 375,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You are developing an application that uses Azure Key Vault to retrieve secrets. Which permission must the app’s managed identity have?",
+      "options": [
+        "A) secrets/get",
+        "B) vaults/read",
+        "C) certificates/list",
+        "D) keys/decrypt"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "To retrieve secrets, the managed identity must be granted the 'secrets/get' permission in the Key Vault access policy or via RBAC."
+    },
+    {
+      "id": 376,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You must publish events from an IoT device to Azure Event Grid using HTTPS. What header must be included?",
+      "options": [
+        "A) aeg-sas-key",
+        "B) Authorization: Bearer <token>",
+        "C) x-ms-event-key",
+        "D) api-key"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Event Grid custom topics accept authenticated POSTs when the 'aeg-sas-key' header contains the shared access key for the topic."
+    },
+    {
+      "id": 377,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "A Logic App must execute an Azure Function and wait for a response before proceeding. Which action type should you configure?",
+      "options": [
+        "A) Synchronous HTTP action",
+        "B) Service Bus trigger",
+        "C) Parallel branch",
+        "D) Until loop"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "A synchronous HTTP action in Logic Apps calls the Azure Function endpoint and waits for a response before continuing the workflow."
+    },
+    {
+      "id": 378,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You are building a Durable Function that must execute multiple tasks in parallel and then aggregate results. Which pattern should you implement?",
+      "options": [
+        "A) Fan-out/fan-in pattern",
+        "B) Function chaining pattern",
+        "C) Async HTTP pattern",
+        "D) Monitor pattern"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "The fan-out/fan-in pattern runs multiple activities concurrently and aggregates their outputs, ideal for parallel task execution scenarios."
+    },
+    {
+      "id": 379,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You need to expose an API from Azure API Management that calls a backend REST API over HTTPS using a client certificate. What should you configure?",
+      "options": [
+        "A) Backend client certificate in API Management",
+        "B) validate-jwt policy",
+        "C) OAuth 2.0 authorization server",
+        "D) Subscription key verification"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "API Management allows client certificate configuration under the 'Backend' section, which is sent to authenticate requests to secure APIs."
+    },
+    {
+      "id": 380,
+      "domain": "Connect to and consume Azure services and third-party services",
+      "question": "You must implement a retry mechanism in your .NET app when calling Azure Service Bus to handle transient faults. Which class should you use?",
+      "options": [
+        "A) ServiceBusRetryOptions",
+        "B) RetryPolicyHandler",
+        "C) RetryContext",
+        "D) ExponentialBackoff"
+      ],
+      "multi_select": false,
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "ServiceBusRetryOptions defines retry parameters such as mode, delay, and maximum attempts in the Azure.Messaging.ServiceBus client to handle transient errors gracefully."
     }
   ]
 }

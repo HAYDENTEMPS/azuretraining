@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import GuideClient from './GuideClient';
+import { useExam } from '@/contexts/ExamContext';
 
 /**
  * Guide page component - fully client-side to avoid SSR issues
@@ -11,10 +12,11 @@ export default function GuidePage() {
   const [htmlContent, setHtmlContent] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { selectedExam, examConfig } = useExam();
 
   useEffect(() => {
     loadGuide();
-  }, []);
+  }, [selectedExam]); // Reload when exam changes
 
   /**
    * Load guide content from API route
@@ -24,7 +26,8 @@ export default function GuidePage() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch('/api/guide');
+      console.log(`Loading guide for ${selectedExam}...`);
+      const response = await fetch(`/api/guide?exam=${selectedExam}`);
       
       if (!response.ok) {
         throw new Error(`Failed to load guide: ${response.statusText}`);
@@ -53,7 +56,7 @@ export default function GuidePage() {
         <div className="text-center space-y-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-azure-600 dark:border-azure-400 mx-auto"></div>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Loading Study Guide...</h2>
-          <p className="text-gray-600 dark:text-gray-300">Processing AZ-104 guide content</p>
+          <p className="text-gray-600 dark:text-gray-300">Processing {examConfig.name} documentation</p>
         </div>
       </div>
     );
@@ -62,31 +65,37 @@ export default function GuidePage() {
   // Error state
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-azure-50 to-blue-50 dark:bg-gradient-to-br dark:from-gray-900 dark:to-slate-800 py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="card text-center space-y-6">
+      <div className="min-h-screen bg-gradient-to-br from-azure-50 to-blue-50 dark:bg-gradient-to-br dark:from-gray-900 dark:to-slate-800 flex items-center justify-center">
+        <div className="max-w-md mx-auto text-center">
+          <div className="card space-y-6">
             <div className="text-6xl">📖</div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Study Guide Error</h1>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Guide Unavailable</h2>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              We couldn't load the AZ-104 study guide. Please check that the guide file is available.
+              We couldn't load the study guide. This might be a temporary issue.
             </p>
             
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-left dark:bg-red-900/20 dark:border-red-700/50">
               <h3 className="font-semibold text-red-800 mb-2 dark:text-red-300">Error Details:</h3>
-              <p className="text-red-700 text-sm font-mono dark:text-red-200">{error}</p>
+              <p className="text-red-700 text-sm dark:text-red-200">{error}</p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="space-y-3">
               <button
                 onClick={loadGuide}
-                className="btn-primary"
+                className="btn-primary w-full"
               >
                 🔄 Try Again
               </button>
-              <a href="/quiz" className="btn-primary">
-                📝 Take Quiz Instead
+              <a 
+                href="/quiz"
+                className="btn-secondary w-full text-center block"
+              >
+                📝 Start Quiz
               </a>
-              <a href="/" className="btn-secondary">
+              <a 
+                href="/"
+                className="btn-secondary w-full text-center block"
+              >
                 🏠 Back to Home
               </a>
             </div>
@@ -96,40 +105,6 @@ export default function GuidePage() {
     );
   }
 
-  // Success state with guide content
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-azure-50 to-blue-50 dark:bg-gradient-to-br dark:from-gray-900 dark:to-slate-800 py-8">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-            📖 AZ-104 Study Guide
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Comprehensive study guide for Azure Administrator certification. 
-            Use search to quickly find specific topics or browse through sections.
-          </p>
-        </div>
-
-        {/* Navigation */}
-        <div className="flex flex-wrap justify-center gap-3 mb-8">
-          <a href="/quiz" className="btn-primary">
-            📝 Take Quiz
-          </a>
-          <a href="/study" className="btn-primary">
-            🔬 Study Mode
-          </a>
-          <a href="/" className="btn-secondary">
-            🏠 Home
-          </a>
-        </div>
-
-        {/* Guide Content */}
-        <div className="card">
-          <GuideClient htmlContent={htmlContent} />
-        </div>
-      </div>
-    </div>
-  );
+  // Success - render the guide content
+  return <GuideClient htmlContent={htmlContent} />;
 }

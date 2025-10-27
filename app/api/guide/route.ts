@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import mammoth from 'mammoth';
@@ -6,14 +7,34 @@ import { injectAnchors } from '@/utils/guide/anchors';
 
 /**
  * API route to serve processed guide content
- * GET /api/guide - Returns HTML content from the .docx guide
+ * GET /api/guide?exam=az104|az204|az500 - Returns HTML content from the specified .docx guide
  */
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    // Construct path to guide file within app structure
-    const guidePath = path.join(process.cwd(), 'app', 'azureQuestions', 'AZ-204_Cram_Complete.docx');
+    // Get exam parameter from query string, default to az104
+    const searchParams = request.nextUrl.searchParams;
+    const exam = searchParams.get('exam') || 'az104';
     
-    console.log('Loading guide from API:', guidePath);
+    // Validate exam parameter
+    const validExams = ['az104', 'az204', 'az500'];
+    if (!validExams.includes(exam)) {
+      return NextResponse.json(
+        { error: 'Invalid exam parameter. Must be one of: az104, az204, az500' },
+        { status: 400 }
+      );
+    }
+
+    // Map exam to docx filename
+    const docxFiles: Record<string, string> = {
+      'az104': 'AZ-104_Cram_Complete_with_Part4.docx',
+      'az204': 'AZ-204_Cram_Complete.docx',
+      'az500': 'AZ-500_Cram_Complete.docx'
+    };
+
+    // Construct path to guide file within app structure
+    const guidePath = path.join(process.cwd(), 'app', 'azureQuestions', docxFiles[exam]);
+    
+    console.log(`Loading guide from API: ${guidePath} (exam: ${exam})`);
 
     // Check if file exists
     if (!fs.existsSync(guidePath)) {
@@ -22,7 +43,8 @@ export async function GET() {
         { 
           error: 'Guide file not found', 
           path: guidePath,
-          content: '<h1>Guide Not Available</h1><p>The study guide could not be loaded at this time.</p>'
+          exam,
+          content: `<h1>Guide Not Available</h1><p>The study guide for ${exam.toUpperCase()} could not be loaded at this time.</p>`
         },
         { status: 404 }
       );
@@ -78,10 +100,11 @@ export async function GET() {
       .replace(/(<\/(?:div|section|article)>)/g, '$1\n');
 
     const wordCount = htmlContent.replace(/<[^>]*>/g, ' ').split(/\s+/).length;
-    console.log(`Successfully converted guide: ${htmlContent.length} characters, ~${wordCount} words`);
+    console.log(`Successfully converted ${exam.toUpperCase()} guide: ${htmlContent.length} characters, ~${wordCount} words`);
 
     return NextResponse.json({
       content: htmlContent,
+      exam,
       meta: {
         wordCount,
         characterCount: htmlContent.length,
@@ -93,9 +116,11 @@ export async function GET() {
   } catch (error) {
     console.error('Error processing guide:', error);
     
+    const exam = new URL(request.url).searchParams.get('exam') || 'az104';
+    
     // Return fallback content instead of complete failure
     const fallbackContent = `
-      <h1>AZ-104 Study Guide</h1>
+      <h1>${exam.toUpperCase()} Study Guide</h1>
       <div class="bg-yellow-100 border border-yellow-400 rounded p-4 mb-4">
         <h2>⚠️ Guide Processing Error</h2>
         <p>The study guide could not be processed at this time. Error: ${error instanceof Error ? error.message : 'Unknown error'}</p>
@@ -112,6 +137,7 @@ export async function GET() {
     
     return NextResponse.json({
       content: fallbackContent,
+      exam,
       error: error instanceof Error ? error.message : 'Unknown error',
       meta: {
         wordCount: 0,

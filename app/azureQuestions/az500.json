@@ -1,0 +1,2183 @@
+{
+    "meta": {
+        "title": "AZ-500 Ultimate Practice (With Tips) – JSON Pack",
+        "count": 100,
+        "notes": "Covers all Microsoft Learn modules for AZ-500: Secure Identity & Access, Secure Networking, Secure Compute/Storage/Databases, and Secure Azure using Defender & Sentinel. multi_select=true when multiple answers apply."
+    },
+    "questions": [
+        {
+            "id": 1,
+            "domain": "Secure Identity & Access",
+            "question": "Which Azure AD feature enforces sign-in risk-based conditional policies?",
+            "options": [
+                "A) Identity Protection",
+                "B) Privileged Identity Management (PIM)",
+                "C) Conditional Access named locations",
+                "D) Azure Policy"
+            ],
+            "multi_select": false,
+            "hint": "Detects risky sign-ins and can block or require MFA.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure AD Identity Protection uses machine-learning signals to detect risky users and sign-ins, triggering Conditional Access responses such as MFA or blocking. PIM controls privileged role elevation, and Azure Policy manages resources, not identities."
+        },
+        {
+            "id": 2,
+            "domain": "Secure Identity & Access",
+            "question": "You must implement just-in-time access for administrators. Which feature should you use?",
+            "options": [
+                "A) Azure AD PIM",
+                "B) Azure RBAC role assignment",
+                "C) Conditional Access",
+                "D) Access Reviews"
+            ],
+            "multi_select": false,
+            "hint": "Think time-limited elevation with approval workflow.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Privileged Identity Management (PIM) enables just-in-time role activation with approval, reducing standing privilege. RBAC alone doesn’t provide elevation workflows, Conditional Access controls sign-in risk, and Access Reviews validate ongoing access periodically."
+        },
+        {
+            "id": 3,
+            "domain": "Secure Identity & Access",
+            "question": "Which two options strengthen Azure AD authentication for privileged accounts?",
+            "options": [
+                "A) Require MFA",
+                "B) Disable legacy authentication protocols",
+                "C) Use personal Microsoft accounts",
+                "D) Enable guest access"
+            ],
+            "multi_select": true,
+            "hint": "Focus on modern, protected authentication.",
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "Enforcing MFA and disabling legacy protocols (IMAP/POP/Basic Auth) significantly reduce credential theft risk. Personal accounts and guest access don’t secure admin identities."
+        },
+        {
+            "id": 4,
+            "domain": "Secure Networking",
+            "question": "Which feature provides inbound and outbound filtering at subnet level?",
+            "options": [
+                "A) Network Security Groups (NSG)",
+                "B) Azure Firewall",
+                "C) DDoS Protection",
+                "D) Application Gateway"
+            ],
+            "multi_select": false,
+            "hint": "Applies ACL rules to NICs and subnets.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "NSGs filter traffic by 5-tuple rules (source/destination IP, port, protocol, direction) on subnets or NICs. Azure Firewall provides stateful inspection centrally, DDoS mitigates volumetric attacks, and App Gateway provides Layer-7 routing."
+        },
+        {
+            "id": 5,
+            "domain": "Secure Networking",
+            "question": "Which Azure service provides full L3-L7 stateful inspection, threat intelligence, and FQDN filtering?",
+            "options": [
+                "A) Azure Firewall",
+                "B) NSG",
+                "C) Front Door",
+                "D) VPN Gateway"
+            ],
+            "multi_select": false,
+            "hint": "Centralized, managed firewall service.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Firewall is a managed, cloud-native firewall offering stateful filtering, FQDN rules, and threat intelligence integration. NSGs are stateless ACLs, Front Door is CDN/routing, and VPN Gateway handles encrypted tunnels."
+        },
+        {
+            "id": 6,
+            "domain": "Secure Networking",
+            "question": "You must allow VM traffic only through a web proxy. Which service should you use?",
+            "options": [
+                "A) Azure Firewall with forced tunneling",
+                "B) Network Security Group",
+                "C) Azure Bastion",
+                "D) ExpressRoute"
+            ],
+            "multi_select": false,
+            "hint": "Redirects outbound traffic via firewall.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Firewall supports forced tunneling to route outbound traffic through inspection or proxy servers. NSGs cannot forward traffic, Bastion is for RDP/SSH access, and ExpressRoute connects private networks."
+        },
+        {
+            "id": 7,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which setting encrypts data stored on Azure VMs by default?",
+            "options": [
+                "A) Storage-level encryption with platform-managed keys",
+                "B) BitLocker or DM-Crypt only",
+                "C) Azure Disk Encryption with customer-managed keys",
+                "D) Transparent Data Encryption"
+            ],
+            "multi_select": false,
+            "hint": "All managed disks are encrypted automatically.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure automatically encrypts managed disks at rest using platform-managed keys. You can optionally use ADE with customer-managed keys for added control. BitLocker is underlying tech; TDE applies to databases, not disks."
+        },
+        {
+            "id": 8,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which two features secure Azure SQL Database at rest and in transit?",
+            "options": [
+                "A) Transparent Data Encryption (TDE)",
+                "B) Always Encrypted",
+                "C) Private Endpoints",
+                "D) PolyBase"
+            ],
+            "multi_select": true,
+            "hint": "One handles storage encryption, one handles client-side encryption.",
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "TDE encrypts database files at rest, while Always Encrypted protects sensitive columns in transit and at rest via client-side keys. Private Endpoints secure network paths but not the encryption mechanism itself."
+        },
+        {
+            "id": 9,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which storage access method grants granular, time-limited permissions without exposing keys?",
+            "options": [
+                "A) Shared Access Signatures (SAS)",
+                "B) Storage account keys",
+                "C) Access policies only",
+                "D) Public container access"
+            ],
+            "multi_select": false,
+            "hint": "Temporary delegated access.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "SAS tokens delegate limited access (scope, expiry, permissions) without revealing account keys. Account keys grant full control, access policies define templates, and public containers remove security altogether."
+        },
+        {
+            "id": 10,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Microsoft Defender for Cloud plan adds just-in-time VM access and adaptive application controls?",
+            "options": [
+                "A) Defender for Servers Plan 2",
+                "B) Defender CSPM (Cloud Security Posture Management)",
+                "C) Defender for Storage",
+                "D) Microsoft Sentinel"
+            ],
+            "multi_select": false,
+            "hint": "Includes endpoint protection integration.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Servers Plan 2 offers JIT VM access, adaptive application controls, vulnerability assessment, and MDE integration. CSPM evaluates configuration compliance, Defender for Storage secures blobs, and Sentinel is SIEM/SOAR analytics."
+        },
+        {
+            "id": 11,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender for Cloud feature locks down inbound RDP/SSH to only approved users and time windows?",
+            "options": [
+                "A) Just-in-time VM access",
+                "B) Adaptive Network Hardening",
+                "C) Azure Bastion",
+                "D) DDoS Protection Standard"
+            ],
+            "multi_select": false,
+            "hint": "Time-bound opening of management ports.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Just-in-time VM access (JIT) keeps RDP/SSH ports closed by default and temporarily opens them for authorized users for a defined duration, reducing exposure to brute-force attacks."
+        },
+        {
+            "id": 12,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which built-in Microsoft Sentinel rule type uses ML-driven correlation across products to detect multi-stage attacks?",
+            "options": [
+                "A) Fusion rule",
+                "B) Scheduled analytic rule",
+                "C) NRT (Near-real-time) rule",
+                "D) Hunting query"
+            ],
+            "multi_select": false,
+            "hint": "Automatic cross-signal correlation from the Microsoft security graph.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Fusion rules automatically correlate low-fidelity alerts and signals from multiple sources (e.g., Defender, Azure AD) to surface high-confidence, multi-stage attack detections."
+        },
+        {
+            "id": 13,
+            "domain": "Secure Identity & Access",
+            "question": "You must delegate Conditional Access management without granting broad tenant privileges. Which role is most appropriate?",
+            "options": [
+                "A) Conditional Access Administrator",
+                "B) Global Administrator",
+                "C) Security Administrator",
+                "D) Privileged Role Administrator"
+            ],
+            "multi_select": false,
+            "hint": "Least-privilege role focused on CA policy configuration.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Conditional Access Administrator can create, update, and delete CA policies without requiring Global Admin, aligning to least-privilege principles."
+        },
+        {
+            "id": 14,
+            "domain": "Secure Networking",
+            "question": "You need to record allowed and denied traffic at the NSG level for audit and troubleshooting. What should you enable?",
+            "options": [
+                "A) NSG Flow Logs (Network Watcher)",
+                "B) Azure Monitor Metrics",
+                "C) Packet Capture",
+                "D) Activity Log"
+            ],
+            "multi_select": false,
+            "hint": "Captures traffic metadata and stores it in a storage account or Log Analytics.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "NSG Flow Logs record inbound and outbound flows through NSGs, showing which rules allow or deny traffic, and can be visualized in Traffic Analytics."
+        },
+        {
+            "id": 15,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Azure feature encrypts data using customer-managed keys stored in Key Vault or Managed HSM?",
+            "options": [
+                "A) Customer-Managed Keys (CMK)",
+                "B) Platform-Managed Keys",
+                "C) Transparent Data Encryption only",
+                "D) Managed Identity"
+            ],
+            "multi_select": false,
+            "hint": "You control key rotation and revocation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Customer-Managed Keys allow organizations to use and rotate their own encryption keys stored securely in Azure Key Vault or a Managed HSM."
+        },
+        {
+            "id": 16,
+            "domain": "Secure Networking",
+            "question": "Which Azure service provides TLS inspection, intrusion detection, and URL filtering for outbound traffic?",
+            "options": [
+                "A) Azure Firewall Premium",
+                "B) Application Gateway",
+                "C) NSG",
+                "D) Front Door"
+            ],
+            "multi_select": false,
+            "hint": "Advanced layer 7 inspection for egress traffic.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Firewall Premium provides full TLS inspection, signature-based intrusion detection, and web categories for outbound filtering — beyond the capabilities of NSGs or App Gateway."
+        },
+        {
+            "id": 17,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "In Microsoft Sentinel, which component is responsible for connecting data sources like Azure AD and firewalls?",
+            "options": [
+                "A) Data Connectors",
+                "B) Workbooks",
+                "C) Playbooks",
+                "D) Analytics Rules"
+            ],
+            "multi_select": false,
+            "hint": "Used to onboard telemetry and logs.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Data connectors in Sentinel establish pipelines that ingest logs and alerts from Microsoft and third-party sources for correlation and detection."
+        },
+        {
+            "id": 18,
+            "domain": "Secure Identity & Access",
+            "question": "Which Conditional Access setting defines how often users must reauthenticate or perform MFA?",
+            "options": [
+                "A) Sign-in frequency control",
+                "B) Grant control",
+                "C) Device compliance condition",
+                "D) Named location condition"
+            ],
+            "multi_select": false,
+            "hint": "Enforces periodic reauthentication for critical users.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "The sign-in frequency setting within Conditional Access determines the maximum duration before Azure AD forces users to reauthenticate or reperform MFA."
+        },
+        {
+            "id": 19,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Defender for Cloud plan continuously scans Azure Container Registry (ACR) images for vulnerabilities?",
+            "options": [
+                "A) Microsoft Defender for Containers",
+                "B) Defender for Servers",
+                "C) Defender CSPM",
+                "D) Defender for Storage"
+            ],
+            "multi_select": false,
+            "hint": "Protects Kubernetes and container image security.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Containers integrates with ACR to automatically scan images for vulnerabilities and enforce Kubernetes runtime protections."
+        },
+        {
+            "id": 20,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Sentinel component automates incident responses like disabling accounts or isolating hosts?",
+            "options": [
+                "A) Playbooks (Logic Apps)",
+                "B) Workbooks",
+                "C) Notebooks",
+                "D) Watchlists"
+            ],
+            "multi_select": false,
+            "hint": "Part of Sentinel’s SOAR automation capabilities.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Playbooks, built on Azure Logic Apps, automate responses such as isolating endpoints, sending alerts, or disabling compromised accounts after incident detection."
+        },
+        {
+            "id": 21,
+            "domain": "Secure Identity & Access",
+            "question": "Which Azure AD capability detects leaked credentials in public breaches and marks accounts as risky?",
+            "options": [
+                "A) Identity Protection",
+                "B) Access Reviews",
+                "C) PIM",
+                "D) Risky Sign-in Reports"
+            ],
+            "multi_select": false,
+            "hint": "Triggers risk-based Conditional Access policies.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure AD Identity Protection flags leaked credentials found in breach databases and can trigger remediation such as password resets or MFA."
+        },
+        {
+            "id": 22,
+            "domain": "Secure Networking",
+            "question": "Which Azure feature mitigates volumetric DDoS attacks at the network edge?",
+            "options": [
+                "A) DDoS Protection Standard",
+                "B) Azure Firewall",
+                "C) NSG rules",
+                "D) VPN Gateway"
+            ],
+            "multi_select": false,
+            "hint": "Always-on protection for public IPs.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "DDoS Protection Standard uses edge-based detection and automatic mitigation to absorb large-scale attacks targeting Azure public endpoints."
+        },
+        {
+            "id": 23,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which feature ensures only trusted, signed bootloaders and drivers run on Azure VMs?",
+            "options": [
+                "A) Secure Boot and vTPM",
+                "B) BitLocker",
+                "C) Managed Identity",
+                "D) Guest Configuration Policy"
+            ],
+            "multi_select": false,
+            "hint": "Firmware-level integrity validation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Secure Boot and vTPM validate the digital signatures of OS components at startup, ensuring tamper-proof boot integrity."
+        },
+        {
+            "id": 24,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender for Cloud recommendation category improves compliance with benchmarks like CIS or NIST?",
+            "options": [
+                "A) Regulatory compliance",
+                "B) Secure Score",
+                "C) Adaptive Application Controls",
+                "D) JIT Access"
+            ],
+            "multi_select": false,
+            "hint": "Maps security posture to standards.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "The Regulatory compliance dashboard in Defender for Cloud maps your environment’s security configuration against compliance frameworks such as CIS, PCI, and NIST."
+        },
+        {
+            "id": 25,
+            "domain": "Secure Networking",
+            "question": "Which Azure Firewall feature allows a single policy to manage multiple firewalls across regions?",
+            "options": [
+                "A) Firewall Policy",
+                "B) Rule Collection Group",
+                "C) NAT Rule Collection",
+                "D) Threat Intelligence Mode"
+            ],
+            "multi_select": false,
+            "hint": "Centralized policy for multi-firewall deployments.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Firewall Policy centralizes rule management, enabling consistent configurations across multiple firewalls in different regions."
+        },
+        {
+            "id": 26,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Azure SQL feature encrypts database files and backups transparently without code changes?",
+            "options": [
+                "A) Transparent Data Encryption (TDE)",
+                "B) Always Encrypted",
+                "C) Dynamic Data Masking",
+                "D) Row-Level Security"
+            ],
+            "multi_select": false,
+            "hint": "Automatic encryption at rest.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "TDE encrypts data files and backups automatically using service- or customer-managed keys, protecting data at rest without code modification."
+        },
+        {
+            "id": 27,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "In Sentinel, which feature groups multiple correlated alerts into a single case for investigation?",
+            "options": [
+                "A) Incidents",
+                "B) Alerts",
+                "C) Workbooks",
+                "D) Playbooks"
+            ],
+            "multi_select": false,
+            "hint": "Core investigation unit.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Sentinel automatically aggregates related alerts into incidents to simplify triage, investigation, and automated responses."
+        },
+        {
+            "id": 28,
+            "domain": "Secure Identity & Access",
+            "question": "Which Azure AD sign-in method allows passwordless authentication using a hardware FIDO2 key or Windows Hello?",
+            "options": [
+                "A) Passwordless authentication",
+                "B) SMS sign-in",
+                "C) Temporary Access Pass",
+                "D) ROPC flow"
+            ],
+            "multi_select": false,
+            "hint": "Uses FIDO2 or biometric credentials.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Passwordless authentication methods like FIDO2 keys and Windows Hello eliminate passwords and mitigate phishing and replay risks."
+        },
+        {
+            "id": 29,
+            "domain": "Secure Networking",
+            "question": "Which Azure service provides private access to PaaS resources through private IP addresses in your VNet?",
+            "options": [
+                "A) Private Link",
+                "B) ExpressRoute",
+                "C) VNet Peering",
+                "D) Application Gateway"
+            ],
+            "multi_select": false,
+            "hint": "Eliminates exposure through public endpoints.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Private Link creates private endpoints for services like Storage or SQL, accessible only within your VNet without traversing the public internet."
+        },
+        {
+            "id": 30,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Azure service securely stores encryption keys, secrets, and certificates?",
+            "options": [
+                "A) Azure Key Vault",
+                "B) Azure Storage",
+                "C) Azure Policy",
+                "D) Azure Information Protection"
+            ],
+            "multi_select": false,
+            "hint": "Centralized key and secret management service.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Key Vault provides centralized, hardware-backed secret and key management with RBAC and auditing integration."
+        },
+        {
+            "id": 31,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which query language is used in Microsoft Sentinel to analyze log data across connected sources?",
+            "options": [
+                "A) Kusto Query Language (KQL)",
+                "B) SQL",
+                "C) Power Query",
+                "D) JSONPath"
+            ],
+            "multi_select": false,
+            "hint": "Same language used in Log Analytics.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Microsoft Sentinel uses KQL, a rich query language shared with Azure Monitor Log Analytics, to filter, aggregate, and visualize security data."
+        },
+        {
+            "id": 32,
+            "domain": "Secure Networking",
+            "question": "Which Network Watcher feature captures live network packets from a specific VM for troubleshooting?",
+            "options": [
+                "A) Packet Capture",
+                "B) NSG Flow Logs",
+                "C) Connection Monitor",
+                "D) Diagnostic Settings"
+            ],
+            "multi_select": false,
+            "hint": "Records traffic payloads rather than metadata.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Network Watcher Packet Capture captures real network packets on-demand or on schedule for analysis, aiding deep network troubleshooting."
+        },
+        {
+            "id": 33,
+            "domain": "Secure Identity & Access",
+            "question": "Which governance feature enables periodic reviews of user access to groups, apps, or roles?",
+            "options": [
+                "A) Access Reviews",
+                "B) Conditional Access",
+                "C) Identity Protection",
+                "D) Privileged Identity Management"
+            ],
+            "multi_select": false,
+            "hint": "Used to ensure least-privilege access is maintained over time.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Access Reviews allow administrators to periodically audit and revoke access for users and guests to maintain least privilege."
+        },
+        {
+            "id": 34,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which account-level setting disables all anonymous blob access to a storage account?",
+            "options": [
+                "A) AllowBlobPublicAccess = false",
+                "B) Firewall default rule",
+                "C) SAS token policy",
+                "D) Shared key rotation"
+            ],
+            "multi_select": false,
+            "hint": "Prevents public container exposure even if misconfigured.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Setting AllowBlobPublicAccess to false enforces that no containers or blobs can be exposed publicly, protecting against accidental data leaks."
+        },
+        {
+            "id": 35,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender plan adds malware scanning and anomaly detection for blob uploads and access?",
+            "options": [
+                "A) Defender for Storage",
+                "B) Defender for SQL",
+                "C) Defender CSPM",
+                "D) Defender for Servers"
+            ],
+            "multi_select": false,
+            "hint": "Applies to storage account blobs and file shares.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Storage automatically scans uploaded content for malware and monitors for unusual access or data exfiltration patterns."
+        },
+        {
+            "id": 36,
+            "domain": "Secure Networking",
+            "question": "Which Azure load balancing service supports URL path-based routing and includes a WAF option?",
+            "options": [
+                "A) Application Gateway v2",
+                "B) Azure Load Balancer",
+                "C) Front Door Classic",
+                "D) Traffic Manager"
+            ],
+            "multi_select": false,
+            "hint": "Operates at layer 7 for HTTP/S traffic.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Application Gateway v2 operates at layer 7, supporting path-based routing, SSL offload, and integrated Web Application Firewall protection."
+        },
+        {
+            "id": 37,
+            "domain": "Secure Identity & Access",
+            "question": "Which Azure AD log type tracks role activations through Privileged Identity Management?",
+            "options": [
+                "A) Audit logs",
+                "B) Sign-in logs",
+                "C) Diagnostic logs",
+                "D) Activity logs"
+            ],
+            "multi_select": false,
+            "hint": "Shows who activated, approved, or expired elevated roles.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure AD Audit Logs include detailed PIM role activation, assignment, and expiration events for auditing privileged access."
+        },
+        {
+            "id": 38,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which optional encryption feature provides a second layer of encryption on top of default storage encryption?",
+            "options": [
+                "A) Infrastructure Encryption",
+                "B) Transparent Data Encryption",
+                "C) Double Encryption Key Rotation",
+                "D) Secure Transfer Required"
+            ],
+            "multi_select": false,
+            "hint": "Provides dual encryption for regulatory compliance.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Infrastructure Encryption adds an additional encryption layer using separate keys for enhanced data protection at rest."
+        },
+        {
+            "id": 39,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender feature dynamically recommends NSG rules based on observed traffic patterns?",
+            "options": [
+                "A) Adaptive Network Hardening",
+                "B) Just-in-time VM Access",
+                "C) Secure Score",
+                "D) Regulatory Compliance"
+            ],
+            "multi_select": false,
+            "hint": "Suggests tighter inbound NSG rules for workloads.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Adaptive Network Hardening analyzes existing NSG traffic and suggests more restrictive rules to reduce attack surfaces."
+        },
+        {
+            "id": 40,
+            "domain": "Secure Networking",
+            "question": "Which Azure feature encrypts traffic between virtual machines in the same VNet or peered VNets?",
+            "options": [
+                "A) Virtual Network Encryption (Confidential VM)",
+                "B) NSG rules",
+                "C) ExpressRoute encryption",
+                "D) DDoS Standard"
+            ],
+            "multi_select": false,
+            "hint": "Applies to confidential computing workloads.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Virtual Network Encryption, available for confidential computing VMs, encrypts network traffic between VMs to protect data in transit."
+        },
+        {
+            "id": 41,
+            "domain": "Secure Identity & Access",
+            "question": "Which Microsoft Entra feature manages access packages combining roles, groups, and applications for onboarding?",
+            "options": [
+                "A) Entitlement Management",
+                "B) Conditional Access",
+                "C) Identity Protection",
+                "D) PIM"
+            ],
+            "multi_select": false,
+            "hint": "Used to streamline access provisioning for users and guests.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Entitlement Management provides access packages bundling roles, apps, and groups for automated onboarding and lifecycle management."
+        },
+        {
+            "id": 42,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Sentinel tool visualizes entity relationships like users, IPs, and alerts in a graph view?",
+            "options": [
+                "A) Investigation Graph",
+                "B) Workbook",
+                "C) Playbook",
+                "D) Watchlist"
+            ],
+            "multi_select": false,
+            "hint": "Interactive visual for threat investigation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "The Investigation Graph in Sentinel lets analysts visually explore relationships between alerts, users, IPs, and hosts to understand attack scope."
+        },
+        {
+            "id": 43,
+            "domain": "Secure Networking",
+            "question": "Which Azure Firewall feature blocks known malicious IPs using Microsoft threat intelligence?",
+            "options": [
+                "A) Threat Intelligence Mode",
+                "B) Application Rules",
+                "C) NAT Rules",
+                "D) Policy Analytics"
+            ],
+            "multi_select": false,
+            "hint": "Integrates with global threat feeds.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Threat Intelligence Mode allows Azure Firewall to alert or deny traffic from IPs and domains identified as malicious by Microsoft threat feeds."
+        },
+        {
+            "id": 44,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which setting enforces HTTPS-only communication with Azure Storage?",
+            "options": [
+                "A) Secure Transfer Required",
+                "B) Firewall Rules",
+                "C) SAS Token Expiry",
+                "D) Versioning"
+            ],
+            "multi_select": false,
+            "hint": "Prevents unencrypted HTTP access.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Enabling Secure Transfer Required ensures all connections to the storage account use HTTPS, protecting data in transit."
+        },
+        {
+            "id": 45,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender for Cloud plan monitors SQL databases for vulnerabilities, anomalous activities, and attacks?",
+            "options": [
+                "A) Defender for SQL",
+                "B) Defender for Storage",
+                "C) Defender CSPM",
+                "D) Defender for Servers"
+            ],
+            "multi_select": false,
+            "hint": "Applies to both Azure SQL and on-prem SQL via Arc.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for SQL provides vulnerability assessment, advanced threat protection, and behavioral analytics for SQL databases in Azure and hybrid environments."
+        },
+        {
+            "id": 46,
+            "domain": "Secure Networking",
+            "question": "Which service provides secure remote RDP/SSH access to VMs without exposing public IPs?",
+            "options": [
+                "A) Azure Bastion",
+                "B) Just-in-time VM Access",
+                "C) VPN Gateway",
+                "D) Application Gateway"
+            ],
+            "multi_select": false,
+            "hint": "Browser-based access over HTTPS from the Azure portal.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Bastion allows secure RDP and SSH connectivity directly through the Azure portal over SSL, eliminating the need for public IPs."
+        },
+        {
+            "id": 47,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Azure Disk Encryption mode uses Azure AD app credentials to store BitLocker keys?",
+            "options": [
+                "A) Azure Disk Encryption (ADE)",
+                "B) Storage Service Encryption",
+                "C) Platform-Managed Keys",
+                "D) Transparent Data Encryption"
+            ],
+            "multi_select": false,
+            "hint": "Integrates BitLocker and Key Vault for control.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Disk Encryption leverages BitLocker (Windows) or DM-Crypt (Linux) and stores encryption keys in Azure Key Vault via an Azure AD app identity."
+        },
+        {
+            "id": 48,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Sentinel component allows analysts to build custom dashboards for visualization and KPI tracking?",
+            "options": [
+                "A) Workbooks",
+                "B) Incidents",
+                "C) Playbooks",
+                "D) Notebooks"
+            ],
+            "multi_select": false,
+            "hint": "Used for visual reporting and monitoring metrics.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Workbooks let you create interactive visual reports of Sentinel and Defender data using KQL queries and charts."
+        },
+        {
+            "id": 49,
+            "domain": "Secure Networking",
+            "question": "Which Azure networking service enables hybrid connectivity over a private dedicated circuit?",
+            "options": [
+                "A) ExpressRoute",
+                "B) VPN Gateway",
+                "C) Application Gateway",
+                "D) Azure Front Door"
+            ],
+            "multi_select": false,
+            "hint": "Provides private connectivity from on-prem to Azure.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "ExpressRoute offers dedicated private network connections between on-premises and Azure for secure, low-latency hybrid environments."
+        },
+        {
+            "id": 50,
+            "domain": "Secure Identity & Access",
+            "question": "Which Conditional Access feature ensures users can only access resources from compliant, managed devices?",
+            "options": [
+                "A) Device compliance condition",
+                "B) Named location condition",
+                "C) Session control",
+                "D) Sign-in frequency"
+            ],
+            "multi_select": false,
+            "hint": "Integrates with Intune for device health checks.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Device compliance conditions restrict access to devices meeting security baselines defined in Intune, enforcing zero-trust access."
+        },
+        {
+            "id": 51,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender for Cloud capability prioritizes recommendations based on security impact to generate an overall Secure Score?",
+            "options": [
+                "A) Secure Score",
+                "B) Regulatory Compliance",
+                "C) Inventory",
+                "D) Threat Protection"
+            ],
+            "multi_select": false,
+            "hint": "Visual metric representing posture health.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Secure Score aggregates Defender for Cloud recommendations into a measurable percentage that reflects overall security posture and prioritizes remediation actions."
+        },
+        {
+            "id": 52,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Azure storage feature maintains previous versions of a blob to recover from overwrites or deletions?",
+            "options": [
+                "A) Blob Versioning",
+                "B) Soft Delete",
+                "C) Immutable Blob Policy",
+                "D) Replication"
+            ],
+            "multi_select": false,
+            "hint": "Automatically keeps older blob versions when updated.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Blob Versioning preserves prior versions of a blob when it's modified or deleted, allowing recovery from accidental changes."
+        },
+        {
+            "id": 53,
+            "domain": "Secure Identity & Access",
+            "question": "Which Azure AD feature requires users to register for MFA or SSPR before accessing resources?",
+            "options": [
+                "A) Combined Registration",
+                "B) Identity Protection",
+                "C) Conditional Access",
+                "D) Authentication Strength Policy"
+            ],
+            "multi_select": false,
+            "hint": "Single experience to enable both MFA and SSPR.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Combined registration simplifies user onboarding by requiring setup of MFA and Self-Service Password Reset (SSPR) in one unified workflow."
+        },
+        {
+            "id": 54,
+            "domain": "Secure Networking",
+            "question": "Which Azure service accelerates and protects web applications globally using edge POPs and WAF policies?",
+            "options": [
+                "A) Azure Front Door",
+                "B) Application Gateway",
+                "C) CDN Standard",
+                "D) Traffic Manager"
+            ],
+            "multi_select": false,
+            "hint": "Operates at the global edge for HTTP/S delivery.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Front Door provides global load balancing, caching, and WAF protection via Microsoft’s edge network, improving performance and security."
+        },
+        {
+            "id": 55,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender for Cloud capability automatically provisions the Log Analytics agent on newly discovered VMs?",
+            "options": [
+                "A) Auto-Provisioning",
+                "B) Just-in-time Access",
+                "C) Adaptive Application Control",
+                "D) Secure Score"
+            ],
+            "multi_select": false,
+            "hint": "Ensures all workloads send data for continuous monitoring.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Auto-Provisioning in Defender for Cloud deploys the Microsoft Monitoring Agent automatically to collect telemetry for assessment and threat detection."
+        },
+        {
+            "id": 56,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which SQL feature hides sensitive data in query results without changing underlying data?",
+            "options": [
+                "A) Dynamic Data Masking",
+                "B) Always Encrypted",
+                "C) TDE",
+                "D) Row-Level Security"
+            ],
+            "multi_select": false,
+            "hint": "Applies obfuscation on query output.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Dynamic Data Masking automatically hides sensitive columns in query results while leaving data intact in the database."
+        },
+        {
+            "id": 57,
+            "domain": "Secure Identity & Access",
+            "question": "Which authentication policy restricts sign-ins to devices that meet specific compliance requirements?",
+            "options": [
+                "A) Device-based Conditional Access",
+                "B) Sign-in frequency",
+                "C) Named location",
+                "D) Temporary Access Pass"
+            ],
+            "multi_select": false,
+            "hint": "Integrates with Intune to verify device health.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Device-based Conditional Access enforces access restrictions so only compliant or hybrid-joined devices can access resources."
+        },
+        {
+            "id": 58,
+            "domain": "Secure Networking",
+            "question": "Which Azure networking feature lets you capture and analyze end-to-end connectivity between two endpoints?",
+            "options": [
+                "A) Connection Monitor",
+                "B) NSG Flow Logs",
+                "C) Packet Capture",
+                "D) Application Gateway Access Logs"
+            ],
+            "multi_select": false,
+            "hint": "Used to test and monitor connection reliability.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Connection Monitor continuously tests connectivity between source and destination endpoints, measuring latency and availability."
+        },
+        {
+            "id": 59,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender feature restricts application execution to a defined safe list on Windows and Linux VMs?",
+            "options": [
+                "A) Adaptive Application Controls",
+                "B) Just-in-time VM Access",
+                "C) File Integrity Monitoring",
+                "D) Endpoint Protection Integration"
+            ],
+            "multi_select": false,
+            "hint": "Used to enforce least privilege on executable files.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Adaptive Application Controls learn allowed apps on VMs and restrict others from running, reducing malware risk."
+        },
+        {
+            "id": 60,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Azure policy effect denies creation of a storage account that allows public network access?",
+            "options": [
+                "A) Deny",
+                "B) Audit",
+                "C) Append",
+                "D) DeployIfNotExists"
+            ],
+            "multi_select": false,
+            "hint": "Used to enforce hard compliance at resource creation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "A 'Deny' policy effect blocks non-compliant resource creation, ensuring only private storage accounts are deployed."
+        },
+        {
+            "id": 61,
+            "domain": "Secure Identity & Access",
+            "question": "Which Entra ID feature allows temporary elevation to a privileged role with approval workflow?",
+            "options": [
+                "A) Privileged Identity Management (PIM)",
+                "B) Access Reviews",
+                "C) Identity Protection",
+                "D) Entitlement Management"
+            ],
+            "multi_select": false,
+            "hint": "Implements Just-In-Time privilege escalation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "PIM lets users activate privileged roles only when needed and requires approval, reducing standing admin rights."
+        },
+        {
+            "id": 62,
+            "domain": "Secure Networking",
+            "question": "Which network protection solution can inspect both inbound and outbound HTTPS traffic for threats?",
+            "options": [
+                "A) Azure Firewall Premium",
+                "B) Application Gateway",
+                "C) Front Door",
+                "D) NSG"
+            ],
+            "multi_select": false,
+            "hint": "Performs full TLS termination and IDPS.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Firewall Premium performs TLS inspection and integrates with Threat Intelligence feeds for comprehensive inbound/outbound security."
+        },
+        {
+            "id": 63,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Sentinel feature can automatically assign severity, status, and owner when an alert triggers?",
+            "options": [
+                "A) Automation Rule",
+                "B) Playbook",
+                "C) Workbook",
+                "D) Incident"
+            ],
+            "multi_select": false,
+            "hint": "Used to standardize response actions at alert creation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Automation rules in Sentinel apply predefined responses like changing severity or running playbooks automatically when incidents are created."
+        },
+        {
+            "id": 64,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Azure Disk redundancy type provides zone-level fault tolerance for managed disks?",
+            "options": [
+                "A) Zone-redundant Storage (ZRS)",
+                "B) Locally-redundant Storage (LRS)",
+                "C) Geo-redundant Storage (GRS)",
+                "D) Read-access GRS"
+            ],
+            "multi_select": false,
+            "hint": "Replicates synchronously across availability zones.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Zone-redundant Storage (ZRS) keeps three synchronous copies of data across multiple availability zones within a region for durability."
+        },
+        {
+            "id": 65,
+            "domain": "Secure Identity & Access",
+            "question": "Which policy type enforces security settings like password length and complexity in Azure AD?",
+            "options": [
+                "A) Authentication Policy",
+                "B) Password Policy",
+                "C) Conditional Access",
+                "D) Authentication Strength"
+            ],
+            "multi_select": false,
+            "hint": "Controls password requirements across the tenant.",
+            "correct_answers": [
+                "B"
+            ],
+            "explanation": "Password policies define password complexity, history, and lockout thresholds in Azure AD for user accounts."
+        },
+        {
+            "id": 66,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender feature provides real-time vulnerability assessment for Azure and on-prem servers?",
+            "options": [
+                "A) Defender for Servers Plan 2",
+                "B) Defender CSPM",
+                "C) Defender for Containers",
+                "D) Adaptive Application Control"
+            ],
+            "multi_select": false,
+            "hint": "Includes integration with Microsoft Defender for Endpoint.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Servers Plan 2 offers vulnerability assessment, JIT VM access, and MDE integration for hybrid server protection."
+        },
+        {
+            "id": 67,
+            "domain": "Secure Networking",
+            "question": "Which tool verifies that all subnets and NSGs follow organizational security rules?",
+            "options": [
+                "A) Azure Policy with network audit definitions",
+                "B) DDoS Protection Standard",
+                "C) Firewall Policy Analytics",
+                "D) Front Door diagnostics"
+            ],
+            "multi_select": false,
+            "hint": "Used to enforce compliance through declarative definitions.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Policy can audit and enforce NSG configurations, subnet restrictions, and routing settings to ensure compliance with network standards."
+        },
+        {
+            "id": 68,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which storage security control prevents deletion or modification of data within a retention period?",
+            "options": [
+                "A) Immutable Blob Policy",
+                "B) Soft Delete",
+                "C) Versioning",
+                "D) Azure Policy"
+            ],
+            "multi_select": false,
+            "hint": "Implements WORM (Write Once Read Many) compliance.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Immutable blob policies enforce retention periods during which blobs cannot be modified or deleted, meeting legal and compliance requirements."
+        },
+        {
+            "id": 69,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Sentinel capability allows analysts to execute Jupyter notebooks for deeper investigation?",
+            "options": [
+                "A) Notebooks",
+                "B) Playbooks",
+                "C) Workbooks",
+                "D) Incidents"
+            ],
+            "multi_select": false,
+            "hint": "Used for advanced hunting and data science analysis.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Notebooks integrate with Jupyter and KQL to let analysts run deeper data analysis, visualization, or custom ML models in Sentinel."
+        },
+        {
+            "id": 70,
+            "domain": "Secure Identity & Access",
+            "question": "Which setting in Conditional Access requires the user to perform MFA again after a set time window?",
+            "options": [
+                "A) Sign-in frequency",
+                "B) Persistent browser session",
+                "C) Grant control",
+                "D) Authentication Strength"
+            ],
+            "multi_select": false,
+            "hint": "Forces reauthentication periodically.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "The sign-in frequency setting defines how long users can remain authenticated before being required to sign in or complete MFA again."
+        },
+        {
+            "id": 71,
+            "domain": "Secure Networking",
+            "question": "Which Azure networking feature allows filtering and routing traffic based on FQDNs, ports, and protocols at scale?",
+            "options": [
+                "A) Azure Firewall",
+                "B) Network Security Group",
+                "C) Application Gateway",
+                "D) Front Door"
+            ],
+            "multi_select": false,
+            "hint": "Applies centralized stateful inspection.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Firewall provides stateful filtering for both inbound and outbound traffic, with support for FQDNs, fully qualified domains, and application rules."
+        },
+        {
+            "id": 72,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Azure feature detects and prevents ransomware by monitoring abnormal access patterns to storage data?",
+            "options": [
+                "A) Defender for Storage",
+                "B) Soft Delete",
+                "C) Immutable Blob Policy",
+                "D) Blob Versioning"
+            ],
+            "multi_select": false,
+            "hint": "Integrates with Defender for Cloud for alerting.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Storage monitors data access behavior to identify unusual or potentially malicious operations like mass deletions or encryptions indicative of ransomware."
+        },
+        {
+            "id": 73,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Sentinel feature allows mapping MITRE ATT&CK techniques to detections and incidents?",
+            "options": [
+                "A) Analytics Rules",
+                "B) Workbooks",
+                "C) Playbooks",
+                "D) Watchlists"
+            ],
+            "multi_select": false,
+            "hint": "Provides framework-based attack visibility.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Analytics Rules in Sentinel can be aligned with MITRE ATT&CK tactics and techniques to help analysts understand attack coverage and improve detection gaps."
+        },
+        {
+            "id": 74,
+            "domain": "Secure Identity & Access",
+            "question": "Which identity protection control blocks legacy authentication methods such as IMAP or POP?",
+            "options": [
+                "A) Conditional Access policy for client app types",
+                "B) Named Location policy",
+                "C) Temporary Access Pass",
+                "D) Authentication Strength"
+            ],
+            "multi_select": false,
+            "hint": "Legacy authentication bypasses modern security controls.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "A Conditional Access policy configured to block legacy client apps disables insecure protocols like IMAP, POP, and SMTP AUTH that cannot enforce MFA."
+        },
+        {
+            "id": 75,
+            "domain": "Secure Networking",
+            "question": "Which Azure networking feature enforces segmentation by allowing or denying traffic between subnets?",
+            "options": [
+                "A) Network Security Group (NSG)",
+                "B) Route Table (UDR)",
+                "C) Virtual WAN",
+                "D) DDoS Standard"
+            ],
+            "multi_select": false,
+            "hint": "Implements layer 3 and 4 packet filtering.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "NSGs enforce subnet-level or NIC-level access control lists using rules that filter by source, destination, protocol, and port."
+        },
+        {
+            "id": 76,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Azure compute option isolates workloads on hardware dedicated to a single customer?",
+            "options": [
+                "A) Dedicated Host",
+                "B) Availability Set",
+                "C) Scale Set",
+                "D) Spot VM"
+            ],
+            "multi_select": false,
+            "hint": "Meets compliance needs for physical isolation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Dedicated Hosts provide isolated physical servers hosting your VMs, meeting compliance and isolation requirements."
+        },
+        {
+            "id": 77,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender for Cloud feature provides AI-driven recommendations to improve secure score and compliance?",
+            "options": [
+                "A) Microsoft Defender CSPM",
+                "B) Defender for Servers Plan 2",
+                "C) Regulatory Compliance",
+                "D) Just-in-time Access"
+            ],
+            "multi_select": false,
+            "hint": "Analyzes cloud configuration posture across services.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender Cloud Security Posture Management (CSPM) continuously evaluates resource configurations against benchmarks and uses AI to generate prioritized recommendations."
+        },
+        {
+            "id": 78,
+            "domain": "Secure Identity & Access",
+            "question": "Which authentication method provides a one-time short-lived password for users without hardware MFA devices?",
+            "options": [
+                "A) Temporary Access Pass",
+                "B) Windows Hello for Business",
+                "C) FIDO2 Key",
+                "D) SMS Sign-in"
+            ],
+            "multi_select": false,
+            "hint": "Useful for bootstrapping new passwordless sign-ins.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Temporary Access Pass issues a short-lived password that satisfies MFA, allowing a user to sign in and register strong authentication methods like FIDO2 keys."
+        },
+        {
+            "id": 79,
+            "domain": "Secure Networking",
+            "question": "Which Azure security service protects your web applications from OWASP Top 10 attacks?",
+            "options": [
+                "A) Web Application Firewall (WAF)",
+                "B) Azure Firewall",
+                "C) DDoS Protection Standard",
+                "D) Application Gateway (v1)"
+            ],
+            "multi_select": false,
+            "hint": "Inspects layer 7 HTTP traffic.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure’s Web Application Firewall (available with App Gateway or Front Door) filters malicious HTTP traffic, blocking common exploits such as SQL injection and XSS."
+        },
+        {
+            "id": 80,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Sentinel component can enrich alerts with external data such as threat feeds or asset inventories?",
+            "options": [
+                "A) Watchlists",
+                "B) Workbooks",
+                "C) Playbooks",
+                "D) Fusion Rules"
+            ],
+            "multi_select": false,
+            "hint": "Custom CSV-based data enrichment source.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Watchlists let analysts upload external datasets like IP blacklists, asset inventories, or user lists to correlate and enrich Sentinel analytics and alerts."
+        },
+        {
+            "id": 81,
+            "domain": "Identity",
+            "question": "Which Azure AD role allows management of Conditional Access policies without granting full tenant admin rights?",
+            "options": [
+                "A) Security Administrator",
+                "B) Conditional Access Administrator",
+                "C) Global Administrator",
+                "D) Privileged Role Administrator"
+            ],
+            "multi_select": false,
+            "hint": "Focus on least-privilege for CA policy management.",
+            "correct_answers": [
+                "B"
+            ],
+            "explanation": "The Conditional Access Administrator role allows creating and managing Conditional Access policies without needing Global Administrator rights."
+        },
+        {
+            "id": 82,
+            "domain": "Identity",
+            "question": "Which two features can you use to enforce MFA for privileged users in Azure AD?",
+            "options": [
+                "A) Security Defaults",
+                "B) Conditional Access policy",
+                "C) Identity Protection risk policy",
+                "D) Self-Service Password Reset"
+            ],
+            "multi_select": true,
+            "hint": "Both can automatically require MFA under specific conditions.",
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "Security Defaults enforces MFA for admins automatically, while Conditional Access allows you to require MFA for selected groups or roles."
+        },
+        {
+            "id": 83,
+            "domain": "Identity",
+            "question": "Arrange the steps in the correct order to configure Privileged Identity Management for an Azure AD role.",
+            "options": [
+                "A) Enable PIM for the directory",
+                "B) Assign eligible roles to users",
+                "C) Configure activation duration and approval workflow",
+                "D) Review role activation logs"
+            ],
+            "multi_select": false,
+            "hint": "Think: enable → assign → configure → monitor.",
+            "correct_answers": [
+                "A,B,C,D"
+            ],
+            "explanation": "First enable PIM, then assign eligible roles, configure activation settings, and finally monitor activations and logs for compliance."
+        },
+        {
+            "id": 84,
+            "domain": "Identity",
+            "question": "Complete the command: az ad sp create-for-rbac --name ___ --role ___",
+            "options": [
+                "A) myApp; Contributor",
+                "B) myApp; Reader",
+                "C) appRegistration; User Access Administrator",
+                "D) appService; Owner"
+            ],
+            "multi_select": false,
+            "hint": "Default pattern for creating a service principal with RBAC role.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "You can create a service principal with a name and assign a role in one command: az ad sp create-for-rbac --name myApp --role Contributor."
+        },
+        {
+            "id": 85,
+            "domain": "Identity",
+            "question": "Case Study: Your company has multiple Azure subscriptions. You need to grant a user read-only access across all subscriptions without assigning Global Administrator. What should you do?",
+            "options": [
+                "A) Assign Reader role at the management group scope",
+                "B) Create a custom role in each subscription",
+                "C) Assign Security Reader role at the tenant level",
+                "D) Enable PIM for Global Administrator"
+            ],
+            "multi_select": false,
+            "hint": "You want centralized read access to all resources.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Assigning the built-in Reader role at the management group level allows read-only access across all subscriptions under that hierarchy."
+        },
+        {
+            "id": 86,
+            "domain": "Networking",
+            "question": "Which Azure Firewall feature enables consistent rules across multiple regions?",
+            "options": [
+                "A) Firewall Policy",
+                "B) NAT Rule Collection",
+                "C) Threat Intelligence Mode",
+                "D) Application Rules"
+            ],
+            "multi_select": false,
+            "hint": "Think centralized management for multi-region firewalls.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Firewall Policies centralize and standardize firewall configurations, which can be applied to multiple firewalls across different regions."
+        },
+        {
+            "id": 87,
+            "domain": "Networking",
+            "question": "Which two network features restrict communication between subnets in a VNet?",
+            "options": [
+                "A) Network Security Groups (NSGs)",
+                "B) User-Defined Routes (UDRs)",
+                "C) Virtual WAN",
+                "D) DDoS Protection"
+            ],
+            "multi_select": true,
+            "hint": "Consider access control lists and custom routing.",
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "NSGs filter traffic via access rules, while UDRs control routing between subnets. Virtual WAN and DDoS focus on other layers of protection."
+        },
+        {
+            "id": 88,
+            "domain": "Networking",
+            "question": "Arrange the steps to enable Private Link access for Azure SQL Database.",
+            "options": [
+                "A) Create a private endpoint in the VNet",
+                "B) Approve the connection request in SQL resource",
+                "C) Configure DNS to resolve SQL to private IP",
+                "D) Disable public network access on the SQL server"
+            ],
+            "multi_select": false,
+            "hint": "Follow the lifecycle: create → approve → configure → secure.",
+            "correct_answers": [
+                "A,B,C,D"
+            ],
+            "explanation": "Create the private endpoint, approve it in SQL, configure DNS for private resolution, and disable public network access to fully secure connectivity."
+        },
+        {
+            "id": 89,
+            "domain": "Networking",
+            "question": "Complete the command: az network nsg rule create --nsg-name ___ --priority 100 --direction Inbound --access Allow --protocol Tcp --destination-port-ranges 443",
+            "options": [
+                "A) myNSG",
+                "B) defaultVNet",
+                "C) AllowWeb",
+                "D) AllowHTTPS"
+            ],
+            "multi_select": false,
+            "hint": "You must specify the NSG name being modified.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "The --nsg-name parameter specifies which NSG to add the rule to. Example: az network nsg rule create --nsg-name myNSG --priority 100 ..."
+        },
+        {
+            "id": 90,
+            "domain": "Networking",
+            "question": "Which Azure service provides global web acceleration with integrated WAF and edge protection?",
+            "options": [
+                "A) Azure Front Door",
+                "B) Application Gateway",
+                "C) Azure Firewall",
+                "D) Traffic Manager"
+            ],
+            "multi_select": false,
+            "hint": "Operates at the global edge, not inside a VNet.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Front Door is a global entry point with layer 7 load balancing, WAF, and DDoS protection for web applications."
+        },
+        {
+            "id": 91,
+            "domain": "Compute",
+            "question": "Which feature provides just-in-time (JIT) access to Azure VMs through Defender for Cloud?",
+            "options": [
+                "A) Adaptive Network Hardening",
+                "B) Just-in-time VM Access",
+                "C) Azure Bastion",
+                "D) DDoS Standard"
+            ],
+            "multi_select": false,
+            "hint": "Used to open RDP/SSH ports temporarily for authorized users.",
+            "correct_answers": [
+                "B"
+            ],
+            "explanation": "Just-in-time VM access restricts management ports and only opens them for approved users for a defined time."
+        },
+        {
+            "id": 92,
+            "domain": "Compute",
+            "question": "Which two features protect Azure Disk data at rest?",
+            "options": [
+                "A) Azure Disk Encryption",
+                "B) Infrastructure Encryption",
+                "C) Azure AD Authentication",
+                "D) Role Assignments"
+            ],
+            "multi_select": true,
+            "hint": "Think about encryption layers, not identity.",
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "Azure Disk Encryption uses BitLocker/DM-Crypt and Key Vault keys, while Infrastructure Encryption adds an additional encryption layer."
+        },
+        {
+            "id": 93,
+            "domain": "Compute",
+            "question": "Which Azure Key Vault setting ensures only specific VNets can access the vault?",
+            "options": [
+                "A) Private Endpoint connection",
+                "B) Key rotation policy",
+                "C) RBAC role assignment",
+                "D) Access policy for keys"
+            ],
+            "multi_select": false,
+            "hint": "Restricts network path rather than permissions.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Private Endpoints secure Key Vault access by restricting traffic to private IPs within a VNet, blocking public network access."
+        },
+        {
+            "id": 94,
+            "domain": "Compute",
+            "question": "Arrange the steps in order to enable Transparent Data Encryption (TDE) using a Customer Managed Key.",
+            "options": [
+                "A) Create a Key Vault and key",
+                "B) Enable key vault access for SQL Server",
+                "C) Set TDE protector to CMK",
+                "D) Rotate and back up the key"
+            ],
+            "multi_select": false,
+            "hint": "Follow creation → access → activation → maintenance sequence.",
+            "correct_answers": [
+                "A,B,C,D"
+            ],
+            "explanation": "Create a Key Vault and key, grant SQL access to the vault, configure TDE protector to use the CMK, then manage rotation and backups."
+        },
+        {
+            "id": 95,
+            "domain": "Operations",
+            "question": "Which Defender for Cloud plan provides vulnerability assessment and endpoint integration for servers?",
+            "options": [
+                "A) Defender for Servers Plan 2",
+                "B) Defender CSPM",
+                "C) Defender for Containers",
+                "D) Defender for SQL"
+            ],
+            "multi_select": false,
+            "hint": "Includes MDE and JIT features.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Servers Plan 2 adds Microsoft Defender for Endpoint integration, JIT VM access, and vulnerability management."
+        },
+        {
+            "id": 96,
+            "domain": "Operations",
+            "question": "Which Sentinel rule type continuously analyzes incoming logs using schedule-based KQL queries?",
+            "options": [
+                "A) Scheduled Analytic Rule",
+                "B) Fusion Rule",
+                "C) Near Real-Time (NRT) Rule",
+                "D) Playbook Trigger"
+            ],
+            "multi_select": false,
+            "hint": "Used for recurring detections based on queries.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Scheduled Analytic Rules run periodic KQL queries to detect suspicious activity patterns in log data."
+        },
+        {
+            "id": 97,
+            "domain": "Operations",
+            "question": "Complete the command: az keyvault secret set --vault-name ___ --name MySecret --value 'Secure123!'",
+            "options": [
+                "A) MyKeyVault",
+                "B) kv-prod-01",
+                "C) storage-keyvault",
+                "D) kv-SQL"
+            ],
+            "multi_select": false,
+            "hint": "You specify the vault name to store the secret.",
+            "correct_answers": [
+                "B"
+            ],
+            "explanation": "You must specify the correct Key Vault name: e.g., az keyvault secret set --vault-name kv-prod-01 --name MySecret --value 'Secure123!'."
+        },
+        {
+            "id": 98,
+            "domain": "Operations",
+            "question": "Which Defender for Cloud feature automatically assigns severity levels to recommendations and calculates Secure Score?",
+            "options": [
+                "A) Secure Score",
+                "B) Policy Initiatives",
+                "C) Compliance Dashboard",
+                "D) Adaptive Application Controls"
+            ],
+            "multi_select": false,
+            "hint": "It quantifies your overall security posture numerically.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Secure Score prioritizes recommendations by impact and aggregates them into a percentage that reflects overall security posture."
+        },
+        {
+            "id": 99,
+            "domain": "Data",
+            "question": "Which storage feature prevents deletion or modification of data within a defined retention period?",
+            "options": [
+                "A) Immutable Blob Policy",
+                "B) Soft Delete",
+                "C) Versioning",
+                "D) Backup Policy"
+            ],
+            "multi_select": false,
+            "hint": "Implements WORM compliance for legal retention.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Immutable Blob Policies enforce write-once-read-many (WORM) compliance by preventing deletion or edits during the retention period."
+        },
+        {
+            "id": 100,
+            "domain": "Data",
+            "question": "Which Azure SQL Database feature helps protect sensitive data in query results without encrypting the entire table?",
+            "options": [
+                "A) Dynamic Data Masking",
+                "B) Transparent Data Encryption",
+                "C) Always Encrypted",
+                "D) Row-Level Security"
+            ],
+            "multi_select": false,
+            "hint": "Hides sensitive fields dynamically on query output.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Dynamic Data Masking masks sensitive data at query time without modifying the underlying data, reducing accidental exposure."
+        },
+        {
+            "id": 101,
+            "domain": "Identity",
+            "question": "Which Entra ID feature helps identify and remediate unused or over-privileged permissions across Azure, AWS, and GCP?",
+            "options": [
+                "A) Entra Permissions Management (CIEM)",
+                "B) Privileged Identity Management (PIM)",
+                "C) Access Reviews",
+                "D) Entitlement Management"
+            ],
+            "multi_select": false,
+            "hint": "Think cross-cloud visibility into identity risk.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Entra Permissions Management (formerly CloudKnox) provides cross-cloud visibility and analytics to detect and mitigate unused or excessive permissions."
+        },
+        {
+            "id": 102,
+            "domain": "Identity",
+            "question": "Which statement about Privileged Access Groups (PAGs) in Entra ID is true?",
+            "options": [
+                "A) PAGs can be managed in PIM for just-in-time access to group membership.",
+                "B) PAGs replace Conditional Access policies.",
+                "C) PAGs require a dedicated Global Administrator.",
+                "D) PAGs are only supported in Microsoft 365 groups."
+            ],
+            "multi_select": false,
+            "hint": "Think of PIM integration for groups rather than roles.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Privileged Access Groups allow group membership to be controlled via PIM with time-bound activation, enabling just-in-time access for all resources the group grants."
+        },
+        {
+            "id": 103,
+            "domain": "Networking",
+            "question": "Which Azure service enables centralized management and deployment of Firewall Policies across multiple tenants and subscriptions?",
+            "options": [
+                "A) Azure Firewall Manager",
+                "B) Azure Network Watcher",
+                "C) Azure Front Door",
+                "D) Azure Policy"
+            ],
+            "multi_select": false,
+            "hint": "Think of multi-hub, multi-region policy orchestration.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Firewall Manager centrally manages and deploys Firewall Policies and security configuration for multiple firewalls and regions."
+        },
+        {
+            "id": 104,
+            "domain": "Networking",
+            "question": "Which DDoS plan extends protection to on-premises and Virtual WAN environments?",
+            "options": [
+                "A) DDoS Network Protection",
+                "B) DDoS IP Protection",
+                "C) DDoS Basic",
+                "D) DDoS Standard (legacy)"
+            ],
+            "multi_select": false,
+            "hint": "This new SKU secures hybrid and WAN traffic.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "DDoS Network Protection adds coverage for Virtual WAN and hybrid connectivity, protecting large-scale or multi-region architectures beyond public endpoints."
+        },
+        {
+            "id": 105,
+            "domain": "Compute",
+            "question": "Which confidential computing feature isolates VM memory using AMD SEV-SNP technology?",
+            "options": [
+                "A) Confidential VMs",
+                "B) Trusted Launch VMs",
+                "C) Azure Disk Encryption",
+                "D) Secure Boot"
+            ],
+            "multi_select": false,
+            "hint": "Think hardware-based encryption of guest memory.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Confidential VMs protect data-in-use with AMD SEV-SNP, ensuring the hypervisor and other tenants cannot access the VM’s memory."
+        },
+        {
+            "id": 106,
+            "domain": "Compute",
+            "question": "Which Key Vault tier provides FIPS 140-2 Level 3 certified hardware key storage?",
+            "options": [
+                "A) Managed HSM",
+                "B) Premium Vault",
+                "C) Standard Vault",
+                "D) Confidential Vault"
+            ],
+            "multi_select": false,
+            "hint": "Look for a fully isolated, single-tenant hardware appliance.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Key Vault Managed HSM offers FIPS 140-2 Level 3 compliance, dedicated hardware security modules, and customer-controlled key lifecycle management."
+        },
+        {
+            "id": 107,
+            "domain": "Compute",
+            "question": "Which configuration best secures Azure Kubernetes Service (AKS) nodes and API access?",
+            "options": [
+                "A) Private cluster with Azure AD integration and network policies enabled",
+                "B) Public cluster with anonymous API access",
+                "C) Private cluster with HTTP API disabled",
+                "D) Public cluster with Defender for Containers only"
+            ],
+            "multi_select": false,
+            "hint": "Think isolation + identity + network segmentation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Private AKS clusters restrict control-plane exposure, integrate with Entra ID for authentication, and enforce pod-level policies through Azure Network Policies."
+        },
+        {
+            "id": 108,
+            "domain": "Operations",
+            "question": "Which Defender for Cloud plan integrates with GitHub, Azure DevOps, and GitLab to scan IaC templates and pipelines?",
+            "options": [
+                "A) Defender for DevOps",
+                "B) Defender CSPM",
+                "C) Defender for Servers Plan 2",
+                "D) Defender for Containers"
+            ],
+            "multi_select": false,
+            "hint": "New plan introduced to secure development pipelines.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for DevOps connects to code repositories to detect insecure configurations, secrets, and vulnerabilities within infrastructure-as-code templates."
+        },
+        {
+            "id": 109,
+            "domain": "Operations",
+            "question": "Which capability in Defender for Cloud identifies and monitors internet-exposed assets and shadow IT services?",
+            "options": [
+                "A) Defender External Attack Surface Management (EASM)",
+                "B) Secure Score",
+                "C) Defender for Containers",
+                "D) Threat Intelligence Mode"
+            ],
+            "multi_select": false,
+            "hint": "Focus on external visibility and attack surface discovery.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender EASM maps an organization’s internet-facing footprint and discovers unmanaged or vulnerable assets for proactive remediation."
+        },
+        {
+            "id": 110,
+            "domain": "Operations",
+            "question": "Which Sentinel feature allows you to move log data to cheaper storage while retaining query capability for years?",
+            "options": [
+                "A) Archive and Search retention tiers",
+                "B) Data Connector",
+                "C) Workbook Templates",
+                "D) Live Stream"
+            ],
+            "multi_select": false,
+            "hint": "Introduced to optimize cost for long-term log retention.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Sentinel supports Archive and Search tiers for cost-effective long-term log retention, maintaining the ability to query historical data when needed."
+        },
+        {
+            "id": 111,
+            "domain": "Operations",
+            "question": "Case Study: Your organization must meet ISO 27001 compliance by adding custom controls not provided by Microsoft. Which Defender for Cloud feature enables this?",
+            "options": [
+                "A) Custom compliance standards in Defender for Cloud",
+                "B) Secure Score improvement actions",
+                "C) Regulatory Compliance Dashboard",
+                "D) Azure Policy initiative assignment"
+            ],
+            "multi_select": false,
+            "hint": "Allows importing bespoke compliance frameworks.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Cloud Custom Standards let you define and map unique compliance controls beyond Microsoft’s built-in frameworks, ensuring full regulatory coverage."
+        },
+        {
+            "id": 112,
+            "domain": "Operations",
+            "question": "Arrange the steps to onboard AWS accounts into Defender for Cloud using a native connector.",
+            "options": [
+                "A) Create AWS connector in Defender for Cloud",
+                "B) Grant required IAM permissions in AWS",
+                "C) Enable security recommendations and plans",
+                "D) Review multi-cloud inventory and alerts"
+            ],
+            "multi_select": false,
+            "hint": "Follow setup: permission → connect → enable → verify.",
+            "correct_answers": [
+                "B,A,C,D"
+            ],
+            "explanation": "First grant IAM permissions in AWS, then create the connector in Defender for Cloud, enable security plans, and finally review multi-cloud inventory for alerts."
+        },
+        {
+            "id": 113,
+            "domain": "Case Study – Identity",
+            "question": "Case Study: A multinational enterprise has Azure AD tenants in multiple regions. They want to enforce location-based Conditional Access, detect impossible travel, and automate user risk remediation. Which three features should they implement?",
+            "options": [
+                "A) Conditional Access named locations",
+                "B) Identity Protection risk policies",
+                "C) Privileged Identity Management approval workflow",
+                "D) Sign-in frequency control",
+                "E) Conditional Access authentication context"
+            ],
+            "multi_select": true,
+            "hint": "Combine detection (risk), location logic, and policy enforcement.",
+            "correct_answers": [
+                "A",
+                "B",
+                "E"
+            ],
+            "explanation": "Named locations handle geo-based logic; Identity Protection detects impossible travel; authentication context lets apps enforce adaptive policies."
+        },
+        {
+            "id": 114,
+            "domain": "Identity",
+            "question": "Which two options reduce standing privilege exposure across Azure and Microsoft 365?",
+            "options": [
+                "A) Assigning roles as eligible in PIM",
+                "B) Enabling Security Defaults",
+                "C) Using break-glass emergency accounts daily",
+                "D) Creating permanent Global Admin assignments"
+            ],
+            "multi_select": true,
+            "hint": "Temporary + baseline enforcement, not permanent elevation.",
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "PIM creates JIT elevation and Security Defaults enforce MFA for admins, minimizing persistent privilege."
+        },
+        {
+            "id": 115,
+            "domain": "Networking",
+            "question": "You deploy both Azure Front Door and Application Gateway WAF. Where is TLS termination performed when using both in a chained configuration?",
+            "options": [
+                "A) Front Door only",
+                "B) Application Gateway only",
+                "C) At both layers (re-encryption in between)",
+                "D) Neither – traffic passes through encrypted"
+            ],
+            "multi_select": false,
+            "hint": "Think edge vs regional load balancer behavior.",
+            "correct_answers": [
+                "C"
+            ],
+            "explanation": "Front Door terminates TLS at the edge, then re-encrypts traffic to the Application Gateway which terminates again regionally for inspection."
+        },
+        {
+            "id": 116,
+            "domain": "Networking",
+            "question": "Which two actions improve DDoS resiliency for a public-facing multi-region web app?",
+            "options": [
+                "A) Enable DDoS Network Protection on virtual networks",
+                "B) Deploy Azure Front Door as global entry point",
+                "C) Replace NSGs with custom UDRs",
+                "D) Host the site on a single region with Standard SKU load balancer"
+            ],
+            "multi_select": true,
+            "hint": "Think global distribution + network-edge mitigation.",
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "Network Protection extends coverage, while Front Door provides global anycast absorption and WAF filtering."
+        },
+        {
+            "id": 117,
+            "domain": "Case Study – Defender & Sentinel",
+            "question": "Case Study: A SOC wants unified alerting from Defender for Cloud, Microsoft 365 Defender, and third-party firewalls. They must automatically disable compromised accounts and notify admins on high-severity incidents. What should they configure?",
+            "options": [
+                "A) Sentinel data connectors + automation rules triggering playbooks",
+                "B) Defender for Cloud Secure Score dashboards",
+                "C) Azure Monitor metrics alerts",
+                "D) Logic Apps scheduled workflows without Sentinel"
+            ],
+            "multi_select": false,
+            "hint": "Combine ingestion, correlation, and automated response.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Sentinel connectors ingest alerts; automation rules map to playbooks that disable accounts and alert admins automatically."
+        },
+        {
+            "id": 118,
+            "domain": "Compute",
+            "question": "Which encryption method provides the strongest isolation for data-at-rest on Azure VM disks?",
+            "options": [
+                "A) Platform-managed keys",
+                "B) Customer-managed keys with ADE",
+                "C) Infrastructure Encryption + CMK",
+                "D) BitLocker local encryption only"
+            ],
+            "multi_select": false,
+            "hint": "Double-layer plus customer key control.",
+            "correct_answers": [
+                "C"
+            ],
+            "explanation": "Infrastructure Encryption adds a second encryption layer on top of CMK, achieving dual encryption compliance."
+        },
+        {
+            "id": 119,
+            "domain": "Compute",
+            "question": "Which two controls should be combined to prevent credential theft from a compromised VM?",
+            "options": [
+                "A) Managed Identity instead of embedded credentials",
+                "B) Network Security Groups blocking outbound Internet",
+                "C) Disable Secure Boot",
+                "D) Use system-assigned managed identity only for local admin tasks"
+            ],
+            "multi_select": true,
+            "hint": "Think no stored secrets + limited egress paths.",
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "Managed Identity removes hard-coded creds; NSGs restrict data exfiltration by blocking outbound traffic."
+        },
+        {
+            "id": 120,
+            "domain": "Networking",
+            "question": "Which Azure component provides per-subnet metrics and packet sampling for compliance inspection?",
+            "options": [
+                "A) Network Watcher Flow Logs",
+                "B) Traffic Analytics",
+                "C) NSG Diagnostics",
+                "D) Connection Monitor"
+            ],
+            "multi_select": false,
+            "hint": "Produces flow records for analysis, not active probing.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Flow Logs capture 5-tuple flow data; Traffic Analytics is visualization built on top of those logs."
+        },
+        {
+            "id": 121,
+            "domain": "Defender for Cloud",
+            "question": "Which Defender for Cloud feature differs from Secure Score by allowing import of external benchmarks and custom policies?",
+            "options": [
+                "A) Regulatory Compliance dashboard",
+                "B) Custom Compliance Standards",
+                "C) Policy Initiatives",
+                "D) Azure Blueprints"
+            ],
+            "multi_select": false,
+            "hint": "Used when you must map to ISO 27001 or CIS + own rules.",
+            "correct_answers": [
+                "B"
+            ],
+            "explanation": "Custom Compliance Standards let you define controls and assessments beyond Microsoft’s built-in frameworks."
+        },
+        {
+            "id": 122,
+            "domain": "Case Study – Networking & Storage",
+            "question": "Case Study: A financial app stores documents in Azure Storage and serves them via an internal web API. Compliance forbids public endpoints. You must ensure private access, TLS enforcement, and malware scanning. Which three configurations meet requirements?",
+            "options": [
+                "A) Enable Defender for Storage",
+                "B) Use Private Endpoints for storage",
+                "C) Set Secure Transfer Required = true",
+                "D) Allow public access with shared SAS",
+                "E) Enable CDN Standard"
+            ],
+            "multi_select": true,
+            "hint": "Combine private network + encryption + threat detection.",
+            "correct_answers": [
+                "A",
+                "B",
+                "C"
+            ],
+            "explanation": "Private Endpoints eliminate public access, Secure Transfer Required enforces HTTPS, Defender for Storage adds malware scanning."
+        },
+        {
+            "id": 123,
+            "domain": "Identity",
+            "question": "In Conditional Access, what’s the main difference between 'Require compliant device' and 'Require hybrid Azure AD-joined device'?",
+            "options": [
+                "A) Compliance checks Intune device health; hybrid join checks AD domain membership",
+                "B) Both evaluate only MFA status",
+                "C) Hybrid join enforces encryption policies; compliance does not",
+                "D) They are identical in function"
+            ],
+            "multi_select": false,
+            "hint": "Intune vs AD domain signals.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "'Require compliant device' relies on Intune compliance data, while 'Require hybrid join' ensures domain-joined status—often combined for layered assurance."
+        },
+        {
+            "id": 124,
+            "domain": "Operations / Sentinel",
+            "question": "Which two Sentinel components help analysts correlate alerts faster and visualize incident context?",
+            "options": [
+                "A) Investigation Graph",
+                "B) Watchlists",
+                "C) Workbooks",
+                "D) Data Connectors"
+            ],
+            "multi_select": true,
+            "hint": "Think graph + enrichment datasets.",
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "The Investigation Graph shows relationships, and Watchlists enrich incidents with external data for faster triage."
+        },
+        {
+            "id": 125,
+            "domain": "Compute / AKS",
+            "question": "Which security configuration is recommended to protect the AKS API server from public exposure?",
+            "options": [
+                "A) Private cluster + authorized IP ranges",
+                "B) Standard cluster with Network Policies only",
+                "C) Disable Azure RBAC",
+                "D) Use Classic AKS Dashboard with HTTPS"
+            ],
+            "multi_select": false,
+            "hint": "Combine isolation with minimal IP allow-listing.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Private clusters keep the API server internal while authorized IP ranges limit admin endpoints—preventing open exposure."
+        },
+        {
+            "id": 126,
+            "domain": "Storage",
+            "question": "A storage account uses CMK from a Managed HSM. If the key is disabled or deleted, what happens to access?",
+            "options": [
+                "A) All encryption/decryption operations fail immediately",
+                "B) Data remains readable but not writable",
+                "C) Operations continue until key rotation completes",
+                "D) Azure automatically regenerates a temporary key"
+            ],
+            "multi_select": false,
+            "hint": "Azure never bypasses key unavailability.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "When the CMK becomes unavailable, Azure Storage denies read/write since encryption keys cannot be accessed."
+        },
+        {
+            "id": 127,
+            "domain": "Trick Mix – Identity & Network",
+            "question": "Which statement about Azure Bastion and Just-in-time VM access is correct?",
+            "options": [
+                "A) Bastion removes need for public IP and JIT restricts port exposure; both used together maximize protection",
+                "B) Both are identical and replace each other",
+                "C) JIT provides browser-based RDP",
+                "D) Bastion integrates with NSG flow logs to limit ports"
+            ],
+            "multi_select": false,
+            "hint": "Different scopes but complementary controls.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Bastion offers SSL-based remote access without public IPs; JIT controls port availability duration—together eliminating persistent exposure."
+        }
+    ]
+}
