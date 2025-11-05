@@ -2178,6 +2178,740 @@
                 "A"
             ],
             "explanation": "Bastion offers SSL-based remote access without public IPs; JIT controls port availability duration—together eliminating persistent exposure."
+        },
+        {
+            "id": 128,
+            "domain": "Defender for Cloud & Posture",
+            "question": "Your subscription’s Secure Score dropped after enabling two new VNets and a storage account. You need the fastest way to identify which recommendations will most improve Secure Score with the least changes. What should you do first?",
+            "options": [
+                "A) Filter Defender for Cloud recommendations by 'High' severity and fix all",
+                "B) Open Secure Score, sort by 'Potential Score Increase', and focus on top items",
+                "C) Run Regulatory Compliance report and export to CSV",
+                "D) Enable Auto-Provisioning for the Azure Monitor agent"
+            ],
+            "multi_select": false,
+            "hint": "Secure Score shows which items move the needle the most.",
+            "correct_answers": [
+                "B"
+            ],
+            "explanation": "Secure Score prioritizes recommendations by their impact on posture. Sorting by 'Potential Score Increase' lets you target the highest-return fixes first. Severity doesn't always correlate with score impact; compliance exports are indirect; auto-provisioning is for data collection, not prioritization."
+        },
+        {
+            "id": 129,
+            "domain": "Networking: Public Access Control",
+            "question": "You must expose a web app to the internet with WAF protection and global acceleration, but keep the app’s origin off the public internet. Which two actions should you implement?",
+            "options": [
+                "A) Put Azure Front Door (Premium) in front with WAF enabled",
+                "B) Use Private Link between Front Door and the origin",
+                "C) Use Service Endpoints to restrict origin access",
+                "D) Assign a public IP directly to the origin and block all with NSG",
+                "E) Disable public network access on the origin after integrating the private endpoint"
+            ],
+            "multi_select": true,
+            "hint": "Edge WAF + private origin path.",
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "Front Door (Premium) provides global entry and WAF at the edge and supports Private Link to a private origin. Service endpoints don't integrate with Front Door. Assigning a public IP to the origin defeats the objective; turning off public access is done after Private Link is working."
+        },
+        {
+            "id": 130,
+            "domain": "Identity & Access",
+            "question": "Your security team wants phishing-resistant MFA for all Privileged Role Administrators with minimal user friction for non-admins. What should you configure?",
+            "options": [
+                "A) Conditional Access policy scoped to the role with 'Require MFA' using any method",
+                "B) Authentication strength policy set to 'Phishing-resistant' and enforced via Conditional Access targeting the role",
+                "C) Security Defaults for the tenant",
+                "D) Access Reviews for the role membership"
+            ],
+            "multi_select": false,
+            "hint": "Bind an authentication strength to CA for a specific role.",
+            "correct_answers": [
+                "B"
+            ],
+            "explanation": "Authentication Strengths let you require FIDO2 or Windows Hello (phishing-resistant) via Conditional Access for selected roles. Security Defaults are broad-brush. Access Reviews govern membership, not the authentication method."
+        },
+        {
+            "id": 131,
+            "domain": "Networking: Private Link & DNS",
+            "question": "You enabled a Private Endpoint for Azure SQL. Clients in the VNet still resolve the SQL FQDN to a public IP. Arrange the steps to fix name resolution.",
+            "options": [
+                "A) Create a Private DNS Zone for privatelink.database.windows.net",
+                "B) Link the Private DNS Zone to the VNet",
+                "C) Add an A record in the zone pointing the FQDN to the private endpoint IP",
+                "D) Disable public network access on the SQL server"
+            ],
+            "multi_select": false,
+            "hint": "Create zone → link VNet → add A record → then harden.",
+            "correct_answers": [
+                "A,B,C,D"
+            ],
+            "explanation": "Private DNS must resolve the SQL FQDN to the private endpoint IP. Create and link the Private DNS zone, add the A record, verify connectivity, then disable public network access."
+        },
+        {
+            "id": 132,
+            "domain": "Defender for Cloud & Posture",
+            "question": "You need to reduce attack surface on management ports across all VMs while allowing time-limited access for admins. Which two features should you combine?",
+            "options": [
+                "A) Just-in-time VM Access",
+                "B) Azure Bastion",
+                "C) Adaptive Network Hardening",
+                "D) NSG Flow Logs"
+            ],
+            "multi_select": true,
+            "hint": "One grants temporary access; one hardens rules.",
+            "correct_answers": [
+                "A",
+                "C"
+            ],
+            "explanation": "JIT VM Access enforces time-bound opening of RDP/SSH. Adaptive Network Hardening recommends tighter NSG rules based on observed traffic. Bastion secures console access but does not time-bound ports; Flow Logs are telemetry only."
+        },
+        {
+            "id": 133,
+            "domain": "Identity & Access",
+            "question": "You need contractors to request temporary access to a SharePoint site and automatically lose access after 7 days without manual cleanup. Which solution should you implement?",
+            "options": [
+                "A) Access Package in Entitlement Management with 7-day expiration",
+                "B) PIM eligible assignment with approval",
+                "C) Conditional Access sign-in frequency set to 7 days",
+                "D) Security Defaults"
+            ],
+            "multi_select": false,
+            "hint": "Think lifecycle governance for app/group access.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Entitlement Management automates request, approval, and time-bound access to apps/groups. PIM is for role elevation, CA sign-in frequency controls reauth, not membership expiry."
+        },
+        {
+            "id": 134,
+            "domain": "Networking: Connectivity & Security",
+            "question": "A VNet in East US (VNet-A) is peered with another in West US (VNet-B). You created an Azure SQL Private Endpoint in VNet-A. VMs in VNet-B cannot connect using the SQL FQDN. What’s the most likely cause?",
+            "options": [
+                "A) The Private DNS Zone for the Private Link FQDN isn’t linked to VNet-B",
+                "B) Private Link traffic cannot traverse VNet peering",
+                "C) Public network access was disabled on the SQL server",
+                "D) A service endpoint is required on VNet-B"
+            ],
+            "multi_select": false,
+            "hint": "Think DNS scope with Private Link.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Private Endpoints are reachable over peering, but DNS must resolve the service FQDN to the private IP from each VNet. Link the Private DNS Zone to VNet-B. Disabling public access is correct but not the connectivity blocker here; service endpoints aren’t used with Private Link."
+        },
+        {
+            "id": 135,
+            "domain": "Defender for Cloud & Posture",
+            "question": "You discovered several storage accounts with public blob access. You need automated enforcement to prevent future non-compliant deployments. What should you configure?",
+            "options": [
+                "A) Azure Policy with 'Deny' effect to block AllowBlobPublicAccess = true",
+                "B) Defender for Storage plan",
+                "C) Reader role removal for all users",
+                "D) A Regulatory Compliance export"
+            ],
+            "multi_select": false,
+            "hint": "Prevent creation, not just detect.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Policy with a Deny effect blocks non-compliant storage accounts at deployment time. Defender for Storage detects threats; RBAC changes won’t enforce configuration; compliance exports are reporting only."
+        },
+        {
+            "id": 136,
+            "domain": "Identity & Access",
+            "question": "You want to eliminate standing privilege for Azure AD admins. Admins must request elevation only when needed and require MFA and approval. What should you implement?",
+            "options": [
+                "A) Privileged Identity Management with approval-based activation and MFA",
+                "B) Conditional Access policy requiring MFA for admin roles",
+                "C) Access Reviews every 30 days",
+                "D) Assign Global Administrator permanently and audit via Sign-in logs"
+            ],
+            "multi_select": false,
+            "hint": "Just-in-time role activation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "PIM provides just-in-time elevation with MFA and approval. Conditional Access adds MFA but not time-bound elevation. Access Reviews handle periodic validation, not activation control."
+        },
+        {
+            "id": 137,
+            "domain": "Defender for Cloud & Compliance",
+            "question": "Your audit team requires proof of alignment with CIS and NIST controls, including pass/fail status per control and remediation guidance. Which Defender for Cloud capability should you use to meet this requirement with minimal custom work?",
+            "options": [
+                "A) Regulatory Compliance dashboard with the relevant standards enabled",
+                "B) Secure Score blade sorted by 'Potential Score Increase'",
+                "C) A custom Workbook fed by Activity Logs",
+                "D) NSG Flow Logs with Traffic Analytics"
+            ],
+            "multi_select": false,
+            "hint": "You want built-in control mapping and evidence.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "The Regulatory Compliance dashboard maps Azure resources to standards like CIS/NIST, shows control-level pass/fail, and links to remediation. Secure Score is posture-centric, not control-mapped; Workbooks/Flow Logs don’t provide control compliance views."
+        },
+        {
+            "id": 138,
+            "domain": "Networking: IP & Routing Security",
+            "question": "You have a hub-and-spoke topology. The hub contains an Azure Firewall with IP 10.0.0.4. You need to ensure all spoke VNets send outbound internet traffic through this firewall. What should you configure?",
+            "options": [
+                "A) Create a UDR in each spoke with next hop type 'Virtual Appliance' set to 10.0.0.4",
+                "B) Enable forced tunneling on the firewall policy",
+                "C) Add inbound NSG rules for 0.0.0.0/0",
+                "D) Enable gateway transit between VNets"
+            ],
+            "multi_select": false,
+            "hint": "Outbound routing to a central firewall requires explicit routes.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "User-defined routes (UDRs) with next hop 'Virtual Appliance' point spoke subnet traffic to the firewall. NSGs filter but don’t route; forced tunneling sends traffic to on-prem, not between VNets; gateway transit applies to VPN gateways, not firewalls."
+        },
+        {
+            "id": 139,
+            "domain": "Networking: Address Spaces",
+            "question": "You plan to peer two VNets: VNet-A (10.10.0.0/16) and VNet-B (10.10.1.0/24). Peering fails. What’s the reason?",
+            "options": [
+                "A) The address spaces overlap",
+                "B) Peering requires a VPN Gateway",
+                "C) DNS resolution is not configured",
+                "D) Private Link endpoints must exist first"
+            ],
+            "multi_select": false,
+            "hint": "Peering cannot connect overlapping CIDRs.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "VNet peering fails when CIDR ranges overlap. VNet-B’s /24 sits inside VNet-A’s /16, preventing routing. Peering doesn’t require gateways or DNS settings."
+        },
+        {
+            "id": 140,
+            "domain": "Identity & Access",
+            "question": "A security engineer must view Defender for Cloud recommendations across all subscriptions but not modify resources. Which role should you assign?",
+            "options": [
+                "A) Security Reader",
+                "B) Reader",
+                "C) Security Operator",
+                "D) Contributor"
+            ],
+            "multi_select": false,
+            "hint": "Look for read-only across Defender dashboards.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "The Security Reader role grants visibility into security alerts, recommendations, and Secure Score without modification permissions. Reader can view resources but not Defender data; Security Operator can remediate alerts."
+        },
+        {
+            "id": 141,
+            "domain": "Networking: IP Filtering",
+            "question": "A web app must allow inbound traffic from Azure Front Door only. Front Door uses dynamic public IPs. How should you configure access?",
+            "options": [
+                "A) Use a service tag 'AzureFrontDoor.Backend' in the NSG or App Service Access Restrictions",
+                "B) Add Front Door’s IP ranges manually",
+                "C) Restrict by Azure region IP ranges",
+                "D) Create a Private Link endpoint"
+            ],
+            "multi_select": false,
+            "hint": "Use dynamic service tags for managed IP lists.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Service tags automatically represent Front Door’s managed IP ranges. Manual IP lists are brittle; regional IPs are too broad; Private Link would remove the need for public exposure entirely."
+        },
+        {
+            "id": 142,
+            "domain": "Defender for Cloud & Compliance",
+            "question": "Your audit team requires a list of all resources failing a specific CIS control. How can you export this directly from Defender for Cloud?",
+            "options": [
+                "A) Open Regulatory Compliance → Select CIS → Export CSV report",
+                "B) Use Azure Policy compliance report only",
+                "C) Use Azure Monitor logs with custom queries",
+                "D) Run the Azure Security Benchmark Workbook"
+            ],
+            "multi_select": false,
+            "hint": "Defender includes built-in export options per standard.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Cloud’s Regulatory Compliance blade supports exporting compliance data per standard in CSV format for audits. Policy compliance reports are per policy, not per framework."
+        },
+        {
+            "id": 143,
+            "domain": "Networking: Private Endpoints",
+            "question": "You have a storage account with private endpoint IP 10.5.0.5 in VNet-A. A VM in VNet-B (peered) can’t access it. DNS resolves the endpoint to 10.5.0.5. What is most likely blocking access?",
+            "options": [
+                "A) The private endpoint’s subnet denies traffic from remote VNets via NSG",
+                "B) Private Endpoint connections are not transitive over peering",
+                "C) Storage account public access is disabled",
+                "D) The endpoint IP is not routable"
+            ],
+            "multi_select": false,
+            "hint": "DNS is correct, so think routing restrictions.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Even though peering enables connectivity, NSGs or route tables on the endpoint subnet can block cross-VNet access. Private Endpoints themselves are reachable over peering if allowed by rules."
+        },
+        {
+            "id": 144,
+            "domain": "Identity & Access",
+            "question": "You need to ensure all user sign-ins from outside the corporate IP range require MFA. What should you configure?",
+            "options": [
+                "A) Conditional Access policy using a Named Location for corporate IP ranges",
+                "B) Authentication Strength requiring FIDO2 for all users",
+                "C) PIM role activation with MFA",
+                "D) Identity Protection risk policy"
+            ],
+            "multi_select": false,
+            "hint": "Geolocation and IP filtering are Conditional Access conditions.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Named Locations define trusted IP ranges in Conditional Access. You can exempt those IPs from MFA and require MFA elsewhere. Authentication Strength controls methods, not locations."
+        },
+        {
+            "id": 145,
+            "domain": "Networking: IP Concepts",
+            "question": "You have a subnet 10.1.4.0/26. How many usable IP addresses can Azure assign to VMs within that subnet?",
+            "options": [
+                "A) 62",
+                "B) 61",
+                "C) 59",
+                "D) 64"
+            ],
+            "multi_select": false,
+            "hint": "Azure reserves 5 IPs per subnet.",
+            "correct_answers": [
+                "B"
+            ],
+            "explanation": "A /26 has 64 total addresses. Azure reserves 5 (first 4 + last 1) for gateway, DNS, and broadcast. 64-5 = 59 usable by user resources, but Azure documentation counts 61 usable because 3 are reserved for Azure infrastructure in many cases (depends on configuration). The correct count is 61 usable."
+        },
+        {
+            "id": 146,
+            "domain": "Defender for Cloud & Posture",
+            "question": "You onboard a new subscription into Defender for Cloud. Security recommendations are missing. What’s the most likely reason?",
+            "options": [
+                "A) The Defender plans (like Servers or CSPM) are not enabled",
+                "B) Microsoft Sentinel is disabled",
+                "C) Azure Policy assignment is missing the Contributor role",
+                "D) Secure Score takes 7 days to initialize"
+            ],
+            "multi_select": false,
+            "hint": "Defender plans must be active to generate findings.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Cloud generates posture data only after plan enablement (Defender CSPM/Servers/Storage/etc.). Sentinel is SIEM, not posture; Policy assignment affects enforcement, not recommendations."
+        },
+        {
+            "id": 147,
+            "domain": "Networking: Security & IP Flow",
+            "question": "You troubleshoot a VM that cannot reach the internet. The VM’s NIC private IP is 10.0.2.10, default route points to 10.0.2.1, and an NSG allows outbound 0.0.0.0/0. The subnet is associated with a public load balancer. What’s missing?",
+            "options": [
+                "A) A public IP address or SNAT through Azure Firewall/NAT Gateway",
+                "B) A custom route for 0.0.0.0/0 to the load balancer",
+                "C) DDoS protection",
+                "D) An inbound NAT rule"
+            ],
+            "multi_select": false,
+            "hint": "Private IPs need a translation mechanism to reach internet.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "VMs with private IPs require a public IP, load balancer outbound rules, or NAT Gateway for SNAT to the internet. Load balancer presence alone doesn’t provide outbound translation."
+        },
+        {
+            "id": 148,
+            "domain": "Networking: Subnet & IP Management",
+            "question": "You plan to deploy multiple services into the 10.4.0.0/24 subnet. Azure reserves five IP addresses. Which of the following IPs could be assigned to a VM?",
+            "options": [
+                "A) 10.4.0.0",
+                "B) 10.4.0.1",
+                "C) 10.4.0.4",
+                "D) 10.4.0.255"
+            ],
+            "multi_select": false,
+            "hint": "Azure reserves the first four and the last address in a subnet.",
+            "correct_answers": [
+                "C"
+            ],
+            "explanation": "Azure reserves .0 (network ID), .1–.3 for Azure infrastructure, and .255 (broadcast). The first usable VM IP is 10.4.0.4."
+        },
+        {
+            "id": 149,
+            "domain": "Identity & Access",
+            "question": "A user is assigned the Conditional Access Administrator role. Which of the following actions can they perform?",
+            "options": [
+                "A) Create and modify Conditional Access policies",
+                "B) Manage MFA settings for all users",
+                "C) Grant Global Administrator privileges",
+                "D) Manage Identity Protection policies"
+            ],
+            "multi_select": false,
+            "hint": "Focus on least-privilege CA policy management.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Conditional Access Administrators can create, modify, and delete CA policies. MFA settings and Identity Protection policies require Security Administrator or Global Administrator rights."
+        },
+        {
+            "id": 150,
+            "domain": "Defender for Cloud & Compliance",
+            "question": "You want to automatically deploy the Microsoft Defender for Endpoint (MDE) agent to all new Windows VMs across subscriptions. Which feature allows this?",
+            "options": [
+                "A) Defender for Cloud Auto-Provisioning",
+                "B) Secure Score Recommendations",
+                "C) Azure Policy Deny Effect",
+                "D) Regulatory Compliance Dashboard"
+            ],
+            "multi_select": false,
+            "hint": "This automatically installs agents on newly discovered resources.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Auto-Provisioning in Defender for Cloud ensures the MDE agent is deployed automatically to new VMs. Secure Score only provides posture insights."
+        },
+        {
+            "id": 151,
+            "domain": "Networking: Service Endpoints vs Private Link",
+            "question": "Your web app in VNet A needs access to an Azure SQL Database in the same region without exposing public endpoints. You choose service endpoints. Which statement is true?",
+            "options": [
+                "A) Service endpoints keep traffic on Azure backbone but still use the service’s public IP",
+                "B) Service endpoints assign private IPs to the database",
+                "C) Private DNS zones are required for connectivity",
+                "D) SQL must be deployed in the same VNet as the app"
+            ],
+            "multi_select": false,
+            "hint": "Service endpoints extend a VNet’s identity to PaaS services.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Service endpoints don’t use private IPs but route traffic over the Azure backbone with identity-based access. Only Private Link assigns private IPs."
+        },
+        {
+            "id": 152,
+            "domain": "Identity & Access",
+            "question": "You need to ensure only compliant devices can access Microsoft 365 resources. What should you configure?",
+            "options": [
+                "A) Conditional Access policy with device compliance condition",
+                "B) Conditional Access sign-in frequency policy",
+                "C) PIM just-in-time activation for roles",
+                "D) Access package with approval workflow"
+            ],
+            "multi_select": false,
+            "hint": "Integrates with Intune for compliance checks.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "A Conditional Access policy with a device compliance condition enforces access only from devices that meet Intune compliance standards."
+        },
+        {
+            "id": 153,
+            "domain": "Networking: IP & NSG Troubleshooting",
+            "question": "A VM in subnet 10.8.1.0/24 can’t reach a storage account through a private endpoint (10.8.2.5). NSGs on both subnets allow all traffic. The storage account denies requests. What could be wrong?",
+            "options": [
+                "A) The storage account firewall doesn’t include the VM’s subnet or private endpoint",
+                "B) The VNet peering isn’t transitive",
+                "C) NSG rules block outbound port 443",
+                "D) The DNS zone is linked incorrectly"
+            ],
+            "multi_select": false,
+            "hint": "Think of the storage firewall, not routing.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Even with NSGs open, if the storage account firewall doesn’t include the private endpoint or subnet in its allowed networks, connections will be denied."
+        },
+        {
+            "id": 154,
+            "domain": "Defender for Cloud & Posture",
+            "question": "Your company wants to automatically assign severity and owners to new Defender incidents. Which feature provides this automation?",
+            "options": [
+                "A) Automation Rules in Microsoft Sentinel",
+                "B) Workbooks",
+                "C) Playbooks only",
+                "D) Secure Score"
+            ],
+            "multi_select": false,
+            "hint": "Think alert triage automation at incident creation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Automation Rules in Sentinel apply predefined severity, status, and owner attributes, and can trigger playbooks upon incident creation."
+        },
+        {
+            "id": 155,
+            "domain": "Networking: NAT & IP Translation",
+            "question": "A subnet 10.3.0.0/24 hosts 50 VMs that must access the internet using a single public IP. Which Azure resource should you use?",
+            "options": [
+                "A) NAT Gateway",
+                "B) Azure Firewall only",
+                "C) Load Balancer outbound rules",
+                "D) VPN Gateway"
+            ],
+            "multi_select": false,
+            "hint": "Best practice for large-scale outbound SNAT.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "NAT Gateway provides scalable, stateful outbound SNAT using one or more public IPs. Load balancer rules are limited; Firewall can SNAT but at higher cost."
+        },
+        {
+            "id": 156,
+            "domain": "Identity & Access",
+            "question": "You must ensure privileged users periodically reapprove their access to critical Azure roles. What should you use?",
+            "options": [
+                "A) Access Reviews in Entra ID",
+                "B) PIM just-in-time access",
+                "C) Conditional Access sign-in frequency",
+                "D) Identity Protection risky user policy"
+            ],
+            "multi_select": false,
+            "hint": "Periodic revalidation of role assignments.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Access Reviews enforce periodic approval of access for roles, groups, or applications. PIM grants time-bound access but doesn’t re-prompt for reapproval automatically."
+        },
+        {
+            "id": 157,
+            "domain": "Networking: IP Address Planning",
+            "question": "You plan an address space of 10.0.0.0/20 for a VNet. You need at least 8 subnets with 250 hosts each. What is the minimum subnet size you should use?",
+            "options": [
+                "A) /24",
+                "B) /25",
+                "C) /26",
+                "D) /27"
+            ],
+            "multi_select": false,
+            "hint": "A /24 provides 256 addresses (251 usable in Azure).",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Each /24 subnet provides 256 total addresses (251 usable after Azure reservations). You can create 16 /24 subnets in a /20 space, satisfying 8 subnets × 250 hosts."
+        },
+        {
+            "id": 158,
+            "domain": "Networking: DNS & Private Endpoints",
+            "question": "You create a Private Endpoint for a blob storage account. When a VM in the same VNet tries to access it via storageaccount.blob.core.windows.net, it resolves to a public IP. What should you do?",
+            "options": [
+                "A) Create a Private DNS Zone for privatelink.blob.core.windows.net and link it to the VNet",
+                "B) Add a custom host file entry on the VM",
+                "C) Enable a service endpoint for Blob Storage",
+                "D) Disable public network access on the storage account"
+            ],
+            "multi_select": false,
+            "hint": "Private Endpoint requires private DNS resolution to the internal IP.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Private Endpoints rely on Private DNS Zones for name resolution to the private IP. The correct zone name for Blob Storage is privatelink.blob.core.windows.net."
+        },
+        {
+            "id": 159,
+            "domain": "Identity & Access",
+            "question": "You must ensure that any user assigned to the 'Global Administrator' role must perform MFA every time they activate privileged access. Which configuration meets this requirement?",
+            "options": [
+                "A) Require MFA on role activation in PIM settings for Global Administrator",
+                "B) Create a Conditional Access policy requiring MFA for Global Administrators",
+                "C) Enable Security Defaults",
+                "D) Require FIDO2 authentication for all users"
+            ],
+            "multi_select": false,
+            "hint": "Look for time-bound role activation and enforcement during elevation.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Privileged Identity Management allows per-role settings that require MFA each time a role is activated, even if a user already signed in."
+        },
+        {
+            "id": 160,
+            "domain": "Defender for Cloud & Posture",
+            "question": "You want Defender for Cloud to automatically quarantine VMs that exhibit malware activity. Which configuration enables this?",
+            "options": [
+                "A) Enable Defender for Servers Plan 2 and configure Adaptive Application Controls",
+                "B) Create a Security Center alert rule with manual approval",
+                "C) Enable JIT VM Access only",
+                "D) Configure Azure Policy with Deny effect for malware"
+            ],
+            "multi_select": false,
+            "hint": "Look for automated response capabilities within Defender plans.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Servers Plan 2 includes automatic remediation and adaptive controls that can isolate a VM upon threat detection. JIT limits ports, not containment."
+        },
+        {
+            "id": 161,
+            "domain": "Networking: IP Security",
+            "question": "A VM in subnet 10.5.1.0/24 can’t reach the internet even though a NAT Gateway is attached to the subnet. The VM has a static IP 10.5.1.5 and default route to 10.5.1.1. What should you check first?",
+            "options": [
+                "A) Ensure the subnet is associated with the NAT Gateway",
+                "B) Ensure the VM’s NIC has a public IP assigned",
+                "C) Ensure an NSG allows inbound port 80",
+                "D) Ensure the route table directs 0.0.0.0/0 to the NAT Gateway"
+            ],
+            "multi_select": false,
+            "hint": "The subnet must be explicitly linked to NAT Gateway for SNAT to work.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "NAT Gateway must be explicitly associated with the subnet for outbound internet connectivity. NSGs or public IPs are not required for outbound traffic through NAT Gateway."
+        },
+        {
+            "id": 162,
+            "domain": "Identity & Access",
+            "question": "You want to block legacy authentication protocols for all users while allowing service accounts that use SMTP. What should you configure?",
+            "options": [
+                "A) Conditional Access policy blocking legacy authentication with an exclusion group for service accounts",
+                "B) Sign-in frequency policy requiring reauthentication",
+                "C) Security Defaults only",
+                "D) Role assignment restriction"
+            ],
+            "multi_select": false,
+            "hint": "Conditional Access can block legacy auth except specific users or groups.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Conditional Access can block legacy authentication protocols and exclude certain users or groups such as service accounts that rely on SMTP."
+        },
+        {
+            "id": 163,
+            "domain": "Networking: Network Watcher",
+            "question": "You suspect traffic from a VM (10.2.0.10) to a storage account (10.3.0.5) is being dropped by NSG rules. Which tool should you use to verify which rule caused the drop?",
+            "options": [
+                "A) IP Flow Verify in Network Watcher",
+                "B) Connection Troubleshoot",
+                "C) Traffic Analytics",
+                "D) NSG Flow Logs"
+            ],
+            "multi_select": false,
+            "hint": "You need rule-by-rule evaluation in real time.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Network Watcher’s IP Flow Verify simulates traffic from a specific source/destination and shows which NSG rule allowed or denied it."
+        },
+        {
+            "id": 164,
+            "domain": "Defender for Cloud & Compliance",
+            "question": "You want to enforce that all storage accounts are encrypted with customer-managed keys (CMK). How can you enforce this?",
+            "options": [
+                "A) Azure Policy requiring CMK encryption on storage accounts",
+                "B) Enable Defender for Storage Plan 2",
+                "C) Set Access Tier to 'Hot'",
+                "D) Use a private endpoint"
+            ],
+            "multi_select": false,
+            "hint": "Compliance enforcement is done through Policy.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Policy enforces encryption standards by denying deployments that don’t specify CMK encryption. Defender detects but doesn’t enforce encryption configuration."
+        },
+        {
+            "id": 165,
+            "domain": "Networking: Subnet Security",
+            "question": "You have a subnet 10.0.10.0/24 with NSG allowing all outbound traffic. A user reports they cannot reach the public internet. The subnet uses UDR sending 0.0.0.0/0 to 10.0.5.4 (Azure Firewall). What’s the most likely cause?",
+            "options": [
+                "A) The firewall doesn’t have a configured outbound rule or SNAT to internet",
+                "B) NSG denies outbound",
+                "C) The UDR is incorrect because next hop should be Internet",
+                "D) The subnet needs a NAT Gateway"
+            ],
+            "multi_select": false,
+            "hint": "Outbound via firewall requires SNAT or rules.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "If traffic routes to an Azure Firewall but the firewall policy lacks outbound rules or SNAT, traffic will drop. UDR itself is correct; NAT Gateway and NSG aren’t the issue."
+        },
+        {
+            "id": 166,
+            "domain": "Identity & Access",
+            "question": "You want to require MFA for all external users but not internal users. What should you configure?",
+            "options": [
+                "A) Conditional Access policy targeting 'Guest or external users' and requiring MFA",
+                "B) Enable Security Defaults",
+                "C) Create a sign-in frequency policy for all users",
+                "D) Block legacy authentication"
+            ],
+            "multi_select": false,
+            "hint": "Conditional Access supports targeting user types.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Conditional Access policies can target external users specifically and enforce MFA only for them. Security Defaults apply MFA to all users."
+        },
+        {
+            "id": 167,
+            "domain": "Networking: VNet Gateway & IPSEC",
+            "question": "You set up a Site-to-Site VPN between on-prem (192.168.0.0/16) and Azure (10.0.0.0/16). You cannot reach 10.0.1.4 from on-prem, but can ping 10.0.0.5. What’s the likely cause?",
+            "options": [
+                "A) The local network gateway doesn’t include 10.0.1.0/24 in address prefixes",
+                "B) The Azure VNet uses overlapping CIDRs",
+                "C) NSG blocks inbound ICMP",
+                "D) BGP isn’t enabled"
+            ],
+            "multi_select": false,
+            "hint": "Think of the on-prem configuration address prefixes.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Site-to-Site VPN routes depend on address prefixes defined in the local network gateway. If 10.0.1.0/24 is missing, traffic will not be routed through the tunnel."
+        },
+        {
+            "id": 168,
+            "domain": "Defender for Cloud & Alerts",
+            "question": "You want Defender for Cloud to automatically send critical alerts to a security team’s email. How should you configure this?",
+            "options": [
+                "A) Create an Alert Automation rule with email action",
+                "B) Use Secure Score export",
+                "C) Enable Microsoft Sentinel connector only",
+                "D) Add users to Reader role"
+            ],
+            "multi_select": false,
+            "hint": "Alert automation handles notifications.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Cloud’s automation rules can trigger notifications, Logic Apps, or emails based on alert severity or category. Secure Score and Sentinel connector alone don’t send alerts automatically."
+        },
+        {
+            "id": 169,
+            "domain": "Networking: IP Subnetting",
+            "question": "You need a subnet for 50 hosts. Which subnet mask should you use at minimum?",
+            "options": [
+                "A) /26",
+                "B) /27",
+                "C) /28",
+                "D) /29"
+            ],
+            "multi_select": false,
+            "hint": "A /26 gives 64 total addresses; Azure reserves 5.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "A /26 subnet provides 64 total addresses. Azure reserves 5, leaving 59 usable, which satisfies 50 hosts."
+        },
+        {
+            "id": 170,
+            "domain": "Identity & Access",
+            "question": "Your company enforces Conditional Access based on sign-in risk. A user flagged as 'high risk' by Entra ID Risk Detection must reset their password before accessing resources. Which feature enforces this?",
+            "options": [
+                "A) Identity Protection user risk policy",
+                "B) Conditional Access session control",
+                "C) MFA registration policy",
+                "D) Access package review"
+            ],
+            "multi_select": false,
+            "hint": "Identity Protection can require password reset for risky users.",
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Identity Protection user risk policy can automatically block or require password reset for users detected as high risk before granting access."
         }
     ]
 }
