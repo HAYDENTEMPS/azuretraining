@@ -2912,6 +2912,502 @@
                 "A"
             ],
             "explanation": "Identity Protection user risk policy can automatically block or require password reset for users detected as high risk before granting access."
+        },
+        {
+            "id": 171,
+            "domain": "Secure Identity & Access",
+            "question": "You need to assign a user a custom role that allows them to view Key Vault secrets but not modify them. Which built-in role should you use as a base when creating this custom role?",
+            "options": [
+                "A) Key Vault Reader",
+                "B) Key Vault Secrets Officer",
+                "C) Key Vault Administrator",
+                "D) Security Reader"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "The Key Vault Reader role allows viewing metadata and contents of secrets without modification. You can clone and further restrict it when creating a custom role."
+        },
+        {
+            "id": 172,
+            "domain": "Secure Identity & Access",
+            "question": "Which Microsoft Entra feature provides just-in-time assignment of Azure roles across multiple tenants from one control plane?",
+            "options": [
+                "A) Microsoft Entra ID Governance",
+                "B) Privileged Identity Management (PIM)",
+                "C) Entra Permissions Management (CIEM)",
+                "D) Access Packages"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Microsoft Entra ID Governance provides lifecycle management, including just-in-time access and access reviews across multiple tenants via access packages."
+        },
+        {
+            "id": 173,
+            "domain": "Secure Networking",
+            "question": "You must prevent developers from creating VNets with overlapping address spaces. Which service should enforce this?",
+            "options": [
+                "A) Azure Policy",
+                "B) Network Security Group",
+                "C) Azure Firewall",
+                "D) Azure Monitor"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Policy can enforce network configuration rules such as address space uniqueness across VNets using policy definitions."
+        },
+        {
+            "id": 174,
+            "domain": "Secure Networking",
+            "question": "Which Azure feature should you use to centrally manage hub-and-spoke network configurations, including security rules?",
+            "options": [
+                "A) Azure Virtual Network Manager (AVNM)",
+                "B) Azure Firewall Manager",
+                "C) Application Gateway",
+                "D) Network Watcher"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Virtual Network Manager (AVNM) provides global network group management, connectivity configurations, and security rule deployment across multiple VNets."
+        },
+        {
+            "id": 175,
+            "domain": "Secure Networking",
+            "question": "You need to connect branch offices to Azure through a managed WAN service with integrated security policies. Which should you use?",
+            "options": [
+                "A) Azure Virtual WAN with secured virtual hub",
+                "B) VPN Gateway",
+                "C) ExpressRoute",
+                "D) Front Door"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Virtual WAN with a secured virtual hub provides centralized routing, policy control, and firewall integration for branch and site-to-site connectivity."
+        },
+        {
+            "id": 176,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which encryption mechanism ensures that even Azure administrators cannot access VM data in use?",
+            "options": [
+                "A) Confidential VM with AMD SEV-SNP",
+                "B) Azure Disk Encryption",
+                "C) Infrastructure Encryption",
+                "D) Trusted Launch"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Confidential VMs encrypt data in memory using AMD SEV-SNP, protecting data-in-use from hypervisor or Azure admin access."
+        },
+        {
+            "id": 177,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "You must protect storage account data from accidental deletion and ransomware. Which two features should you enable?",
+            "options": [
+                "A) Soft Delete",
+                "B) Immutable Blob Policy",
+                "C) CORS rules",
+                "D) Shared Access Signature (SAS)"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "Soft Delete allows recovery of deleted data, while Immutable Blob Policies enforce WORM retention to block modification or deletion."
+        },
+        {
+            "id": 178,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which feature allows you to automatically rotate customer-managed keys for Azure SQL Database?",
+            "options": [
+                "A) Key Vault key rotation policy",
+                "B) Transparent Data Encryption (TDE)",
+                "C) Azure Policy",
+                "D) Defender for SQL"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Azure Key Vault key rotation policies automate key renewal and versioning for databases using Customer-Managed Keys (CMK)."
+        },
+        {
+            "id": 179,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "A company wants to enforce double encryption for regulatory compliance. Which setting provides this in Azure Storage?",
+            "options": [
+                "A) Infrastructure Encryption",
+                "B) Azure Disk Encryption",
+                "C) Transparent Data Encryption",
+                "D) Role-Based Access Control"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Infrastructure Encryption applies an additional encryption layer using separate keys, providing dual encryption for compliance needs."
+        },
+        {
+            "id": 180,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Which Azure SQL feature restricts data access based on user identity or execution context?",
+            "options": [
+                "A) Row-Level Security (RLS)",
+                "B) Dynamic Data Masking",
+                "C) Always Encrypted",
+                "D) Transparent Data Encryption"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Row-Level Security enforces predicate filters to limit data access per user or role context."
+        },
+        {
+            "id": 181,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender for Cloud plan provides agentless vulnerability scanning for Azure virtual machines?",
+            "options": [
+                "A) Defender for Servers Plan 2",
+                "B) Defender for Servers Plan 1",
+                "C) Defender CSPM",
+                "D) Defender for Containers"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Defender for Servers Plan 2 includes agentless scanning, vulnerability management, and MDE integration for VM protection."
+        },
+        {
+            "id": 182,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Sentinel feature can automatically run playbooks when certain conditions in an incident are met?",
+            "options": [
+                "A) Automation Rules",
+                "B) Analytics Rules",
+                "C) Watchlists",
+                "D) Workbooks"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Automation Rules define triggers and actions to automatically run playbooks or assign severity/owner when incidents occur."
+        },
+        {
+            "id": 183,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender for Cloud capability connects AWS or GCP environments for unified security posture management?",
+            "options": [
+                "A) Multi-cloud connectors",
+                "B) Azure Arc",
+                "C) Defender for Containers",
+                "D) Secure Score"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Multi-cloud connectors integrate AWS and GCP accounts with Defender for Cloud to evaluate posture and compliance across environments."
+        },
+        {
+            "id": 184,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Defender for Cloud feature can automatically deploy missing endpoint protection agents to virtual machines?",
+            "options": [
+                "A) Auto-Provisioning",
+                "B) Adaptive Application Controls",
+                "C) JIT VM Access",
+                "D) Secure Score"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Auto-Provisioning ensures all discovered VMs have monitoring or endpoint protection agents deployed for threat detection."
+        },
+        {
+            "id": 185,
+            "domain": "Defender for Cloud & Sentinel",
+            "question": "Which Sentinel feature should you use to correlate multiple data sources using MITRE ATT&CK techniques?",
+            "options": [
+                "A) Analytics Rules",
+                "B) Workbooks",
+                "C) Playbooks",
+                "D) Incidents"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Analytics Rules can be mapped to MITRE ATT&CK techniques, helping analysts understand detection coverage and correlation."
+        },
+        {
+            "id": 186,
+            "domain": "Secure Networking",
+            "question": "Your organization manages 25 VNets across multiple regions and wants to centrally deploy and enforce NSG and routing configurations across all of them. Which two Azure features should you implement together?",
+            "options": [
+                "A) Azure Virtual Network Manager (AVNM)",
+                "B) Azure Firewall Manager",
+                "C) Azure Policy",
+                "D) Azure Network Watcher"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "C"
+            ],
+            "explanation": "Azure Virtual Network Manager centrally manages connectivity and security rules for multiple VNets. Azure Policy complements this by enforcing consistent configuration compliance across environments."
+        },
+        {
+            "id": 187,
+            "domain": "Secure Identity & Access",
+            "question": "You must ensure that Azure resources automatically get a managed identity and can be assigned RBAC roles via Azure Policy. Which two actions should you perform?",
+            "options": [
+                "A) Use a DeployIfNotExists policy definition to assign a system-assigned managed identity",
+                "B) Configure a Modify policy definition to append role assignments",
+                "C) Manually enable identities on each resource in the portal",
+                "D) Use Azure Blueprints to deploy resources with a shared identity"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "A DeployIfNotExists policy can automatically enable system-assigned managed identities for new resources, and a Modify policy can append RBAC assignments. Together they automate identity and access consistency."
+        },
+        {
+            "id": 188,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "You need to automatically rotate Customer-Managed Keys (CMKs) for all Key Vaults used by SQL databases and storage accounts every 90 days. Which two configurations are required?",
+            "options": [
+                "A) Enable Key Rotation Policy on each Key Vault key",
+                "B) Grant Key Vault Crypto Officer permissions to the managed identity of the SQL server",
+                "C) Enable automatic key rollover in Defender for Cloud",
+                "D) Configure an Event Grid trigger to rotate expired keys manually"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "To automate CMK rotation, you must define a Key Rotation Policy in Key Vault and ensure the resource using the key (for example, SQL or Storage) has Crypto Officer permissions through its managed identity."
+        },
+        {
+            "id": 189,
+            "domain": "Secure Networking",
+            "question": "You must restrict inbound and outbound traffic for an Azure App Service and an Azure Function App so that they communicate only through private IP addresses. Which three steps should you perform?",
+            "options": [
+                "A) Integrate both apps with a virtual network using regional VNet integration",
+                "B) Create Private Endpoints for each app in the same subnet",
+                "C) Configure Access Restrictions to allow only private traffic",
+                "D) Disable public network access on the apps",
+                "E) Use an Application Gateway with WAF in front of the private endpoint"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "C",
+                "D"
+            ],
+            "explanation": "Private access for App Service and Function Apps is achieved by VNet integration (for outbound traffic), Access Restrictions (for inbound control), and disabling public access. Private Endpoints are optional for inbound access from inside a VNet, but not mandatory for both directions."
+        },
+        {
+            "id": 190,
+            "domain": "Secure Networking",
+            "question": "Your organization wants to ensure that no new subnets are created without being part of an AVNM security group. Which policy effect and scope combination should you use?",
+            "options": [
+                "A) Deny policy at management group level with definition targeting subnets missing AVNM membership",
+                "B) Append policy at subscription scope to automatically add subnets to AVNM",
+                "C) DeployIfNotExists policy at resource group scope",
+                "D) Audit policy at management group scope only"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "A Deny effect at management group level ensures non-compliant subnet creations are blocked if they are not associated with an AVNM security group, enforcing global governance."
+        },
+        {
+            "id": 191,
+            "domain": "Secure Identity & Access",
+            "question": "You need to reduce the risk of credential theft for administrators signing in from unmanaged devices. Which two Conditional Access configurations should you use?",
+            "options": [
+                "A) Require compliant device condition",
+                "B) Require authentication strength 'Phishing-resistant MFA'",
+                "C) Block legacy authentication protocols",
+                "D) Grant access if sign-in risk is low"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "B",
+                "C"
+            ],
+            "explanation": "Blocking legacy protocols removes non-MFA flows, while enforcing phishing-resistant MFA (e.g., FIDO2 or certificate-based) protects admins on unmanaged endpoints."
+        },
+        {
+            "id": 192,
+            "domain": "Secure Identity & Access",
+            "question": "A partner organization needs temporary access to an internal web app using their own Entra tenant. You must enforce MFA and revoke access automatically after 14 days. Which two features should you configure?",
+            "options": [
+                "A) B2B collaboration with one-time passcodes",
+                "B) Conditional Access requiring MFA",
+                "C) Access Package with time-bound assignment in Entitlement Management",
+                "D) Privileged Identity Management (PIM) assignment"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "B",
+                "C"
+            ],
+            "explanation": "Use Entitlement Management to provision and expire B2B access automatically and Conditional Access to enforce MFA."
+        },
+        {
+            "id": 193,
+            "domain": "Secure Networking",
+            "question": "You must secure inbound HTTP traffic to multiple regional web apps, ensuring global routing, WAF inspection, and CDN caching. Which two Azure services should you combine?",
+            "options": [
+                "A) Azure Front Door (Standard/Premium)",
+                "B) Application Gateway WAF v2",
+                "C) Azure Firewall Premium",
+                "D) Traffic Manager"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "Front Door provides global entry, caching, and geo-routing; App Gateway WAF adds regional layer 7 inspection before reaching backend apps."
+        },
+        {
+            "id": 194,
+            "domain": "Secure Networking",
+            "question": "Which two actions improve security and monitoring for ExpressRoute circuits?",
+            "options": [
+                "A) Enable MACsec encryption on the private peering link",
+                "B) Configure Network Watcher Connection Monitor for path latency",
+                "C) Apply Azure Firewall forced tunneling to the circuit",
+                "D) Enable Resource Health alerts for circuit state"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "MACsec encrypts layer-2 traffic between edge routers, and Connection Monitor tracks latency and availability for ExpressRoute connectivity."
+        },
+        {
+            "id": 195,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "Developers deploy Azure Functions that access storage accounts. You must secure traffic and credentials. Which two steps should you take?",
+            "options": [
+                "A) Enable managed identity on each Function App",
+                "B) Grant Storage Blob Data Contributor to the managed identity",
+                "C) Configure CORS to allow all origins",
+                "D) Enable 'Allow public network access = Disabled' on storage"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "D"
+            ],
+            "explanation": "Managed identities remove credential secrets, and disabling public access forces private or service-linked network paths."
+        },
+        {
+            "id": 196,
+            "domain": "Secure Compute, Storage & Databases",
+            "question": "You need to prevent users from storing business data in unapproved personal storage accounts. Which two Azure Defender or Policy capabilities can help?",
+            "options": [
+                "A) Defender for Storage anomaly detection on data exfiltration",
+                "B) Azure Policy to deny storage accounts with personal email domains",
+                "C) Defender for Cloud Apps (Session Control) with Conditional Access",
+                "D) Soft Delete for Blob Storage"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "C"
+            ],
+            "explanation": "Defender for Storage detects abnormal access patterns, and Defender for Cloud Apps session control prevents uploads to unsanctioned services."
+        },
+        {
+            "id": 197,
+            "domain": "Secure Azure using Defender & Sentinel",
+            "question": "Your SOC wants high-confidence multi-stage attack detection using data from Entra ID logs and Defender for Endpoint. Which Sentinel rule type and data source pairing should you use?",
+            "options": [
+                "A) Fusion rule with Microsoft Security Graph signals",
+                "B) Scheduled analytic rule with custom KQL",
+                "C) NRT rule with Syslog connector",
+                "D) Automation rule triggered by incident severity"
+            ],
+            "multi_select": false,
+            "correct_answers": [
+                "A"
+            ],
+            "explanation": "Fusion rules automatically correlate cross-product signals (e.g., Entra ID, Defender for Endpoint) for advanced multi-stage detection."
+        },
+        {
+            "id": 198,
+            "domain": "Secure Azure using Defender & Sentinel",
+            "question": "You need to automatically open a ServiceNow ticket and isolate a host when Defender for Cloud detects ransomware behavior. Which two configurations are required?",
+            "options": [
+                "A) Enable Defender for Servers Plan 2",
+                "B) Create a Sentinel Playbook with ServiceNow connector",
+                "C) Configure Automation Rule to run the playbook on High alerts",
+                "D) Enable Adaptive Application Controls"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "B",
+                "C"
+            ],
+            "explanation": "Sentinel playbooks automate responses (ticketing, isolation), triggered via automation rules filtering by alert severity."
+        },
+        {
+            "id": 199,
+            "domain": "Secure Azure using Defender & Sentinel",
+            "question": "Your compliance team needs to track all Key Vaults that lack purge protection or soft delete. Which two tools can you use to identify and remediate non-compliance automatically?",
+            "options": [
+                "A) Defender for Cloud Regulatory Compliance dashboard",
+                "B) Azure Policy initiative for Key Vault compliance",
+                "C) Sentinel Workbook",
+                "D) Resource Graph query export"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "Defender for Cloud compliance dashboard surfaces misconfigurations; Azure Policy initiatives enforce and auto-remediate Key Vault settings."
+        },
+        {
+            "id": 200,
+            "domain": "Secure Azure using Defender & Sentinel",
+            "question": "To strengthen incident investigation, your team wants Sentinel to enrich alerts with known-bad IPs from an external feed and automatically tag incidents. Which two features should you use?",
+            "options": [
+                "A) Watchlists containing threat feed data",
+                "B) Automation Rule to add custom tags",
+                "C) Workbook dashboards",
+                "D) Near-real-time rule queries"
+            ],
+            "multi_select": true,
+            "correct_answers": [
+                "A",
+                "B"
+            ],
+            "explanation": "Watchlists supply enrichment data such as threat feeds; automation rules can tag incidents dynamically for prioritization."
         }
     ]
 }
